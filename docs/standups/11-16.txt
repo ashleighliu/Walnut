@@ -41,6 +41,8 @@ What have you done since yesterday?
 
 What are you planning on doing today?
 	- Adding OKRs and creating tickets
+	- Creating the initial commit from andriod studio project
+	- Creating a release branch
 
 Any impediments or stumbling blocks?
 	- None
