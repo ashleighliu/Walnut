@@ -4,7 +4,9 @@ What have you done since yesterday?
 	- Nothing
 
 What are you planning on doing today?
-	-
+	- Started using figma to design the UI for the application
+		- designed login page, add new account page
+	- Creating tickets
 
 Any impediments or stumbling blocks?
 	- None
