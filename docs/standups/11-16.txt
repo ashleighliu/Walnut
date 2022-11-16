@@ -8,7 +8,7 @@ What are you planning on doing today?
 
 Any impediments or stumbling blocks?
 	- None
----
+____
 
 Name: Miraj Ismail
 
@@ -20,7 +20,7 @@ What are you planning on doing today?
 
 Any impediments or stumbling blocks?
 	- None
----
+____
 
 Name: Matthew Mao
 
@@ -32,7 +32,7 @@ What are you planning on doing today?
 
 Any impediments or stumbling blocks?
 	- None
----
+____
 
 Name: Junlin Qu
 
@@ -44,7 +44,7 @@ What are you planning on doing today?
 
 Any impediments or stumbling blocks?
 	- None
----
+____
 
 Name: Ashleigh Liu
 
