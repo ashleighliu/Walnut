@@ -61,3 +61,15 @@ What are you planning on doing today?
 
 Any impediments or stumbling blocks?
 	- None
+
+	
+Name: Alfonso Acosta
+
+What have you done since yesterday?
+	- Nothing
+
+What are you planning on doing today?
+	- Get situated on Figma to begin designing UI
+
+Any impediments or stumbling blocks?
+	- None
