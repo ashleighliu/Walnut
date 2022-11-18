@@ -1,0 +1,62 @@
+Name: JS Dandurand
+
+What have you done since yesterday?
+	- Nothing
+
+What are you planning on doing today?
+	- Nothing
+
+Any impediments or stumbling blocks?
+	- None
+_______________________________________
+
+Name: Miraj Ismail
+
+What have you done since yesterday?
+	- Nothing
+
+What are you planning on doing today?
+	- Nothing
+
+Any impediments or stumbling blocks?
+	- None
+_______________________________________
+
+Name: Matthew Mao
+
+What have you done since yesterday?
+	- Nothing
+
+What are you planning on doing today?
+	- Nothing
+
+Any impediments or stumbling blocks?
+	- None
+_______________________________________
+
+Name: Junlin Qu
+
+What have you done since yesterday?
+	- Created the initial commit from Android Studios
+  - Created and started Sprint 1
+  - Created design tickets and assigned roles
+  - Had initial meeting and set up Figma, Jira and Firebase
+  - Created OKRs
+
+What are you planning on doing today?
+	- Nothing
+
+Any impediments or stumbling blocks?
+	- None
+_______________________________________
+
+Name: Ashleigh Liu
+
+What have you done since yesterday?
+	- Nothing
+
+What are you planning on doing today?
+	- Nothing
+
+Any impediments or stumbling blocks?
+	- None
