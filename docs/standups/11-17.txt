@@ -54,15 +54,16 @@ _______________________________________
 Name: Ashleigh Liu
 
 What have you done since yesterday?
-	- Nothing
+	- Worked on design layout of app via Figma
+	- Worked on Sprint 1 tickets
 
 What are you planning on doing today?
-	- Nothing
+	- Planning out new tickets for the upcoming days
 
 Any impediments or stumbling blocks?
-	- None
+	- Navigating Jira in general
 
-	
+______________________________________	
 Name: Alfonso Acosta
 
 What have you done since yesterday?
