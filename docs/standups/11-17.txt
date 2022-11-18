@@ -13,10 +13,10 @@ _______________________________________
 Name: Miraj Ismail
 
 What have you done since yesterday?
-	- Nothing
+	- Worked on designing the layout of the app on figma
 
 What are you planning on doing today?
-	- Nothing
+	- create more tickets
 
 Any impediments or stumbling blocks?
 	- None
