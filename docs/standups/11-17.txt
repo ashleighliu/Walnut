@@ -1,7 +1,7 @@
 Name: JS Dandurand
 
 What have you done since yesterday?
-	- Nothing
+	- Worked a little bit on Sprint 1 tickets
 
 What are you planning on doing today?
 	- Nothing
