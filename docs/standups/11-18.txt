@@ -38,10 +38,10 @@ _______________________________________
 Name: Junlin Qu
 
 What have you done since yesterday?
-	- Nothing
+	- Updated the Firebase SDK into project
 
 What are you planning on doing today?
-	- Nothing
+	- Studying for CSCB36 midterm 2
 
 Any impediments or stumbling blocks?
 	- None
