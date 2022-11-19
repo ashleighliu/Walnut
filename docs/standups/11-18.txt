@@ -4,9 +4,7 @@ What have you done since yesterday?
 	- Nothing
 
 What are you planning on doing today?
-	- Started using figma to design the UI for the application
-		- designed login page, add new account page
-	- Creating tickets
+	- Nothing
 
 Any impediments or stumbling blocks?
 	- None
@@ -18,8 +16,7 @@ What have you done since yesterday?
 	- Nothing
 
 What are you planning on doing today?
-	- Got started designing the layout of the app on figma
-	- Created tickets
+	- Nothing
 
 Any impediments or stumbling blocks?
 	- None
@@ -28,11 +25,11 @@ _______________________________________
 Name: Matthew Mao
 
 What have you done since yesterday?
-	- Nothing
-
-What are you planning on doing today?
 	- Working on design layout for login page (w/ others)
 	- Creating tickets
+
+What are you planning on doing today?
+	- Nothing
 
 Any impediments or stumbling blocks?
 	- None
@@ -41,12 +38,10 @@ _______________________________________
 Name: Junlin Qu
 
 What have you done since yesterday?
-	- Nothing
+	- Updated the Firebase SDK into project
 
 What are you planning on doing today?
-	- Adding OKRs and creating tickets
-	- Creating the initial commit from andriod studio project
-	- Creating a release branch
+	- Studying for CSCB36 midterm 2
 
 Any impediments or stumbling blocks?
 	- None
@@ -55,22 +50,22 @@ _______________________________________
 Name: Ashleigh Liu
 
 What have you done since yesterday?
-	- Work on app layout on Figma with other group members
+	- Nothing
 
 What are you planning on doing today?
-	- Attend daily standup meeting with the rest of the team
+	- Nothing
 
 Any impediments or stumbling blocks?
-	- None
+	- Navigating Jira in general
 
-	
+______________________________________	
 Name: Alfonso Acosta
 
 What have you done since yesterday?
 	- Nothing
 
 What are you planning on doing today?
-	- Get situated on Figma to begin designing UI
+	- Nothing
 
 Any impediments or stumbling blocks?
 	- None

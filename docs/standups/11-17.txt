@@ -1,12 +1,10 @@
 Name: JS Dandurand
 
 What have you done since yesterday?
-	- Nothing
+	- Worked a little bit on Sprint 1 tickets
 
 What are you planning on doing today?
-	- Started using figma to design the UI for the application
-		- designed login page, add new account page
-	- Creating tickets
+	- Nothing
 
 Any impediments or stumbling blocks?
 	- None
@@ -15,11 +13,10 @@ _______________________________________
 Name: Miraj Ismail
 
 What have you done since yesterday?
-	- Nothing
+	- Worked on designing the layout of the app on figma
 
 What are you planning on doing today?
-	- Got started designing the layout of the app on figma
-	- Created tickets
+	- create more tickets
 
 Any impediments or stumbling blocks?
 	- None
@@ -28,11 +25,11 @@ _______________________________________
 Name: Matthew Mao
 
 What have you done since yesterday?
-	- Nothing
-
-What are you planning on doing today?
 	- Working on design layout for login page (w/ others)
 	- Creating tickets
+
+What are you planning on doing today?
+	- Nothing
 
 Any impediments or stumbling blocks?
 	- None
@@ -41,12 +38,14 @@ _______________________________________
 Name: Junlin Qu
 
 What have you done since yesterday?
-	- Nothing
+	- Created the initial commit from Android Studios
+  - Created and started Sprint 1
+  - Created design tickets and assigned roles
+  - Had initial meeting and set up Figma, Jira and Firebase
+  - Created OKRs
 
 What are you planning on doing today?
-	- Adding OKRs and creating tickets
-	- Creating the initial commit from andriod studio project
-	- Creating a release branch
+	- Nothing
 
 Any impediments or stumbling blocks?
 	- None
@@ -55,22 +54,24 @@ _______________________________________
 Name: Ashleigh Liu
 
 What have you done since yesterday?
-	- Work on app layout on Figma with other group members
+	- Worked on design layout of app via Figma
+	- Worked on Sprint 1 tickets
 
 What are you planning on doing today?
-	- Attend daily standup meeting with the rest of the team
+	- Planning out new tickets for the upcoming days
 
 Any impediments or stumbling blocks?
-	- None
+	- Navigating Jira in general
 
-	
+______________________________________	
 Name: Alfonso Acosta
 
 What have you done since yesterday?
-	- Nothing
+	- Had meeting with team members to discuss design
+	- Got situated on figma; started designing with team
 
 What are you planning on doing today?
-	- Get situated on Figma to begin designing UI
+	- create tickets
 
 Any impediments or stumbling blocks?
 	- None
