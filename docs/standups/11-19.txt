@@ -49,13 +49,13 @@ _______________________________________
 Name: Ashleigh Liu
 
 What have you done since yesterday?
-	- Nothing
+	- Worked on Sprint 1 tickets
 
 What are you planning on doing today?
-	- Nothing
+	- Continue working on user stories on figma
 
 Any impediments or stumbling blocks?
-	- Navigating Jira in general
+	- Managing lots of details about the project
 
 ______________________________________	
 Name: Alfonso Acosta
