@@ -50,10 +50,10 @@ _______________________________________
 Name: Ashleigh Liu
 
 What have you done since yesterday?
-	- Nothing
+	- Worked on Sprint 1 tickets
 
 What are you planning on doing today?
-	- Nothing
+	- Finishing up designing the user stories
 
 Any impediments or stumbling blocks?
 	- Navigating Jira in general
