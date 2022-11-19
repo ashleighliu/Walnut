@@ -67,10 +67,11 @@ ______________________________________
 Name: Alfonso Acosta
 
 What have you done since yesterday?
-	- Nothing
+	- Had meeting with team members to discuss design
+	- Got situated on figma; started designing with team
 
 What are you planning on doing today?
-	- Nothing
+	- create tickets
 
 Any impediments or stumbling blocks?
 	- None
