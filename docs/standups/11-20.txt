@@ -23,7 +23,8 @@ Any impediments or stumbling blocks?
 Name: Matthew Mao
 
 What have you done since yesterday?
-	- Nothing
+	- Working on design layout for login page (w/ others)
+	- Creating tickets
 
 What are you planning on doing today?
 	- Nothing
