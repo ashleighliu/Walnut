@@ -59,7 +59,7 @@ What have you done since yesterday?
 	- Nothing
 
 What are you planning on doing today?
-	- Nothing
+	- Work on Jira tickets
 
 Any impediments or stumbling blocks?
 	- None
