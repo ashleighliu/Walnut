@@ -13,10 +13,10 @@ _______________________________________
 Name: Miraj Ismail
 
 What have you done since yesterday?
-	- Nothing
+	- Working on creating tickets
 
 What are you planning on doing today?
-	- Nothing
+	- working on design layout
 
 Any impediments or stumbling blocks?
 	- None
