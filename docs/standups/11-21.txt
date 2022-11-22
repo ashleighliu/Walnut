@@ -27,7 +27,9 @@ What have you done since yesterday?
 	- Creating tickets
 
 What are you planning on doing today?
-	- Nothing
+	- Admin Add Course Page
+	- Student Add Course Page
+	- Student Course Timeline Page
 
 Any impediments or stumbling blocks?
 	- None
