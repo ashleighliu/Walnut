@@ -38,7 +38,7 @@ What have you done since yesterday?
 	- Nothing
 
 What are you planning on doing today?
-	- Nothing
+	- Work on Admind edit courses ticket
 
 Any impediments or stumbling blocks?
 	- None
