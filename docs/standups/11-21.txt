@@ -59,7 +59,7 @@ Any impediments or stumbling blocks?
 Name: Ashleigh Liu
 
 What have you done since yesterday?
-	- Nothing
+	- Design on figma, going through tickets
 
 What are you planning on doing today?
 	- Work on Jira tickets
