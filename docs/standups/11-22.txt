@@ -59,10 +59,10 @@ Any impediments or stumbling blocks?
 Name: Ashleigh Liu
 
 What have you done since yesterday?
-	- Nothing
+	- Worked on Sprint 1 tickets
 
 What are you planning on doing today?
-	- Work on Jira tickets
+	- Separating the tickets and organizing them according to user story with group members
 
 Any impediments or stumbling blocks?
-	- None
+	- Had to reformat our Jira plan because our TA said to reorganize our tickets better.
