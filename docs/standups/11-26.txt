@@ -1,0 +1,68 @@
+Name: <JS Dandurand>
+
+What have you done since yesterday?
+	- Nothing
+
+What are you planning on doing today?
+	- Nothing
+
+Any impediments or stumbling blocks?
+	- None
+	
+Name: Miraj Ismail
+
+What have you done since yesterday?
+	- Nothing
+
+What are you planning on doing today?
+	- Nothing
+
+Any impediments or stumbling blocks?
+	- None
+	
+Name: Matthew Mao
+
+What have you done since yesterday?
+	- Working on design layout for login page (w/ others)
+	- Creating tickets
+
+What are you planning on doing today?
+	- Admin Add Course Page
+	- Student Add Course Page
+	- Student Course Timeline Page
+
+Any impediments or stumbling blocks?
+	- None
+	
+Name: Alfonso Acosta
+
+What have you done since yesterday?
+	- Nothing
+
+What are you planning on doing today?
+	- Work on Admind edit courses ticket
+
+Any impediments or stumbling blocks?
+	- None
+
+Name: Junlin Qu
+
+What have you done since yesterday?
+	- Nothing
+
+What are you planning on doing today?
+	- Nothing
+
+Any impediments or stumbling blocks?
+	- None
+	
+Name: Ashleigh Liu
+
+What have you done since yesterday?
+	- Nothing
+
+What are you planning on doing today?
+	- Work on Jira tickets
+
+Any impediments or stumbling blocks?
+	- None
