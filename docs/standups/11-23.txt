@@ -1,7 +1,7 @@
 Name: <JS Dandurand>
 
 What have you done since yesterday?
-	- Worked on Jira tickets
+	- Nothing
 
 What are you planning on doing today?
 	- Nothing
@@ -23,13 +23,10 @@ Any impediments or stumbling blocks?
 Name: Matthew Mao
 
 What have you done since yesterday?
-	- Working on design layout for login page (w/ others)
-	- Creating tickets
+	- Nothing
 
 What are you planning on doing today?
-	- Admin Add Course Page
-	- Student Add Course Page
-	- Student Course Timeline Page
+	- Nothing
 
 Any impediments or stumbling blocks?
 	- None
@@ -40,7 +37,7 @@ What have you done since yesterday?
 	- Nothing
 
 What are you planning on doing today?
-	- Work on Admind edit courses ticket
+	- Nothing
 
 Any impediments or stumbling blocks?
 	- None
@@ -48,12 +45,10 @@ Any impediments or stumbling blocks?
 Name: Junlin Qu
 
 What have you done since yesterday?
-	- Create new OKRs for sprint 2 and started sprint 2
-	- Updated user stories into backlogs and added tickets under each
+	- Nothing
 
 What are you planning on doing today?
-	- Finish creating new tickets for Sprint 2
-	- Start and finish the firebase user login flow path
+	- Nothing
 
 Any impediments or stumbling blocks?
 	- None
@@ -61,10 +56,10 @@ Any impediments or stumbling blocks?
 Name: Ashleigh Liu
 
 What have you done since yesterday?
-	- Worked on Sprint 1 tickets
+	- Nothing
 
 What are you planning on doing today?
-	- Separating the tickets and organizing them according to user story with group members
+	- Nothing
 
 Any impediments or stumbling blocks?
-	- Had to reformat our Jira plan because our TA said to reorganize our tickets better.
+	- None
