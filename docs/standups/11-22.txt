@@ -48,10 +48,12 @@ Any impediments or stumbling blocks?
 Name: Junlin Qu
 
 What have you done since yesterday?
-	- Nothing
+	- Create new OKRs for sprint 2 and started sprint 2
+	- Updated user stories into backlogs and added tickets under each
 
 What are you planning on doing today?
-	- Nothing
+	- Finish creating new tickets for Sprint 2
+	- Start and finish the firebase user login flow path
 
 Any impediments or stumbling blocks?
 	- None
