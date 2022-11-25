@@ -1,10 +1,17 @@
 Name: <JS Dandurand>
 
 What have you done since yesterday?
-	- Nothing
+	- Created more tickets pertaining to actual login page
+	- worked on tickets pertaining to login page
+	- worked on bug fixes with the app
+	- Created a new template to develop the app with, as we had trouble
+	working with the fragments in the original template we used
 
 What are you planning on doing today?
-	- Nothing
+	- fully implement the login page functionality and UI
+	- PR the testing branch to the main to replace old template
+	- Continue familiarizing myself with Android Studios
+	- Familiarize myself with firebase
 
 Any impediments or stumbling blocks?
 	- None
