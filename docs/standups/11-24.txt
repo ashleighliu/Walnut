@@ -19,10 +19,12 @@ Any impediments or stumbling blocks?
 Name: Miraj Ismail
 
 What have you done since yesterday?
-	- Nothing
+	- Created more tickets
+	- worked on bug fixes with the app so far
 
 What are you planning on doing today?
-	- Nothing
+	- testing templates and designs in android studio
+	- getting familiar with implementing buttons and text fields
 
 Any impediments or stumbling blocks?
 	- None
