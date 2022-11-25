@@ -1,11 +1,9 @@
-package com.example.b07project;
+package com.example.b07_project;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 
 import android.os.Bundle;
-
-import com.example.b07_project.R;
 
 public class MainActivity extends AppCompatActivity {
 

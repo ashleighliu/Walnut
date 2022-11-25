@@ -1,4 +1,4 @@
-package com.example.b07project;
+package com.example.b07_project;
 
 import org.junit.Test;
 
