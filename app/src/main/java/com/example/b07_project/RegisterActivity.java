@@ -20,7 +20,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    Button alreadyHaveaccount;
+    Button alreadyHaveAccount;
     EditText inputEmail,inputPassword;
     Button btnRegister;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
@@ -33,7 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        alreadyHaveaccount = findViewById(R.id.alreadyHaveAccount);
+        alreadyHaveAccount = findViewById(R.id.alreadyHaveAccount);
         inputEmail = findViewById(R.id.inputEmail);
         inputPassword = findViewById(R.id.inputPassword);
         btnRegister = findViewById(R.id.registerbtn);
@@ -41,7 +41,7 @@ public class RegisterActivity extends AppCompatActivity {
         fire = FirebaseAuth.getInstance();
         user = fire.getCurrentUser();
 
-        alreadyHaveaccount.setOnClickListener(new View.OnClickListener() {
+        alreadyHaveAccount.setOnClickListener(new View.OnClickListener() {
         @Override
             public void onClick(View v) {
             startActivity(new Intent(RegisterActivity.this, MainActivity.class));
@@ -54,6 +54,7 @@ public class RegisterActivity extends AppCompatActivity {
                 PerforAuth();
             }
         });
+
     }
 
     private void PerforAuth(){
