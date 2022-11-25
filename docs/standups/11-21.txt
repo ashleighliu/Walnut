@@ -15,7 +15,8 @@ What have you done since yesterday?
 	- Nothing
 
 What are you planning on doing today?
-	- Nothing
+	- create more tickets
+	- work on design layout
 
 Any impediments or stumbling blocks?
 	- None
