@@ -12,7 +12,8 @@ Any impediments or stumbling blocks?
 Name: Miraj Ismail
 
 What have you done since yesterday?
-	- Nothing
+	- Created more tickets
+	- worked on designing the admin pages
 
 What are you planning on doing today?
 	- Nothing
