@@ -16,7 +16,7 @@ What have you done since yesterday?
 	- worked on designing the admin pages
 
 What are you planning on doing today?
-	- Nothing
+	- Work on designing login page
 
 Any impediments or stumbling blocks?
 	- None
