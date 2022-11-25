@@ -23,10 +23,14 @@ Any impediments or stumbling blocks?
 Name: Matthew Mao
 
 What have you done since yesterday?
-	- Nothing
+	- Working on design layout for login page (w/ others)
+	- Creating tickets
+	- Admin Add Course Page
+	- Student Add Course Page
+	- Student Course Timeline Page
 
 What are you planning on doing today?
-	- Nothing
+	- TextFields for Login Page
 
 Any impediments or stumbling blocks?
 	- None
