@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -17,6 +16,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.SignInMethodQueryResult;
+
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -36,7 +37,7 @@ public class RegisterActivity extends AppCompatActivity {
         alreadyHaveAccount = findViewById(R.id.alreadyHaveAccount);
         inputEmail = findViewById(R.id.inputEmail);
         inputPassword = findViewById(R.id.inputPassword);
-        btnRegister = findViewById(R.id.registerbtn);
+        btnRegister = findViewById(R.id.registerbtnstudent);
         progressDialog = new ProgressDialog(this);
         fire = FirebaseAuth.getInstance();
         user = fire.getCurrentUser();
@@ -71,20 +72,39 @@ public class RegisterActivity extends AppCompatActivity {
             progressDialog.setTitle("Registration");
             progressDialog.setCanceledOnTouchOutside(false);
             progressDialog.show();
-            fire.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            fire.fetchSignInMethodsForEmail(email).addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
                 @Override
-                public void onComplete(@NonNull Task<AuthResult> task){
-                    if (task.isSuccessful()){
-                        progressDialog.dismiss();
-                        sendUserToNextActivity();
-                        Toast.makeText(RegisterActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
+                public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
+                    if(task.getResult().getSignInMethods().size() == 0){
+                        fire.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task){
+                                if (task.isSuccessful()){
+                                    StudentAccount studentAccount = new StudentAccount(email, password);
+                                    String uID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+
+
+                                    progressDialog.dismiss();
+                                    sendUserToNextActivity();
+                                    Toast.makeText(RegisterActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
+                                }
+                                else{
+                                    progressDialog.dismiss();
+                                    Toast.makeText(RegisterActivity.this, ""+task.getException(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
                     }
                     else{
+                        inputEmail.setError("Account with this email already exists");
                         progressDialog.dismiss();
-                        Toast.makeText(RegisterActivity.this, ""+task.getException(), Toast.LENGTH_SHORT).show();
+                        return;
                     }
                 }
             });
+
+
 
 
 
