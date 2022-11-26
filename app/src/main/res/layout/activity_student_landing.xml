@@ -12,7 +12,7 @@
         android:layout_height="51dp"
         android:text="N/A"
         android:textAlignment="center"
-        android:textSize="35sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -100,12 +100,16 @@ public class MainActivity extends AppCompatActivity {
                                     editor.apply();
 
                                     if (isAdmin == "false"){
+                                        //Redirect to student landing page
                                         progressDialog.dismiss();
-                                        sendUserToNextActivity();
+                                        sendUserToNextStudentActivity();
                                         Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                                     }
                                     else{
                                         //Redirect to admin landing page
+                                        progressDialog.dismiss();
+                                        sendUserToNextAdminActivity();
+                                        Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                                 else{
@@ -119,13 +123,17 @@ public class MainActivity extends AppCompatActivity {
                         progressDialog.dismiss();
                         Toast.makeText(MainActivity.this, ""+task.getException(), Toast.LENGTH_SHORT).show(); //If login credentials incorrect
                     }
-
                 }
             });
         }
     }
-    private void sendUserToNextActivity(){
+    private void sendUserToNextStudentActivity(){
         Intent intent = new Intent(MainActivity.this, StudentLanding.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+    private void sendUserToNextAdminActivity(){
+        Intent intent = new Intent(MainActivity.this, AdminLanding.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
