@@ -85,4 +85,4 @@ What are you planning on doing today?
 	- Create icons for nav bar
   
 Any impediments or stumbling blocks?
-	- None
+	- I accidentally updated Gradle and then my app wouldn't sync anymore :(
