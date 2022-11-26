@@ -86,12 +86,20 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<DataSnapshot> task) {
                                 if(task.isSuccessful()){
+                                    //Getting info of account
                                     String isAdmin = String.valueOf(task.getResult().child("isAdmin").getValue());
+                                    String email = String.valueOf(task.getResult().child("email").getValue());
+                                    String password = String.valueOf(task.getResult().child("password").getValue());
+                                    //Passing info of account through SharedPreferences to landing page
+                                    //More of these will be needed for other info (eg. AcademicHistory)
                                     SharedPreferences p = getSharedPreferences("myPreferences", Context.MODE_PRIVATE);
                                     SharedPreferences.Editor editor = p.edit();
-                                    editor.putString("uID", uID); //This is basically so that you can retrieve
-                                    editor.apply(); //the uID in the landing page,which is then used to retrieve the rest of the data
-                                    if (isAdmin == "false"){ //Redirects you to student landing page
+                                    editor.putString("uID", uID);
+                                    editor.putString("email", email);
+                                    editor.putString("password", password);
+                                    editor.apply();
+
+                                    if (isAdmin == "false"){
                                         progressDialog.dismiss();
                                         sendUserToNextActivity();
                                         Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();

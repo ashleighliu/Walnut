@@ -12,6 +12,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class StudentLanding extends AppCompatActivity {
     String uID;
+    String email;
+    String password;
     DatabaseReference fire;
     DatabaseReference user;
     StudentAccount student;
@@ -21,19 +23,21 @@ public class StudentLanding extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_landing);
 
-        //Retrieving uID from SharedPreferences
+        //Retrieving account info from SharedPreferences
         SharedPreferences p = getSharedPreferences("myPreferences", Context.MODE_PRIVATE);
         uID = p.getString("uID", "N/A");
-        //Just displaying uID on the UI just because
-        TextView text = (TextView)findViewById(R.id.welcomeStudent);
-        text.setText("Welcome " + uID);
+        email = p.getString("email", "N/A");
+        password = p.getString("password", "N/A");
 
-
-        //You're gonna want to use this to actually be able to get the full StudentAccount instance
-        //to use for other functionalities
+        //Probably will be needed for updating the student account data (eg. adding courses, adding academic history);
         fire = FirebaseDatabase.getInstance().getReference();
         user = fire.child("Students").child(uID);
 
+        //Creating student object
+        student = new StudentAccount(email, password, uID);
 
+        //Default just displaying the email
+        TextView text = (TextView)findViewById(R.id.welcomeStudent);
+        text.setText("Welcome " + email);
     }
 }
