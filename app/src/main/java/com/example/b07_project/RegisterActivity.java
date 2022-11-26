@@ -17,6 +17,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.SignInMethodQueryResult;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class RegisterActivity extends AppCompatActivity {
@@ -82,12 +83,21 @@ public class RegisterActivity extends AppCompatActivity {
                                 if (task.isSuccessful()){
                                     StudentAccount studentAccount = new StudentAccount(email, password);
                                     String uID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
-
-
-                                    progressDialog.dismiss();
-                                    sendUserToNextActivity();
-                                    Toast.makeText(RegisterActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
+                                    FirebaseDatabase.getInstance().getReference("Students").child(
+                                        FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(studentAccount).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if(task.isSuccessful()){
+                                                Toast.makeText(RegisterActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
+                                                sendUserToNextActivity();
+                                                progressDialog.dismiss();
+                                            }
+                                            else{
+                                                progressDialog.dismiss();
+                                                Toast.makeText(RegisterActivity.this, ""+task.getException(), Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
                                 }
                                 else{
                                     progressDialog.dismiss();
