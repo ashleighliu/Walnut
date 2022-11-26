@@ -7,4 +7,8 @@ public class StudentAccount extends Account{
         this.uID = uID; //Needed to retrieve data from firebase
         this.isAdmin = false; //Self-explanatory
     }
+    //A new constructor will need to be added for retrieving student info in the landing page
+    //since the above constructor (once the course fields are added) will set the course lists
+    //to null, but when retrieving info we want the course lists to have all the info from
+    //firebase.
 }

@@ -68,7 +68,7 @@ public class RegisterActivity extends AppCompatActivity {
         else if(password.isEmpty() || password.length()<6){
             inputPassword.setError("Enter Proper Password of At Least 6 Characters");
         }
-        else{
+        else{ //progressDialog is just for UI purposes, if it causes too many problems feel free to remove
             progressDialog.setMessage("Please Wait While Registering...");
             progressDialog.setTitle("Registration");
             progressDialog.setCanceledOnTouchOutside(false);
