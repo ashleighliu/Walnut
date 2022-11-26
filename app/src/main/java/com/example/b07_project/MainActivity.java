@@ -9,6 +9,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
@@ -25,7 +26,11 @@ import navbar_fragments.HomeFragment;
 import navbar_fragments.SearchFragment;
 
 public class MainActivity extends AppCompatActivity {
+    public DrawerLayout drawerLayout;
+    public ActionBarDrawerToggle actionBarDrawerToggle;
 
+
+    /////
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 
@@ -40,8 +45,39 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ////
+        // drawer layout instance to toggle the menu icon to open
+        // drawer and back button to close drawer
+        drawerLayout = findViewById(R.id.my_drawer_layout);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
+
+        // pass the Open and Close toggle for the drawer layout listener
+        // to toggle the button
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+
+        // to make the Navigation drawer icon always appear on the action bar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        /////////////
+
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         getSupportFragmentManager().beginTransaction().replace(R.id.fl_wrapper, homeFragment).commit();
+    }
+    // override the onOptionsItemSelected()
+    // function to implement
+    // the item click listener callback
+    // to open and close the navigation
+    // drawer when the icon is clicked
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
@@ -55,10 +91,9 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.edit:
                         getSupportFragmentManager().beginTransaction().replace(R.id.fl_wrapper, editFragment).commit();
                         return true;
-
                 }
                 return false;
-            }
+
         });
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
