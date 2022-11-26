@@ -33,7 +33,7 @@ public class AdminLanding extends AppCompatActivity {
         admin = new AdminAccount(email, password, uID);
 
         //Default just displaying the email
-        TextView text = (TextView)findViewById(R.id.welcomeStudent);
-        text.setText("Welcome Admin:" + email);
+        TextView text = (TextView)findViewById(R.id.welcomeAdmin);
+        text.setText("Welcome Admin: " + email);
     }
 }
