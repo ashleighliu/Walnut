@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +19,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
     Button btnNewAccount;
@@ -55,31 +59,57 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void login(){
+        //Retrieving email and password from what user typed
         String email=inputEmail.getText().toString();
         String password=inputPassword.getText().toString();
+        //Checking validity
         if (!email.matches(emailPattern)) {
             inputEmail.setError("Enter Valid Email");
         }
         else if(password.isEmpty() || password.length()<6){
             inputPassword.setError("Enter Proper Password of At Least 6 Characters");
         }
-        else {
+        else { //progressDialog is just for UI purposes, if it causes too many problems feel free to remove
             progressDialog.setMessage("Please Wait While Logging in...");
             progressDialog.setTitle("Login");
             progressDialog.setCanceledOnTouchOutside(false);
             progressDialog.show();
-
+            //Signing in with firebase
             fire.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-                        progressDialog.dismiss();
-                        sendUserToNextActivity();
-                        Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                        String uID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                        //SharedPreferences stuff
+                        //Needed to retrieve data once you're in student landing page
+                        FirebaseDatabase.getInstance().getReference().child("Students").child(uID).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                                if(task.isSuccessful()){
+                                    String isAdmin = String.valueOf(task.getResult().child("isAdmin").getValue());
+                                    SharedPreferences p = getSharedPreferences("myPreferences", Context.MODE_PRIVATE);
+                                    SharedPreferences.Editor editor = p.edit();
+                                    editor.putString("uID", uID); //This is basically so that you can retrieve
+                                    editor.apply(); //the uID in the landing page,which is then used to retrieve the rest of the data
+                                    if (isAdmin == "false"){ //Redirects you to student landing page
+                                        progressDialog.dismiss();
+                                        sendUserToNextActivity();
+                                        Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                                    }
+                                    else{
+                                        //Redirect to admin landing page
+                                    }
+                                }
+                                else{
+                                    //this should never occur
+                                }
+                            }
+                        });
+
                     }
                     else{
                         progressDialog.dismiss();
-                        Toast.makeText(MainActivity.this, ""+task.getException(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, ""+task.getException(), Toast.LENGTH_SHORT).show(); //If login credentials incorrect
                     }
 
                 }
@@ -87,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     private void sendUserToNextActivity(){
-        Intent intent = new Intent(MainActivity.this, adminlanding.class);
+        Intent intent = new Intent(MainActivity.this, StudentLanding.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }

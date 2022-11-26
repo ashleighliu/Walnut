@@ -73,21 +73,25 @@ public class RegisterActivity extends AppCompatActivity {
             progressDialog.setTitle("Registration");
             progressDialog.setCanceledOnTouchOutside(false);
             progressDialog.show();
+            //The following line checks if an account with the typed in email already exists
             fire.fetchSignInMethodsForEmail(email).addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
                 @Override
                 public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
-                    if(task.getResult().getSignInMethods().size() == 0){
+                    if(task.getResult().getSignInMethods().size() == 0){ //This basically means if the typed in email doesn't exit
+                        //Creating account in firebase
                         fire.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task){
                                 if (task.isSuccessful()){
-                                    StudentAccount studentAccount = new StudentAccount(email, password);
                                     String uID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                                    StudentAccount studentAccount = new StudentAccount(email, password, uID);
+                                    //Adding account info in firebase Database
                                     FirebaseDatabase.getInstance().getReference("Students").child(
                                         FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(studentAccount).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if(task.isSuccessful()){
+                                                //Sends you back to main activity to login again
                                                 Toast.makeText(RegisterActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
                                                 sendUserToNextActivity();
                                                 progressDialog.dismiss();
@@ -100,6 +104,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     });
                                 }
                                 else{
+                                    //This should not happen
                                     progressDialog.dismiss();
                                     Toast.makeText(RegisterActivity.this, ""+task.getException(), Toast.LENGTH_SHORT).show();
                                 }
@@ -121,7 +126,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
     private void sendUserToNextActivity(){
-        Intent intent = new Intent(RegisterActivity.this, adminlanding.class);
+        Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
