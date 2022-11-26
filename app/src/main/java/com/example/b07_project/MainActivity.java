@@ -1,17 +1,13 @@
 package com.example.b07_project;
 
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 
-import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -20,10 +16,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.b07_project.databinding.ActivityMainBinding;
-
-import navbar_fragments.EditCoursesFragment;
-import navbar_fragments.HomeFragment;
-import navbar_fragments.SearchFragment;
 
 public class MainActivity extends AppCompatActivity {
     public DrawerLayout drawerLayout;
@@ -34,15 +26,10 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 
-    BottomNavigationView bottomNavigationView;
-    HomeFragment homeFragment = new HomeFragment();
-    EditFragment = new EditFragment();
-    SearchFragment = new SearchFragment();
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
         setContentView(R.layout.activity_main);
 
         ////
@@ -95,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
                 return false;
 
         });
+=======
+>>>>>>> parent of ab3b547 (Added bottom navigation bar)
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
