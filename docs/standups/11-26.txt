@@ -43,10 +43,12 @@ Any impediments or stumbling blocks?
 Name: Alfonso Acosta
 
 What have you done since yesterday?
-	- Nothing
+	- Implemented navigation drawer for landing page
+	- Created more tickets 
+
 
 What are you planning on doing today?
-	- Nothing
+	- Finish the navigation drawer by having it redirect to corresponding fragments
 
 Any impediments or stumbling blocks?
 	- None
