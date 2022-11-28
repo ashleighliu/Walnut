@@ -1,0 +1,85 @@
+Name: <JS Dandurand>
+
+What have you done since yesterday?
+   - allowed admins to register accounts
+   - optimized code pertaining to login and register
+   - detailed my code with comments to allow group members to better understand, follow and branch off my code
+   - fixed bug relating to how admin accounts could not retrieve user data after logging in
+
+What are you planning on doing today?
+  - work on allowing admins to add courses to offered courses
+
+Any impediments or stumbling blocks?
+	- None
+	
+Name: Miraj Ismail
+
+What have you done since yesterday?
+	- Created more tickets
+	- worked on bug fixes with the app so far
+
+What are you planning on doing today?
+	- testing templates and designs in android studio
+	- getting familiar with implementing buttons and text fields
+
+Any impediments or stumbling blocks?
+	- None
+	
+Name: Matthew Mao
+
+What have you done since yesterday?
+	- Working on design layout for login page (w/ others)
+	- Creating tickets
+	- Admin Add Course Page
+	- Student Add Course Page
+	- Student Course Timeline Page
+
+What are you planning on doing today?
+	- TextFields for Login Page
+
+Any impediments or stumbling blocks?
+	- None
+	
+Name: Alfonso Acosta
+
+What have you done since yesterday?
+	- Implemented navigation drawer for landing page
+	- Created more tickets 
+
+
+What are you planning on doing today?
+	- Finish the navigation drawer by having it redirect to corresponding fragments
+
+Any impediments or stumbling blocks?
+	- None
+
+Name: Junlin Qu
+
+What have you done since yesterday?
+	- Updated the template for android app
+	- Created firebase data storage design
+	- Updated and created new tickets for actual implementation of the app design
+	- Bugfixed firebase connection with app
+	- Changed from fragments to activities as the object type
+	- Created a data storage system from the class flow
+
+What are you planning on doing today?
+	- Finish writing all required tickets for this sprint
+	- Hopefully finish the login page and firebase data storage
+	- Get the others more familiar with the intricacies of android studios
+	- PR the testing branch to the main to replace old template
+
+Any impediments or stumbling blocks?
+	- None
+	
+Name: Ashleigh Liu
+
+What have you done since yesterday?
+	- Implemented both bottom and sliding hamburger navigation menus, but still troubleshooting some bugs
+
+What are you planning on doing today?
+	- Fixing bugs for hamburger sliding menu that I implemented earlier today
+	- Making sure the navigation menus redirect to the correct fragments
+  
+Any impediments or stumbling blocks?
+	- My app started randomly crashing every time I started it. I had to revert one of my commits because this kept happening.

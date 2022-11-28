@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterActivity">
+    tools:context=".RegisterActivity"
+    android:background="@drawable/backgroundlogin">
 
     <Button
         android:id="@+id/registerbtnadmin"
@@ -42,7 +43,7 @@
         android:layout_marginBottom="13dp"
         android:ems="10"
         android:inputType="textEmailAddress"
-        android:text="Email"
+        android:hint="Email"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/inputPassword"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,7 +60,7 @@
         android:layout_marginBottom="384dp"
         android:ems="10"
         android:inputType="text"
-        android:text="Password"
+        android:hint="Password"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
