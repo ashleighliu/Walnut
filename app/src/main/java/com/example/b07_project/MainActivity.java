@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                         String uID = FirebaseAuth.getInstance().getCurrentUser().getUid();
                         //SharedPreferences stuff
                         //Needed to retrieve data once you're in student landing page
-                        FirebaseDatabase.getInstance().getReference().child("Students").child(uID).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                        FirebaseDatabase.getInstance().getReference().child("Accounts").child(uID).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<DataSnapshot> task) {
                                 if(task.isSuccessful()){
