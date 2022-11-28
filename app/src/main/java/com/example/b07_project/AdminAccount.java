@@ -8,4 +8,5 @@ public class AdminAccount extends Account{
         this.uID = uID; //Needed to retrieve data from firebase
         this.isAdmin = true; //Self-explanatory
     }
+
 }
