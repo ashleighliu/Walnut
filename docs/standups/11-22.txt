@@ -1,0 +1,71 @@
+Name: <JS Dandurand>
+
+What have you done since yesterday?
+	- Worked on Jira tickets
+
+What are you planning on doing today?
+	- Nothing
+
+Any impediments or stumbling blocks?
+	- None
+	
+Name: Miraj Ismail
+
+What have you done since yesterday?
+	- Created more tickets
+	- worked on designing the admin pages
+
+What are you planning on doing today?
+	- Work on designing login page
+
+Any impediments or stumbling blocks?
+	- None
+	
+Name: Matthew Mao
+
+What have you done since yesterday?
+	- Working on design layout for login page (w/ others)
+	- Creating tickets
+
+What are you planning on doing today?
+	- Admin Add Course Page
+	- Student Add Course Page
+	- Student Course Timeline Page
+
+Any impediments or stumbling blocks?
+	- None
+	
+Name: Alfonso Acosta
+
+What have you done since yesterday?
+	- Nothing
+
+What are you planning on doing today?
+	- Work on Admind edit courses ticket
+
+Any impediments or stumbling blocks?
+	- None
+
+Name: Junlin Qu
+
+What have you done since yesterday?
+	- Create new OKRs for sprint 2 and started sprint 2
+	- Updated user stories into backlogs and added tickets under each
+
+What are you planning on doing today?
+	- Finish creating new tickets for Sprint 2
+	- Start and finish the firebase user login flow path
+
+Any impediments or stumbling blocks?
+	- None
+	
+Name: Ashleigh Liu
+
+What have you done since yesterday?
+	- Worked on Sprint 1 tickets
+
+What are you planning on doing today?
+	- Separating the tickets and organizing them according to user story with group members
+
+Any impediments or stumbling blocks?
+	- Had to reformat our Jira plan because our TA said to reorganize our tickets better.
