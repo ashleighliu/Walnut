@@ -77,10 +77,12 @@ Name: Ashleigh Liu
 
 What have you done since yesterday?
 	- Implemented both bottom and sliding hamburger navigation menus, but still troubleshooting some bugs
+	- Merged yayyyy to newtemplate, and newtemplate to main branch
 
 What are you planning on doing today?
 	- Fixed bug with input forms on login and registration
 	- Tailored the app to align more correctly with original figma design
+	- Approve PRs and deal with merge issues
   
 Any impediments or stumbling blocks?
 	- Encountered bugs where app would crash, used logcat to diagnose the issue
