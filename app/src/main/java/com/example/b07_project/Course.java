@@ -10,13 +10,21 @@ public class Course {
     private HashSet<String> offeringSessions;
     private HashSet<String> prereqs;
 
-    private Course(String courseName, String courseCode, HashSet<String> offeringSessions, HashSet<String> prereqs){
+    public Course(String courseName, String courseCode, String offeringSessions, String prereqs){
         this.courseName = courseName;
         this.courseCode = courseCode;
-        this.offeringSessions = new HashSet<String>();
-        this.offeringSessions = (HashSet<String>) offeringSessions.clone();
-        this.prereqs = new HashSet<String>();
-        this.prereqs = (HashSet<String>) prereqs.clone();
+        HashSet<String> courseSessions = new HashSet<String>();
+        HashSet<String> coursePrereqs = new HashSet<String>();
+        for (String s:
+             offeringSessions.split(",")) {
+            courseSessions.add(s);
+        }
+        for (String p:
+                prereqs.split(",")) {
+            coursePrereqs.add(p);
+        }
+        this.offeringSessions = courseSessions;
+        this.prereqs = coursePrereqs;
     }
 
 
