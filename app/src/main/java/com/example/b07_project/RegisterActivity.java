@@ -24,7 +24,8 @@ public class RegisterActivity extends AppCompatActivity {
 
     Button alreadyHaveAccount;
     EditText inputEmail,inputPassword;
-    Button btnRegister;
+    Button btnRegisterStudent;
+    Button btnRegisterAdmin;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     ProgressDialog progressDialog;
     FirebaseAuth fire;
@@ -38,7 +39,8 @@ public class RegisterActivity extends AppCompatActivity {
         alreadyHaveAccount = findViewById(R.id.alreadyHaveAccount);
         inputEmail = findViewById(R.id.inputEmail);
         inputPassword = findViewById(R.id.inputPassword);
-        btnRegister = findViewById(R.id.registerbtnstudent);
+        btnRegisterStudent = findViewById(R.id.registerbtnstudent);
+        btnRegisterAdmin = findViewById(R.id.registerbtnadmin);
         progressDialog = new ProgressDialog(this);
         fire = FirebaseAuth.getInstance();
         user = fire.getCurrentUser();
@@ -50,16 +52,23 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        btnRegister.setOnClickListener(new View.OnClickListener(){
+        btnRegisterStudent.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                PerforAuth();
+                PerforAuth(false);
+            }
+        });
+
+        btnRegisterAdmin.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                PerforAuth(true);
             }
         });
 
     }
 
-    private void PerforAuth(){
+    private void PerforAuth(boolean RegAsAdmin){
         String email=inputEmail.getText().toString();
         String password=inputPassword.getText().toString();
         if (!email.matches(emailPattern)) {
@@ -84,24 +93,47 @@ public class RegisterActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task){
                                 if (task.isSuccessful()){
                                     String uID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                                    StudentAccount studentAccount = new StudentAccount(email, password, uID);
+                                    if(!RegAsAdmin){
+                                        StudentAccount newAccount = new StudentAccount(email, password, uID);
+                                        FirebaseDatabase.getInstance().getReference("Accounts").child(
+                                                FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(newAccount).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if(task.isSuccessful()){
+                                                    //Sends you back to main activity to login again
+                                                    Toast.makeText(RegisterActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
+                                                    sendUserToNextActivity();
+                                                    progressDialog.dismiss();
+                                                }
+                                                else{
+                                                    progressDialog.dismiss();
+                                                    Toast.makeText(RegisterActivity.this, ""+task.getException(), Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                        });
+                                    }
+                                    else{
+                                        AdminAccount newAccount = new AdminAccount(email, password, uID);
+                                        FirebaseDatabase.getInstance().getReference("Accounts").child(
+                                                FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(newAccount).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if(task.isSuccessful()){
+                                                    //Sends you back to main activity to login again
+                                                    Toast.makeText(RegisterActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
+                                                    sendUserToNextActivity();
+                                                    progressDialog.dismiss();
+                                                }
+                                                else{
+                                                    progressDialog.dismiss();
+                                                    Toast.makeText(RegisterActivity.this, ""+task.getException(), Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                        });
+                                    }
+
                                     //Adding account info in firebase Database
-                                    FirebaseDatabase.getInstance().getReference("Students").child(
-                                        FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(studentAccount).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            if(task.isSuccessful()){
-                                                //Sends you back to main activity to login again
-                                                Toast.makeText(RegisterActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
-                                                sendUserToNextActivity();
-                                                progressDialog.dismiss();
-                                            }
-                                            else{
-                                                progressDialog.dismiss();
-                                                Toast.makeText(RegisterActivity.this, ""+task.getException(), Toast.LENGTH_SHORT).show();
-                                            }
-                                        }
-                                    });
+
                                 }
                                 else{
                                     //This should not happen
