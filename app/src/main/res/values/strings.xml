@@ -1,10 +1,4 @@
 <resources>
-
-    <!-- to toggle the open close button of the navigation drawer -->
-    <string name="nav_open">Open</string>
-    <string name="nav_close">Close</string>
-
-
     <string name="app_name">B07Project</string>
     <string name="title_activity_main2">MainActivity2</string>
     <!-- Strings used for fragments for navigation -->
