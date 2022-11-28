@@ -43,12 +43,13 @@ Any impediments or stumbling blocks?
 Name: Alfonso Acosta
 
 What have you done since yesterday?
-	- Implemented navigation drawer for landing page
-	- Created more tickets 
+	- Finished implementation of navigation bar for Admin Landing page
+	- Admins can now go to manage and edit courses fragments
+	- Admins can now logout
 
 
 What are you planning on doing today?
-	- Finish the navigation drawer by having it redirect to corresponding fragments
+	- Start working on Academic History page
 
 Any impediments or stumbling blocks?
 	- None
