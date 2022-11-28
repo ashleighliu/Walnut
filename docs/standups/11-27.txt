@@ -37,7 +37,7 @@ What have you done since yesterday?
 What are you planning on doing today?
 	- Creating textfields(course name, course code, prerequisites, sessions) for Add Course Admin Page
 	- Creating Add Course Button for Add Course Admin Page
-	- Create Firebase Data Collection for Course Information
+	
 
 Any impediments or stumbling blocks?
 	- None
