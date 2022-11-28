@@ -14,9 +14,9 @@ public class Course {
         this.courseName = courseName;
         this.courseCode = courseCode;
         this.offeringSessions = new HashSet<String>();
-        this.offeringSessions = offeringSessions.clone();
+        this.offeringSessions = (HashSet<String>) offeringSessions.clone();
         this.prereqs = new HashSet<String>();
-        this.prereqs = prereqs.clone();
+        this.prereqs = (HashSet<String>) prereqs.clone();
     }
 
 
