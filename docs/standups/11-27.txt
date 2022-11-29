@@ -35,7 +35,9 @@ What have you done since yesterday?
 	- Student Course Timeline Page
 
 What are you planning on doing today?
-	- TextFields for Login Page
+	- Creating textfields(course name, course code, prerequisites, sessions) for Add Course Admin Page
+	- Creating Add Course Button for Add Course Admin Page
+	
 
 Any impediments or stumbling blocks?
 	- None
@@ -43,12 +45,13 @@ Any impediments or stumbling blocks?
 Name: Alfonso Acosta
 
 What have you done since yesterday?
-	- Implemented navigation drawer for landing page
-	- Created more tickets 
+	- Finished implementation of navigation bar for Admin Landing page
+	- Admins can now go to manage and edit courses fragments
+	- Admins can now logout
 
 
 What are you planning on doing today?
-	- Finish the navigation drawer by having it redirect to corresponding fragments
+	- Start working on Academic History page
 
 Any impediments or stumbling blocks?
 	- None
@@ -76,10 +79,12 @@ Name: Ashleigh Liu
 
 What have you done since yesterday?
 	- Implemented both bottom and sliding hamburger navigation menus, but still troubleshooting some bugs
+	- Merged yayyyy to newtemplate, and newtemplate to main branch
 
 What are you planning on doing today?
-	- Fixing bugs for hamburger sliding menu that I implemented earlier today
-	- Making sure the navigation menus redirect to the correct fragments
+	- Fixed bug with input forms on login and registration
+	- Tailored the app to align more correctly with original figma design
+	- Approve PRs and deal with merge issues
   
 Any impediments or stumbling blocks?
-	- My app started randomly crashing every time I started it. I had to revert one of my commits because this kept happening.
+	- Encountered bugs where app would crash, used logcat to diagnose the issue
