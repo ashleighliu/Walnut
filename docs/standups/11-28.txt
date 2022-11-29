@@ -46,13 +46,15 @@ Any impediments or stumbling blocks?
 Name: Alfonso Acosta
 
 What have you done since yesterday?
-	- Finished implementation of navigation bar for Admin Landing page
-	- Admins can now go to manage and edit courses fragments
-	- Admins can now logout
+	- Finished implementation of Academic History Page
+	-Added recyler view to Academic History Page
+	- Added text views to Academic History Page
+	- Allowed data extraction of history from firebase
+	- Allowed to send data to history page
 
 
 What are you planning on doing today?
-	- Start working on Academic History page
+	- Make the UI pretty
 
 Any impediments or stumbling blocks?
 	- None
