@@ -7,24 +7,20 @@ public class Course {
 
     private String courseName;
     private String courseCode;
-    private HashSet<String> offeringSessions;
-    private HashSet<String> prereqs;
+    private String[] offeringSessions;
+    private String[] prereqs;
 
     public Course(String courseName, String courseCode, String offeringSessions, String prereqs){
         this.courseName = courseName;
         this.courseCode = courseCode;
-        HashSet<String> courseSessions = new HashSet<String>();
-        HashSet<String> coursePrereqs = new HashSet<String>();
-        for (String s:
-             offeringSessions.split(",")) {
-            courseSessions.add(s);
+        this.offeringSessions = offeringSessions.split(",");
+        for (int i=0;i<this.offeringSessions.length;i++) {
+            this.offeringSessions[i] = this.offeringSessions[i].trim();
         }
-        for (String p:
-                prereqs.split(",")) {
-            coursePrereqs.add(p);
+        this.prereqs = prereqs.split(",");
+        for (int i=0;i<this.prereqs.length;i++) {
+            this.prereqs[i] = this.prereqs[i].trim();
         }
-        this.offeringSessions = courseSessions;
-        this.prereqs = coursePrereqs;
     }
 
 
@@ -36,11 +32,11 @@ public class Course {
         return courseCode;
     }
 
-    public HashSet<String> getOfferingSessions() {
+    public String[] getOfferingSessions() {
         return offeringSessions;
     }
 
-    public HashSet<String> getPrereqs() {
+    public String[] getPrereqs() {
         return prereqs;
     }
 
@@ -48,11 +44,11 @@ public class Course {
         this.courseCode = courseCode;
     }
 
-    public void setOfferingSessions(HashSet<String> offeringSessions) {
+    public void setOfferingSessions(String[] offeringSessions) {
         this.offeringSessions = offeringSessions;
     }
 
-    public void setPrereqs(HashSet<String> prereqs) {
+    public void setPrereqs(String[] prereqs) {
         this.prereqs = prereqs;
     }
 

@@ -17,6 +17,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
+
 /*
  * A simple {@link Fragment} subclass.
  * Use the {@link AddCourses#newInstance} factory method to
@@ -118,9 +120,9 @@ public class AddCourses extends Fragment {
 
         else{
             Course newCourse = new Course(courseName, courseCode, offeringSessions, prereqs);
-
+            /*
             dbReference.child(
-                    courseCode).setValue(newCourse.toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    courseCode).setValue(newCourse).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if(task.isSuccessful()){
@@ -132,6 +134,21 @@ public class AddCourses extends Fragment {
                     }
                 }
             });
+
+             */
+
+            dbReference.child(courseCode).child("CourseName").setValue(courseName);
+            dbReference.child(courseCode).child("CourseCode").setValue(courseCode);
+            HashMap<String, String> prereqMap = new HashMap<>();
+            for (int i = 0; i<newCourse.getPrereqs().length;i++){
+                prereqMap.put("Prereq " + i, newCourse.getPrereqs()[i]);
+            }
+            dbReference.child(courseCode).child("Prerequisites").setValue(prereqMap);
+            HashMap<String, String> offersessMap = new HashMap<>();
+            for (int i = 0; i<newCourse.getOfferingSessions().length;i++){
+                offersessMap.put("OfferingSession " + i, newCourse.getOfferingSessions()[i]);
+            }
+            dbReference.child(courseCode).child("OfferingSessions").setValue(offersessMap);
 
         }
 
