@@ -33,10 +33,11 @@ What have you done since yesterday?
 	- Admin Add Course Page
 	- Student Add Course Page
 	- Student Course Timeline Page
-
-What are you planning on doing today?
 	- Creating textfields(course name, course code, prerequisites, sessions) for Add Course Admin Page
 	- Creating Add Course Button for Add Course Admin Page
+
+What are you planning on doing today?
+	- Attempting to send course info data to Firebase
 	
 
 Any impediments or stumbling blocks?
