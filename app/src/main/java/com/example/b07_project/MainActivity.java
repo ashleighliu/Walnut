@@ -27,11 +27,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
-    Button add;
-    AlertDialog dialog;
-    LinearLayout layout;
-
-
     Button btnNewAccount;
     EditText inputEmail,inputPassword;
     Button btnLogin;
@@ -43,17 +38,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        add = findViewById(R.id.add);
-        layout = findViewById(R.id.container);
-
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.show();
-            }
-        });
-
         btnNewAccount = findViewById(R.id.btnNewAccount);
         inputEmail = findViewById(R.id.inputLoginEmail);
         inputPassword = findViewById(R.id.inputLoginPassword);
@@ -75,49 +59,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-    private void buildDialog(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        View view = getLayoutInflater().inflate(R.layout.dialog, null);
-
-        EditText name = view.findViewById(R.id.nameEdit);
-
-        builder.setView(view);
-        builder.setTitle("Enter name")
-                .setPositiveButton("OK", new DialogInterface.OnClickListener(){
-                    @Override
-                    public void onClick(DialogInterface dialog, int which){
-                        addCard(name.getText().toString());
-                    }
-
-
-
-                })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
-
-    }
-
-    private void addCard(String name) {
-        View view = getLayoutInflater().inflate(R.layout.card, null);
-        TextView nameView = view.findViewById(R.id.name);
-        Button delete = view.findViewById(R.id.delete);
-
-        nameView.setText(name);
-
-        delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                layout.removeView(view);
-
-            }
-        });
-        layout.addView(view);
     }
 
     private void login(){
