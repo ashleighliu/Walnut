@@ -1,0 +1,90 @@
+Name: <JS Dandurand>
+
+What have you done since yesterday?
+   - Worked on allowing admins to add courses to the firebase Database
+      - this required figuring out how Firebase Database handles lists
+      - also required figuring out how to use maps
+
+What are you planning on doing today?
+  - figure out logisitics of the Course Class now understanding how to store course information on firebase Database
+  - fully implement Admin add courses and edit course fragments
+
+Any impediments or stumbling blocks?
+	- None
+	
+Name: Miraj Ismail
+
+What have you done since yesterday?
+	- Created more tickets
+	- worked on bug fixes with the app so far
+
+What are you planning on doing today?
+	- testing templates and designs in android studio
+	- getting familiar with implementing buttons and text fields
+
+Any impediments or stumbling blocks?
+	- None
+	
+Name: Matthew Mao
+
+What have you done since yesterday?
+	- Working on design layout for login page (w/ others)
+	- Creating tickets
+	- Admin Add Course Page
+	- Student Add Course Page
+	- Student Course Timeline Page
+
+What are you planning on doing today?
+	- Creating textfields(course name, course code, prerequisites, sessions) for Add Course Admin Page
+	- Creating Add Course Button for Add Course Admin Page
+	
+
+Any impediments or stumbling blocks?
+	- None
+	
+Name: Alfonso Acosta
+
+What have you done since yesterday?
+	- Finished implementation of navigation bar for Admin Landing page
+	- Admins can now go to manage and edit courses fragments
+	- Admins can now logout
+
+
+What are you planning on doing today?
+	- Start working on Academic History page
+
+Any impediments or stumbling blocks?
+	- None
+
+Name: Junlin Qu
+
+What have you done since yesterday?
+	- Updated the template for android app
+	- Created firebase data storage design
+	- Updated and created new tickets for actual implementation of the app design
+	- Bugfixed firebase connection with app
+	- Changed from fragments to activities as the object type
+	- Created a data storage system from the class flow
+
+What are you planning on doing today?
+	- Finish writing all required tickets for this sprint
+	- Hopefully finish the login page and firebase data storage
+	- Get the others more familiar with the intricacies of android studios
+	- PR the testing branch to the main to replace old template
+
+Any impediments or stumbling blocks?
+	- None
+	
+Name: Ashleigh Liu
+
+What have you done since yesterday?
+	- Implemented both bottom and sliding hamburger navigation menus, but still troubleshooting some bugs
+	- Merged yayyyy to newtemplate, and newtemplate to main branch
+
+What are you planning on doing today?
+	- Fixed bug with input forms on login and registration
+	- Tailored the app to align more correctly with original figma design
+	- Approve PRs and deal with merge issues
+  
+Any impediments or stumbling blocks?
+	- Encountered bugs where app would crash, used logcat to diagnose the issue
