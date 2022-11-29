@@ -14,8 +14,11 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 
@@ -113,42 +116,44 @@ public class AddCourses extends Fragment {
         if (offeringSessions.isEmpty()) {
             inputSessions.setError("Enter Valid Course Sessions");
         }
-
+        /*
         if(prereqs.isEmpty()){
             inputPrereqs.setError("Enter Proper Course Prereqs");
         }
-
+        */ //Prereqs can be empty
         else{
-            Course newCourse = new Course(courseName, courseCode, offeringSessions, prereqs);
-            /*
-            dbReference.child(
-                    courseCode).setValue(newCourse).addOnCompleteListener(new OnCompleteListener<Void>() {
+            dbReference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    if(task.isSuccessful()){
-                        //Sends you back to main activity to login again
-                        Toast.makeText(getActivity(), "Course Addition Successful", Toast.LENGTH_SHORT).show();
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.hasChild(courseCode)){
+                        inputCode.setError("This Course Already Exists");
+                        return;
                     }
                     else{
-                        Toast.makeText(getActivity(), ""+task.getException(), Toast.LENGTH_SHORT).show();
+                        Course newCourse = new Course(courseName, courseCode, offeringSessions, prereqs);
+                        dbReference.child(
+                                courseCode).setValue(newCourse).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if(task.isSuccessful()){
+                                    //Sends you back to main activity to login again
+                                    Toast.makeText(getActivity(), "Course Addition Successful", Toast.LENGTH_SHORT).show();
+                                }
+                                else{
+                                    Toast.makeText(getActivity(), ""+task.getException(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
                     }
                 }
+                @Override
+                public void onCancelled(DatabaseError error){
+                    Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
             });
 
-             */
-
-            dbReference.child(courseCode).child("CourseName").setValue(courseName);
-            dbReference.child(courseCode).child("CourseCode").setValue(courseCode);
-            HashMap<String, String> prereqMap = new HashMap<>();
-            for (int i = 0; i<newCourse.getPrereqs().length;i++){
-                prereqMap.put("Prereq " + i, newCourse.getPrereqs()[i]);
-            }
-            dbReference.child(courseCode).child("Prerequisites").setValue(prereqMap);
-            HashMap<String, String> offersessMap = new HashMap<>();
-            for (int i = 0; i<newCourse.getOfferingSessions().length;i++){
-                offersessMap.put("OfferingSession " + i, newCourse.getOfferingSessions()[i]);
-            }
-            dbReference.child(courseCode).child("OfferingSessions").setValue(offersessMap);
 
         }
 
