@@ -1,22 +1,29 @@
 package com.example.b07_project;
 
 
+import java.util.HashMap;
 import java.util.HashSet;
 
 public class Course {
 
     private String courseName;
     private String courseCode;
-    private HashSet<String> offeringSessions;
-    private HashSet<String> prereqs;
+    private HashMap<String, String> offeringSessions;
+    private HashMap<String, String> prereqs;
 
-    private Course(String courseName, String courseCode, HashSet<String> offeringSessions, HashSet<String> prereqs){
+    public Course(String courseName, String courseCode, String offeringSessions, String prereqs){
         this.courseName = courseName;
         this.courseCode = courseCode;
-        this.offeringSessions = new HashSet<String>();
-        this.offeringSessions = (HashSet<String>) offeringSessions.clone();
-        this.prereqs = new HashSet<String>();
-        this.prereqs = (HashSet<String>) prereqs.clone();
+        String[] temp1 = offeringSessions.split(",");
+        this.offeringSessions = new HashMap<>();
+        this.prereqs = new HashMap<>();
+        for (int i=0;i<temp1.length;i++) {
+            this.offeringSessions.put("OfferingSession " + i, temp1[i].trim());
+        }
+        String[] temp2 = prereqs.split(",");
+        for (int i=0;i<temp2.length;i++) {
+            this.prereqs.put("Prerequisite " + i, temp2[i].trim());
+        }
     }
 
 
@@ -28,11 +35,11 @@ public class Course {
         return courseCode;
     }
 
-    public HashSet<String> getOfferingSessions() {
+    public HashMap<String, String> getOfferingSessions() {
         return offeringSessions;
     }
 
-    public HashSet<String> getPrereqs() {
+    public HashMap<String, String> getPrereqs() {
         return prereqs;
     }
 
@@ -40,11 +47,11 @@ public class Course {
         this.courseCode = courseCode;
     }
 
-    public void setOfferingSessions(HashSet<String> offeringSessions) {
+    public void setOfferingSessions(HashMap<String, String> offeringSessions) {
         this.offeringSessions = offeringSessions;
     }
 
-    public void setPrereqs(HashSet<String> prereqs) {
+    public void setPrereqs(HashMap<String, String> prereqs) {
         this.prereqs = prereqs;
     }
 
