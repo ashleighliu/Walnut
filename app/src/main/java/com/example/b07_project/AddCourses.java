@@ -20,6 +20,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -36,7 +37,7 @@ public class AddCourses extends Fragment {
     private EditText inputTitle, inputCode, inputSessions, inputPrereqs;
     private FirebaseDatabase fbDatabase;
     private DatabaseReference dbReference;
-
+    final String[] OFFERINGSESSIONS = {"summer", "fall", "winter"};
     /*
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -109,7 +110,7 @@ public class AddCourses extends Fragment {
         String[] offeringArr = lowerAll(trimAll(offeringSessions.split(",")));
         boolean allOfferingsValid = true;
         for (int i=0;i<offeringArr.length;i++){
-            if(offeringArr[i] != "summer" || offeringArr[i] != "winter" || offeringArr[i] != "fall"){
+            if(!(arrayContains(OFFERINGSESSIONS, offeringArr[i]))){
                 allOfferingsValid = false;
             }
         }
@@ -125,7 +126,7 @@ public class AddCourses extends Fragment {
             inputSessions.setError("Enter Valid Offering Sessions");
         }
         if(!allOfferingsValid){
-            inputSessions.setError("Enter Valid Offering Sessions")
+            inputSessions.setError("Enter Valid Offering Sessions");
         }
         else{
 
@@ -153,19 +154,7 @@ public class AddCourses extends Fragment {
                     }
                     else{
                         Course newCourse = new Course(courseName, courseCode, offeringSessions, prereqs);
-                        dbReference.child(
-                                courseCode).setValue(newCourse).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if(task.isSuccessful()){
-                                    //Sends you back to main activity to login again
-                                    Toast.makeText(getActivity(), "Course Addition Successful", Toast.LENGTH_SHORT).show();
-                                }
-                                else{
-                                    Toast.makeText(getActivity(), ""+task.getException(), Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
+                        storeToFirebase(newCourse);
                     }
                 }
                 @Override
@@ -202,7 +191,7 @@ public class AddCourses extends Fragment {
 
     String[] trimAll(String[] arr){
         for (int i = 0; i<arr.length; i++){
-            arr[i] = arr[i].trim().toLowerCase();
+            arr[i] = arr[i].trim();
         }
         return arr;
     }
@@ -211,5 +200,29 @@ public class AddCourses extends Fragment {
             arr[i] = arr[i].toLowerCase();
         }
         return arr;
+    }
+
+    boolean arrayContains(String[] arr, String str){
+        for(int i = 0;i<arr.length;i++){
+            if(arr[i] == str){
+                return true;
+            }
+        }
+        return false;
+    }
+    private void storeToFirebase(Course course){
+        dbReference.child(
+                course.getCourseCode()).setValue(course).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    //Sends you back to main activity to login again
+                    Toast.makeText(getActivity(), "Course Addition Successful", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(getActivity(), ""+task.getException(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }
