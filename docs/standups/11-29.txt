@@ -1,13 +1,13 @@
 Name: <JS Dandurand>
 
 What have you done since yesterday?
-   - Worked on allowing admins to add courses to the firebase Database
-      - this required figuring out how Firebase Database handles lists
-      - also required figuring out how to use maps
+   - fully implemented admin add courses
+   - refined admin add courses feature with various checkers for the vailidity of every field
 
 What are you planning on doing today?
-  - figure out logisitics of the Course Class now understanding how to store course information on firebase Database
-  - fully implement Admin add courses and edit course fragments
+  - figure out how to update student info accordingly when admins change course information
+  	- ie: when the prerequisites of a course is changed, the student's timeline should change
+	- ie: when the course code of a course is changed, it should also be changed in the student's academic history and timeline
 
 Any impediments or stumbling blocks?
 	- None
