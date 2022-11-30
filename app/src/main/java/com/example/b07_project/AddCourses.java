@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
-
+import java.util.UUID;
 /*
  * A simple {@link Fragment} subclass.
  * Use the {@link AddCourses#newInstance} factory method to
@@ -38,6 +39,7 @@ public class AddCourses extends Fragment {
     private FirebaseDatabase fbDatabase;
     private DatabaseReference dbReference;
     final String[] OFFERINGSESSIONS = {"summer", "fall", "winter"};
+    private String ID;
     /*
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -83,7 +85,6 @@ public class AddCourses extends Fragment {
         }
     }
     */
-
     private void attachFields(){
         addCourseBtn = addCourseView.findViewById(R.id.addCourseBtn);
         inputTitle = addCourseView.findViewById(R.id.inputTitle);
@@ -92,6 +93,7 @@ public class AddCourses extends Fragment {
         inputPrereqs = addCourseView.findViewById(R.id.inputPrereqs);
         fbDatabase = FirebaseDatabase.getInstance();
         dbReference = fbDatabase.getReference("Courses"); //have to reference to child still
+
 
         addCourseBtn.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -108,6 +110,7 @@ public class AddCourses extends Fragment {
         String prereqs = inputPrereqs.getText().toString();
         String[] prereqArr = trimAll(prereqs.split(","));
         String[] offeringArr = lowerAll(trimAll(offeringSessions.split(",")));
+        String[] prereqIDArr = new String[prereqArr.length];
         boolean allOfferingsValid = true;
 
         for (int i=0;i<offeringArr.length;i++){
@@ -130,19 +133,29 @@ public class AddCourses extends Fragment {
             inputSessions.setError("Enter Valid Offering Sessions");
         }
         else{
-            dbReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            dbReference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     boolean allPrereqsValid = true;
-
-                    for (int i = 0; i < prereqArr.length; i++) {
-                        if (!snapshot.hasChild(prereqArr[i].toUpperCase()) && !prereqArr[i].equals("")) {
+                    boolean courseExists = false;
+                    for(int i=0;i<prereqArr.length;i++){
+                        Boolean prereqExists = false;
+                        for(DataSnapshot s: snapshot.getChildren())
+                        {
+                            if(s.child("courseCode").getValue(String.class).equals(prereqArr[i]))
+                            {
+                                prereqExists = true;
+                                prereqIDArr[i] = s.child("courseID").getValue(String.class);
+                            }
+                            if(s.child("courseCode").getValue(String.class).equals(courseCode)){
+                                courseExists = true;
+                            }
+                        }
+                        if(!prereqExists){
                             allPrereqsValid = false;
                         }
                     }
-
-
-                    if(snapshot.hasChild(courseCode)) {
+                    if(courseExists){
                         inputCode.setError("This Course Already Exists");
                     }
                     else if (!allPrereqsValid){
@@ -155,16 +168,23 @@ public class AddCourses extends Fragment {
                         inputSessions.setError("Cannot Have Duplicate Offering Sessions");
                     }
                     else{
-                        Course newCourse = new Course(courseName, courseCode, offeringSessions, prereqs);
+                        String courseID = UUID.randomUUID().toString().replaceAll("-","");
+                        String prereqIDString = prereqIDArr[0];
+                        for (int i = 1;i<prereqIDArr.length;i++){
+                            prereqIDString = prereqIDString + "," + prereqIDArr[i];
+                        }
+                        Course newCourse = new Course(courseName, courseCode, offeringSessions, prereqIDString, courseID);
                         storeToFirebase(newCourse);
                     }
                 }
+
                 @Override
-                public void onCancelled(DatabaseError error){
+                public void onCancelled(@NonNull DatabaseError error) {
                     Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_SHORT).show();
                 }
-
             });
+
+
 
 
         }
@@ -214,11 +234,12 @@ public class AddCourses extends Fragment {
     }
     private void storeToFirebase(Course course){
         dbReference.child(
-                course.getCourseCode()).setValue(course).addOnCompleteListener(new OnCompleteListener<Void>() {
+                course.getCourseID()).setValue(course).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
                     //Sends you back to main activity to login again
+
                     Toast.makeText(getActivity(), "Course Addition Successful", Toast.LENGTH_SHORT).show();
                 }
                 else{
