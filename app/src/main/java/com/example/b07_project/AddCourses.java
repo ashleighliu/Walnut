@@ -107,6 +107,12 @@ public class AddCourses extends Fragment {
         String prereqs = inputPrereqs.getText().toString();
         String[] prereqArr = trimAll(prereqs.split(","));
         String[] offeringArr = lowerAll(trimAll(offeringSessions.split(",")));
+        boolean allOfferingsValid = true;
+        for (int i=0;i<offeringArr.length;i++){
+            if(offeringArr[i] != "summer" || offeringArr[i] != "winter" || offeringArr[i] != "fall"){
+                allOfferingsValid = false;
+            }
+        }
         if (courseName.isEmpty()) {
             inputTitle.setError("Enter Valid Course Title");
         }
@@ -116,7 +122,10 @@ public class AddCourses extends Fragment {
         }
 
         if (offeringSessions.isEmpty()) {
-            inputSessions.setError("Enter Valid Course Sessions");
+            inputSessions.setError("Enter Valid Offering Sessions");
+        }
+        if(!allOfferingsValid){
+            inputSessions.setError("Enter Valid Offering Sessions")
         }
         else{
 
