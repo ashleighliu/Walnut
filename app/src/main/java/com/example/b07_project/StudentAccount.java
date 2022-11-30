@@ -1,12 +1,17 @@
 package com.example.b07_project;
 
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+
 public class StudentAccount extends Account{
+    ArrayList<String> history;
     //TODO: add academic history field (LinkedHashSet or HashSet)
-    public StudentAccount(String email, String password, String uID){
+    public StudentAccount(String email, String password, String uID, ArrayList<String> history){
         this.email = email;
         this.password = password;
         this.uID = uID; //Needed to retrieve data from firebase
         this.isAdmin = false; //Self-explanatory
+        this.history = history;
     }
 
     public boolean isEligible(Course course){
