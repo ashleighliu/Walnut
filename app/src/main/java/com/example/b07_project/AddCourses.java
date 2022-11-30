@@ -20,7 +20,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 /*
  * A simple {@link Fragment} subclass.
@@ -104,7 +105,8 @@ public class AddCourses extends Fragment {
         String courseCode = inputCode.getText().toString();
         String offeringSessions = inputSessions.getText().toString();
         String prereqs = inputPrereqs.getText().toString();
-
+        String[] prereqArr = trimAll(prereqs.split(","));
+        String[] offeringArr = lowerAll(trimAll(offeringSessions.split(",")));
         if (courseName.isEmpty()) {
             inputTitle.setError("Enter Valid Course Title");
         }
@@ -116,18 +118,29 @@ public class AddCourses extends Fragment {
         if (offeringSessions.isEmpty()) {
             inputSessions.setError("Enter Valid Course Sessions");
         }
-        /*
-        if(prereqs.isEmpty()){
-            inputPrereqs.setError("Enter Proper Course Prereqs");
-        }
-        */ //Prereqs can be empty
         else{
+
             dbReference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if(snapshot.hasChild(courseCode)){
+                    boolean allPrereqsValid = true;
+                    boolean allOfferingsValid = true;
+                    for (int i = 0; i < prereqArr.length; i++){
+                        if(!snapshot.hasChild(prereqArr[i].toUpperCase())){
+                            allPrereqsValid = false;
+                        }
+                    }
+                    if(snapshot.hasChild(courseCode)) {
                         inputCode.setError("This Course Already Exists");
-                        return;
+                    }
+                    else if (!allPrereqsValid){
+                        inputPrereqs.setError("Prerequisite Course(s) Does Not Exist");
+                    }
+                    else if(duplicates(prereqArr)){
+                        inputPrereqs.setError("Cannot Have Duplicate Prerequisites");
+                    }
+                    else if(duplicates(offeringArr)){
+                        inputSessions.setError("Cannot Have Duplicate Offering Sessions");
                     }
                     else{
                         Course newCourse = new Course(courseName, courseCode, offeringSessions, prereqs);
@@ -149,7 +162,6 @@ public class AddCourses extends Fragment {
                 @Override
                 public void onCancelled(DatabaseError error){
                     Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_SHORT).show();
-                    return;
                 }
 
             });
@@ -166,5 +178,29 @@ public class AddCourses extends Fragment {
         addCourseView = inflater.inflate(R.layout.fragment_add_courses, container, false);
         attachFields();
         return addCourseView;
+    }
+
+    boolean duplicates (final String[] zipcodelist)
+    {
+        Set<String> lump = new HashSet<String>();
+        for (String i : zipcodelist)
+        {
+            if(lump.contains(i)) return true;
+            lump.add(i);
+        }
+        return false;
+    }
+
+    String[] trimAll(String[] arr){
+        for (int i = 0; i<arr.length; i++){
+            arr[i] = arr[i].trim().toLowerCase();
+        }
+        return arr;
+    }
+    String[] lowerAll(String[] arr){
+        for (int i = 0; i<arr.length;i++){
+            arr[i] = arr[i].toLowerCase();
+        }
+        return arr;
     }
 }

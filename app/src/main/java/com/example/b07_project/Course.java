@@ -19,7 +19,7 @@ public class Course {
         this.offeringSessions = new ArrayList<String>();
         this.prereqs = new ArrayList<String>();
         for (int i=0;i<temp1.length;i++) {
-            this.offeringSessions.add(temp1[i].trim());
+            this.offeringSessions.add(temp1[i].trim().toLowerCase());
         }
         String[] temp2 = prereqs.split(",");
         for (int i=0;i<temp2.length;i++) {
