@@ -160,7 +160,7 @@ public class AddCourses extends Fragment {
                     if(courseExists){
                         inputCode.setError("This Course Already Exists");
                     }
-                    else if (!allPrereqsValid){
+                    else if (!allPrereqsValid && !prereqs.equals("")){
                         inputPrereqs.setError("Prerequisite Course(s) Does Not Exist");
                     }
                     else if(duplicates(prereqArr)){
@@ -171,9 +171,9 @@ public class AddCourses extends Fragment {
                     }
                     else{
                         String courseID = UUID.randomUUID().toString().replaceAll("-","");
-                        String prereqIDString = prereqIDArr[0];
-                        for (int i = 1;i<prereqIDArr.length;i++){
-                            prereqIDString = prereqIDString + "," + prereqIDArr[i];
+                        String prereqIDString = "";
+                        for (int i = 0;i<prereqIDArr.length;i++){
+                            prereqIDString = prereqIDString  + prereqIDArr[i]+ ",";
                         }
                         Course newCourse = new Course(courseName, courseCode, offeringSessions, prereqIDString, courseID);
                         storeToFirebase(newCourse);
