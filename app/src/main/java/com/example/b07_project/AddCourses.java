@@ -109,6 +109,7 @@ public class AddCourses extends Fragment {
         String[] prereqArr = trimAll(prereqs.split(","));
         String[] offeringArr = lowerAll(trimAll(offeringSessions.split(",")));
         boolean allOfferingsValid = true;
+
         for (int i=0;i<offeringArr.length;i++){
             if(!(arrayContains(OFFERINGSESSIONS, offeringArr[i]))){
                 allOfferingsValid = false;
@@ -123,23 +124,24 @@ public class AddCourses extends Fragment {
         }
 
         if (offeringSessions.isEmpty()) {
-            inputSessions.setError("Enter Valid Offering Sessions");
+            inputSessions.setError("Offering Sessions cannot be empty");
         }
         if(!allOfferingsValid){
             inputSessions.setError("Enter Valid Offering Sessions");
         }
         else{
-
             dbReference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     boolean allPrereqsValid = true;
-                    boolean allOfferingsValid = true;
-                    for (int i = 0; i < prereqArr.length; i++){
-                        if(!snapshot.hasChild(prereqArr[i].toUpperCase())){
+
+                    for (int i = 0; i < prereqArr.length; i++) {
+                        if (!snapshot.hasChild(prereqArr[i].toUpperCase()) && !prereqArr[i].equals("")) {
                             allPrereqsValid = false;
                         }
                     }
+
+
                     if(snapshot.hasChild(courseCode)) {
                         inputCode.setError("This Course Already Exists");
                     }
@@ -204,7 +206,7 @@ public class AddCourses extends Fragment {
 
     boolean arrayContains(String[] arr, String str){
         for(int i = 0;i<arr.length;i++){
-            if(arr[i] == str){
+            if(arr[i].equals(str)){
                 return true;
             }
         }
