@@ -10,11 +10,18 @@
     >
 
     <TextView
+        android:shadowColor="#000000"
+        android:shadowDx="3.3"
+        android:shadowDy="3.3"
+        android:shadowRadius="6.0"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:text="Enter Username"
+        android:text="Enter Email:"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/inputLoginPassword"
@@ -24,11 +31,18 @@
         app:layout_constraintVertical_bias="0.633" />
 
     <TextView
+        android:shadowColor="#000000"
+        android:shadowDx="3.3"
+        android:shadowDy="3.3"
+        android:shadowRadius="6.0"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+
         android:id="@+id/login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"
-        android:textSize="30sp"
+        android:text="♡ Login ♡"
+        android:textSize="60sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -66,11 +80,18 @@
         app:layout_constraintVertical_bias="0.611" />
 
     <TextView
+        android:shadowColor="#000000"
+        android:shadowDx="3.3"
+        android:shadowDy="3.3"
+        android:shadowRadius="6.0"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:text="Enter Password"
+        android:text="Enter Password:"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/inputLoginPassword"
