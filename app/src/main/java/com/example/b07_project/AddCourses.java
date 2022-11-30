@@ -147,12 +147,14 @@ public class AddCourses extends Fragment {
                                 prereqExists = true;
                                 prereqIDArr[i] = s.child("courseID").getValue(String.class);
                             }
-                            if(s.child("courseCode").getValue(String.class).equals(courseCode)){
-                                courseExists = true;
-                            }
                         }
                         if(!prereqExists){
                             allPrereqsValid = false;
+                        }
+                    }
+                    for(DataSnapshot s: snapshot.getChildren()){
+                        if(s.child("courseCode").getValue(String.class).equals(courseCode)){
+                            courseExists = true;
                         }
                     }
                     if(courseExists){
