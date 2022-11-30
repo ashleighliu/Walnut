@@ -26,6 +26,10 @@ public class Course {
             this.prereqs.add(temp2[i].trim());
         }
     }
+    public Course(String courseName, String courseCode){
+        this.courseName = courseName;
+        this.courseCode = courseCode;
+    }
 
 
     public String getCourseName() {
@@ -59,4 +63,9 @@ public class Course {
     public void setCourseName(String courseName) {
         this.courseName = courseName;
     }
+
+    public void setCourse_code(String course_code) {
+        this.courseCode = course_code;
+    }
 }
+
