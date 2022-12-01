@@ -74,12 +74,11 @@ Any impediments or stumbling blocks?
 Name: Ashleigh Liu
 
 What have you done since yesterday?
-	- Completed UI for student landing page
-	- Dealt with some merge request issues
+	- Looked into MVP design pattern
+	- Install required Mockito files
 
 What are you planning on doing today?
-	- Deal with merge issues
-	- Complete UI for student manage courses
+	- Completely refactor code according to design pattern
   
 Any impediments or stumbling blocks?
-	- Had a lot of trouble with button usability. It turns out that buttons won't work if they have a background color over them.
+	- None
