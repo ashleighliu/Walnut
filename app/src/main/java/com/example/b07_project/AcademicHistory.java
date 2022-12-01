@@ -104,8 +104,6 @@ public class AcademicHistory extends Fragment {
         if(setHistory != null)
         {
             history = new ArrayList<>(setHistory);
-            Log.i("myTag", String.valueOf(history.get(0)));
-
         }
     }
 }
