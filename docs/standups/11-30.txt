@@ -1,13 +1,14 @@
 Name: <JS Dandurand>
 
 What have you done since yesterday?
-   - fully implemented admin add courses
-   - refined admin add courses feature with various checkers for the vailidity of every field
+   - refactored firebase database storage to store unique Course IDs as elements in the Courses list rather than the course code
+   	- this is done so that when admins update course info, no updates are required on the side of the students
+   - refacted Course.java and AddCourse.java accordingly to this change, which included figuring out an algorithm to determine a Course's ID given
+   its code.
+	
 
 What are you planning on doing today?
-  - figure out how to update student info accordingly when admins change course information
-  	- ie: when the prerequisites of a course is changed, the student's timeline should change
-	- ie: when the course code of a course is changed, it should also be changed in the student's academic history and timeline
+  - Once Admin manage courses page is implemented, I plan to work on Admin edit course
 
 Any impediments or stumbling blocks?
 	- None
