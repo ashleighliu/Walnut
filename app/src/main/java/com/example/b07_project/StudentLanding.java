@@ -19,6 +19,8 @@ import androidx.navigation.Navigation;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -88,8 +90,35 @@ public class StudentLanding extends AppCompatActivity implements NavigationView.
 
         //Creating student object
         student = new StudentAccount(email, password, uID, history);
-        transFragment(new AcademicHistory());
-        //Default just displaying the email
+
+        //Default just displaying the user part of the email
+        TextView text = (TextView)findViewById(R.id.welcomeStudent);
+        text.setText("Okaeri, " + email.split("@")[0] + "!");
+
+        //Updates the redirection buttons
+        Button currentCourses = (Button)findViewById(R.id.fullCourses);
+        currentCourses.setOnClickListener(new View.OnClickListener() {
+            Fragment timeline = new CourseTimeline();
+            transFragment(timeline);
+        });
+        Button currentHistory = (Button)findViewById(R.id.history);
+        currentCourses.setOnClickListener(new View.OnClickListener() {
+            Fragment history = new AcademicHistory();
+            transFragment(history);
+        });
+        Button allCourses = (Button)findViewById(R.id.viewAllCourses);
+        currentCourses.setOnClickListener(new View.OnClickListener() {
+            Fragment timeline = new CourseTimeline();
+            transFragment(timeline);
+        });
+        Button addCourses = (Button)findViewById(R.id.addCourses);
+        currentCourses.setOnClickListener(new View.OnClickListener() {
+            Fragment add = new AddHistory();
+            transFragment(add);
+        });
+
+
+        //Shows the courses in the upcoming sessions
 
     }
 
