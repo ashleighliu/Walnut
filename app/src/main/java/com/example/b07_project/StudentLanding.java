@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
@@ -58,9 +59,18 @@ public class StudentLanding extends AppCompatActivity {
         //Creating student object
         student = new StudentAccount(email, password, uID);
 
-        //Default just displaying the email
+        //Default just displaying the user part of the email
         TextView text = (TextView)findViewById(R.id.welcomeStudent);
-        text.setText("Welcome Student:" + email);
+        text.setText("Okaeri, " + email.split("@")[0] + "!");
+
+        //Updates the redirection buttons
+        Button currentCourses = (Button)findViewById(R.id.fullCourses);
+        Button currentHistory = (Button)findViewById(R.id.history);
+        Button allCourses = (Button)findViewById(R.id.viewAllCourses);
+        Button addCourses = (Button)findViewById(R.id.addCourses);
+
+        //Shows the courses in the upcoming sessions
+
     }
     // override the onOptionsItemSelected()
     // function to implement

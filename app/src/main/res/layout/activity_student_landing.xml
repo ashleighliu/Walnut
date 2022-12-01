@@ -16,11 +16,10 @@
         android:layout_gravity="start"
         app:menu="@menu/navigation_menu" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#FEC7FF"
         tools:context=".StudentLanding">
 
         <TextView
@@ -29,6 +28,7 @@
             android:layout_height="51dp"
             android:text="N/A"
             android:textAlignment="center"
+            android:textColor="#601730"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -36,6 +36,358 @@
             app:layout_constraintHorizontal_bias="0.454"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.169" />
+            app:layout_constraintVertical_bias="0.039" />
+
+        <TextView
+            android:id="@+id/upcomingCoursesTitle"
+            android:layout_width="300dp"
+            android:layout_height="30dp"
+            android:text="Upcoming Courses:"
+            android:textAlignment="center"
+            android:textColor="#601730"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.454"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.120000005" />
+
+        <TableLayout
+            android:id="@+id/upcomingCoursesView"
+            android:layout_width="364dp"
+            android:layout_height="150dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/upcomingCoursesTitle">
+
+            <TableRow
+                android:id="@+id/upcomingRow1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/upcomingCourseA1"
+                    android:layout_width="182dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/border"
+                    android:text="Session A"
+                    android:textAlignment="center"
+                    android:textColor="#601730"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/upcomingCourseB1"
+                    android:layout_width="182dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/border"
+                    android:text="Session B"
+                    android:textAlignment="center"
+                    android:textColor="#601730"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/upcomingRow2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/upcomingCourseA2"
+                    android:layout_width="182dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/border"
+                    android:text="Course N/A"
+                    android:textAlignment="center"
+                    android:textColor="#601730"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/upcomingCourseB2"
+                    android:layout_width="182dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/border"
+                    android:text="Course N/A"
+                    android:textAlignment="center"
+                    android:textColor="#601730"
+                    android:textSize="16sp" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/upcomingRow3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/upcomingCourseA3"
+                    android:layout_width="182dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/border"
+                    android:text="Course N/A"
+                    android:textAlignment="center"
+                    android:textColor="#601730"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/upcomingCourseB3"
+                    android:layout_width="182dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/border"
+                    android:text="Course N/A"
+                    android:textAlignment="center"
+                    android:textColor="#601730"
+                    android:textSize="16sp" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/upcomingRow4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/upcomingCourseA4"
+                    android:layout_width="182dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/border"
+                    android:text="Course N/A"
+                    android:textAlignment="center"
+                    android:textColor="#601730"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/upcomingCourseB4"
+                    android:layout_width="182dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/border"
+                    android:text="Course N/A"
+                    android:textAlignment="center"
+                    android:textColor="#601730"
+                    android:textSize="16sp" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/upcomingRow5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/upcomingCourseA5"
+                    android:layout_width="182dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/border"
+                    android:text="Course N/A"
+                    android:textAlignment="center"
+                    android:textColor="#601730"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/upcomingCourseB5"
+                    android:layout_width="182dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/border"
+                    android:text="Course N/A"
+                    android:textAlignment="center"
+                    android:textColor="#601730"
+                    android:textSize="16sp" />
+
+            </TableRow>
+
+        </TableLayout>
+
+        <TableRow
+            android:id="@+id/editUpcomingCourse"
+            android:layout_width="330dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.493"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/upcomingCoursesView">
+
+            <Button
+                android:id="@+id/fullCourses"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="160dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/border"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="View Courses"
+                android:textAlignment="center"
+                android:textColor="#601730"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/history"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="160dp"
+                android:layout_height="50dp"
+                android:background="@drawable/border"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="View History"
+                android:textAlignment="center"
+                android:textColor="#601730"
+                android:textSize="12sp"
+                app:iconPadding="0dp" />
+
+        </TableRow>
+
+        <TextView
+            android:id="@+id/suggestedCourses"
+            android:layout_width="300dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:text="Suggested Courses:"
+            android:textAlignment="center"
+            android:textColor="#601730"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editUpcomingCourse" />
+
+        <TableLayout
+            android:id="@+id/suggestedCoursesView"
+            android:layout_width="364dp"
+            android:layout_height="90dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/suggestedCourses">
+
+            <TableRow
+                android:id="@+id/suggestedRow1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/suggestedCourseA1"
+                    android:layout_width="182dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/border"
+                    android:text="Course N/A"
+                    android:textAlignment="center"
+                    android:textColor="#601730"
+                    android:textSize="16sp"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/suggestedCourseB1"
+                    android:layout_width="182dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/border"
+                    android:text="Course N/A"
+                    android:textAlignment="center"
+                    android:textColor="#601730"
+                    android:textSize="16sp"
+                    android:textStyle="normal" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/suggestedRow2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/suggestedCourseA2"
+                    android:layout_width="182dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/border"
+                    android:text="Course N/A"
+                    android:textAlignment="center"
+                    android:textColor="#601730"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/suggestedCourseB2"
+                    android:layout_width="182dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/border"
+                    android:text="Course N/A"
+                    android:textAlignment="center"
+                    android:textColor="#601730"
+                    android:textSize="16sp" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/suggestedRow3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/suggestedCourseA3"
+                    android:layout_width="182dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/border"
+                    android:text="Course N/A"
+                    android:textAlignment="center"
+                    android:textColor="#601730"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/suggestedCourseB3"
+                    android:layout_width="182dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/border"
+                    android:text="Course N/A"
+                    android:textAlignment="center"
+                    android:textColor="#601730"
+                    android:textSize="16sp" />
+
+            </TableRow>
+
+        </TableLayout>
+
+        <TableRow
+            android:id="@+id/viewSuggested"
+            android:layout_width="330dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.493"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/suggestedCoursesView">
+
+            <Button
+                android:id="@+id/viewAllCourses"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="160dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/border"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="View All Courses"
+                android:textAlignment="center"
+                android:textColor="#601730"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/addCourses"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="160dp"
+                android:layout_height="50dp"
+                android:background="@drawable/border"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="Add Courses"
+                android:textAlignment="center"
+                android:textColor="#601730"
+                android:textSize="12sp"
+                app:iconPadding="0dp" />
+
+        </TableRow>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.drawerlayout.widget.DrawerLayout>
