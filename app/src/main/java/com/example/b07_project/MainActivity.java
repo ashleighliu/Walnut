@@ -31,7 +31,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
-    private  Presenter presenter;
     Button btnNewAccount;
     EditText inputEmail,inputPassword;
     Button btnLogin;
@@ -39,17 +38,10 @@ public class MainActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
     FirebaseAuth fire;
     FirebaseUser user;
-
-    public void  handleClick(View view) {
-        presenter.login();
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        presenter = new Presenter(new Model(), this);
 
         btnNewAccount = findViewById(R.id.btnNewAccount);
         inputEmail = findViewById(R.id.inputLoginEmail);
