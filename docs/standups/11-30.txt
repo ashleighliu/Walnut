@@ -5,6 +5,8 @@ What have you done since yesterday?
    	- this is done so that when admins update course info, no updates are required on the side of the students
    - refacted Course.java and AddCourse.java accordingly to this change, which included figuring out an algorithm to determine a Course's ID given
    its code.
+   	- part of this refactoring also included ensuring prerequisites for courses were also stored on firebase as Course IDs rather than course codes,
+	once again so that these fields would not have to be updated in the event that an admin updated a course's info
 	
 
 What are you planning on doing today?
