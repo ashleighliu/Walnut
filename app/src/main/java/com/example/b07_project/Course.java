@@ -28,6 +28,10 @@ public class Course {
         }
         this.ID = ID;
     }
+    public Course(String courseName, String courseCode){
+        this.courseName = courseName;
+        this.courseCode = courseCode;
+    }
 
 
     public String getCourseName() {
@@ -62,6 +66,8 @@ public class Course {
         this.courseName = courseName;
     }
 
-    public String getCourseID() { return ID;
-    }
+
+    public String getCourseID() { return ID;}
+
 }
+
