@@ -19,6 +19,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.SignInMethodQueryResult;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -94,7 +96,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 if (task.isSuccessful()){
                                     String uID = FirebaseAuth.getInstance().getCurrentUser().getUid();
                                     if(!RegAsAdmin){
-                                        StudentAccount newAccount = new StudentAccount(email, password, uID);
+                                        StudentAccount newAccount = new StudentAccount(email, password, uID, new ArrayList<String>());
                                         FirebaseDatabase.getInstance().getReference("Accounts").child(
                                                 FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(newAccount).addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override

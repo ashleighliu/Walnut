@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,7 +21,14 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
     Button btnNewAccount;
@@ -99,11 +107,34 @@ public class MainActivity extends AppCompatActivity {
                                     editor.putString("password", password);
                                     editor.apply();
 
-                                    if (isAdmin == "false"){
+                                    if (isAdmin.equals("false")){
+                                        ArrayList<String> history = new ArrayList<>();
                                         //Redirect to student landing page
-                                        progressDialog.dismiss();
-                                        sendUserToNextStudentActivity();
-                                        Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                                        DatabaseReference history_ref = FirebaseDatabase.getInstance().getReference().child("Accounts").child(uID).child("Courses_taken");
+                                        history_ref.addValueEventListener(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                                    history.add(dataSnapshot.getKey());
+                                                }
+                                                Set<String> set = new HashSet<>();
+                                                set.addAll(history);
+                                                Log.i("myTag", String.valueOf(set.size()));
+                                                editor.putStringSet("history", set);
+                                                editor.commit();
+                                                progressDialog.dismiss();
+                                                sendUserToNextStudentActivity();
+                                                Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                                                history_ref.removeEventListener(this);
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                            }
+
+                                        });
+
                                     }
                                     else{
                                         //Redirect to admin landing page

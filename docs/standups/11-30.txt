@@ -36,7 +36,7 @@ What have you done since yesterday?
 	- Attempting to send course info data to Firebase
 
 What are you planning on doing today?
-	- Attempting to send course info data to Firebase
+	- Working on Course Timeline Display w/Miraj
 	
 
 Any impediments or stumbling blocks?
@@ -74,12 +74,10 @@ Any impediments or stumbling blocks?
 Name: Ashleigh Liu
 
 What have you done since yesterday?
-	- Completed UI for student landing page
-	- Dealt with some merge request issues
+	- Merge files to main
 
 What are you planning on doing today?
-	- Deal with merge issues
-	- Complete UI for student manage courses
+	- Look into firebase, connect student add courses to firebase for admin's implemented courses
   
 Any impediments or stumbling blocks?
-	- Had a lot of trouble with button usability. It turns out that buttons won't work if they have a background color over them.
+	- Used logcat to diagnose some issues
