@@ -2,6 +2,8 @@ package com.example.b07_project;
 
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -23,14 +25,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class AcademicHistory extends Fragment {
     RecyclerView recyclerView;
     DatabaseReference databaseReference;
     MyAdapter myAdapter;
-    ArrayList<Course> please_info;
-    ArrayList<String> please;
+    ArrayList<Course> history_info;
+    ArrayList<String> history;
     TextView no_data;
 
 
@@ -49,27 +53,27 @@ public class AcademicHistory extends Fragment {
         no_data = view.findViewById((R.id.empty_set));
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
-
-        please_info = new ArrayList<>();
-        myAdapter = new MyAdapter(getContext(), please_info);
+        history_info  = new ArrayList<>();
+        myAdapter = new MyAdapter(getContext(), history_info);
         recyclerView.setAdapter(myAdapter);
         historyInitialize();
-        if(please != null) {
-            Log.i("myTag", "hi");
+        if(history != null) {
+            Log.i("myTa", "hi");
             databaseReference = FirebaseDatabase.getInstance().getReference().child("Courses");
             databaseReference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                        if (please.contains(dataSnapshot.getKey())) {
+                        if (history.contains(dataSnapshot.getKey())) {
 
                             Course taken = new Course(dataSnapshot.child("courseName").getValue(String.class),
                                     dataSnapshot.child("courseCode").getValue(String.class));
-                            please_info.add(taken);
+                            history_info.add(taken);
+                            Log.i("myTag", String.valueOf(history_info.size()));
                         }
                     }
                     databaseReference.removeEventListener(this);
-                    if(please_info.isEmpty()) {
+                    if(history_info.isEmpty()) {
                         no_data.setVisibility(View.VISIBLE);
                         recyclerView.setVisibility(View.GONE);
 
@@ -95,9 +99,13 @@ public class AcademicHistory extends Fragment {
     }
 
     public void historyInitialize(){
-        if(getArguments().getStringArrayList("history") != null) {
-            please = getArguments().getStringArrayList("history");
-            Log.i("myTag", "hello");
+        SharedPreferences p = getActivity().getSharedPreferences("myPreferences", Context.MODE_PRIVATE);
+        Set<String> setHistory = p.getStringSet("history", new HashSet<String>());
+        if(setHistory != null)
+        {
+            history = new ArrayList<>(setHistory);
+            Log.i("myTag", String.valueOf(history.get(0)));
+
         }
     }
 }
