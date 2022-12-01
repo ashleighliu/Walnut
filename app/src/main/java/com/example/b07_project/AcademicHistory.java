@@ -53,7 +53,6 @@ public class AcademicHistory extends Fragment {
         please_info = new ArrayList<>();
         myAdapter = new MyAdapter(getContext(), please_info);
         recyclerView.setAdapter(myAdapter);
-
         historyInitialize();
         if(please != null) {
             Log.i("myTag", "hi");
@@ -69,6 +68,7 @@ public class AcademicHistory extends Fragment {
                             please_info.add(taken);
                         }
                     }
+                    databaseReference.removeEventListener(this);
                     if(please_info.isEmpty()) {
                         no_data.setVisibility(View.VISIBLE);
                         recyclerView.setVisibility(View.GONE);
@@ -97,7 +97,7 @@ public class AcademicHistory extends Fragment {
     public void historyInitialize(){
         if(getArguments().getStringArrayList("history") != null) {
             please = getArguments().getStringArrayList("history");
-            Log.i("myTag", "hi");
+            Log.i("myTag", "hello");
         }
     }
 }

@@ -81,8 +81,8 @@ public class StudentLanding extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     history.add(dataSnapshot.getKey());
                 }
+                history_ref.removeEventListener(this);
                 Fragment pls = new AcademicHistory();
-
                 Bundle pls2 = new Bundle();
                 pls2.putStringArrayList("history", history);
                 pls.setArguments(pls2);
