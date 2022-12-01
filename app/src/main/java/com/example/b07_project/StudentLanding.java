@@ -119,9 +119,12 @@ public class StudentLanding extends AppCompatActivity implements NavigationView.
                 Fragment timeline_ui = new CourseTimeline();
                 transFragment(timeline_ui);
                 break;
+//            case R.id.nav_addcourses:
+//                Fragment addCourse_ui = new AddHistory();
+//                transFragment(addCourse_ui);
+//                break;
             case R.id.nav_addcourses:
-                Fragment addCourse_ui = new AddHistory();
-                transFragment(addCourse_ui);
+                goToAddCoursesToHistory();
                 break;
             case R.id.nav_logout:
                 student_logout();
@@ -143,5 +146,10 @@ public class StudentLanding extends AppCompatActivity implements NavigationView.
         finish();
     }
 
+    public void goToAddCoursesToHistory(){
+        Intent intent = new Intent(StudentLanding.this, courseList.class);
+        startActivity(intent);
+        finish();
+    }
 
 }
