@@ -178,6 +178,7 @@ public class AddCourses extends Fragment {
                         storeToFirebase(newCourse);
 
                     }
+                    dbReference.removeEventListener(this);
                 }
 
                 @Override
