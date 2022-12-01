@@ -74,12 +74,12 @@ Any impediments or stumbling blocks?
 Name: Ashleigh Liu
 
 What have you done since yesterday?
+	- Completed UI for student landing page
 	- Dealt with some merge request issues
 
 What are you planning on doing today?
-	- Finish implementing student add courses page
-	- Tailored the app to align more correctly with original figma design
-	- Approve PRs and deal with merge issues
+	- Deal with merge issues
+	- Complete UI for student manage courses
   
 Any impediments or stumbling blocks?
-	- Encountered bugs where app would crash, used logcat to diagnose the issue
+	- Had a lot of trouble with button usability. It turns out that buttons won't work if they have a background color over them.
