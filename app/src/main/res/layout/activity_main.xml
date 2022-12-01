@@ -66,7 +66,7 @@
     <EditText
         android:id="@+id/inputLoginPassword"
         android:layout_width="273dp"
-        android:layout_height="50dp"
+        android:layout_height="43dp"
         android:background="#65FFFFFF"
         android:ems="10"
         android:hint="Enter Password"
