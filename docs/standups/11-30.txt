@@ -74,12 +74,10 @@ Any impediments or stumbling blocks?
 Name: Ashleigh Liu
 
 What have you done since yesterday?
-	- Dealt with some merge request issues
+	- Merge files to main
 
 What are you planning on doing today?
-	- Finish implementing student add courses page
-	- Tailored the app to align more correctly with original figma design
-	- Approve PRs and deal with merge issues
+	- Look into firebase, connect student add courses to firebase for admin's implemented courses
   
 Any impediments or stumbling blocks?
-	- Encountered bugs where app would crash, used logcat to diagnose the issue
+	- Used logcat to diagnose some issues
