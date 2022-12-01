@@ -1,25 +1,16 @@
 package com.example.b07_project;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,48 +21,13 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-public class MainActivity extends AppCompatActivity {
-    private  Presenter presenter;
-    Button btnNewAccount;
-    EditText inputEmail,inputPassword;
-    Button btnLogin;
-    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-    ProgressDialog progressDialog;
-    FirebaseAuth fire;
-    FirebaseUser user;
+public class Presenter {
+    private Model model;
+    private MainActivity view;
 
-    public void  handleClick(View view) {
-        presenter.login();
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        presenter = new Presenter(new Model(), this);
-
-        btnNewAccount = findViewById(R.id.btnNewAccount);
-        inputEmail = findViewById(R.id.inputLoginEmail);
-        inputPassword = findViewById(R.id.inputLoginPassword);
-        btnLogin = findViewById(R.id.btnLogin);
-        progressDialog = new ProgressDialog(this);
-        fire = FirebaseAuth.getInstance();
-        user = fire.getCurrentUser();
-        btnNewAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                startActivity(new Intent(MainActivity.this, RegisterActivity.class));
-            }
-        });
-
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                login();
-            }
-        });
-
+    public Presenter (Model model, MainActivity view){
+        this.model = model;
+        this.view = view;
     }
 
     private void login(){
@@ -165,15 +121,5 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
-    }
-    private void sendUserToNextStudentActivity(){
-        Intent intent = new Intent(MainActivity.this, StudentLanding.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-    }
-    private void sendUserToNextAdminActivity(){
-        Intent intent = new Intent(MainActivity.this, AdminLanding.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
     }
 }
