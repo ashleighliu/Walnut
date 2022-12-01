@@ -7,35 +7,25 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.MenuItem;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.navigation.Navigation;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class StudentLanding extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -98,23 +88,38 @@ public class StudentLanding extends AppCompatActivity implements NavigationView.
         //Updates the redirection buttons
         Button currentCourses = (Button)findViewById(R.id.fullCourses);
         currentCourses.setOnClickListener(new View.OnClickListener() {
-            Fragment timeline = new CourseTimeline();
-            transFragment(timeline);
+            @Override
+            public void onClick(View view) {
+                Fragment timeline = new CourseTimeline();
+                transFragment(timeline);
+            }
+
         });
         Button currentHistory = (Button)findViewById(R.id.history);
         currentCourses.setOnClickListener(new View.OnClickListener() {
-            Fragment history = new AcademicHistory();
-            transFragment(history);
+            @Override
+            public void onClick(View view) {
+                Fragment history = new AcademicHistory();
+                transFragment(history);
+            }
         });
         Button allCourses = (Button)findViewById(R.id.viewAllCourses);
         currentCourses.setOnClickListener(new View.OnClickListener() {
-            Fragment timeline = new CourseTimeline();
-            transFragment(timeline);
+            @Override
+            public void onClick(View view) {
+                Fragment timeline = new CourseTimeline();
+                transFragment(timeline);
+            }
+
+
         });
         Button addCourses = (Button)findViewById(R.id.addCourses);
         currentCourses.setOnClickListener(new View.OnClickListener() {
-            Fragment add = new AddHistory();
-            transFragment(add);
+            @Override
+            public void onClick(View view) {
+                Fragment add = new AddHistory();
+                transFragment(add);
+            }
         });
 
 
@@ -135,7 +140,11 @@ public class StudentLanding extends AppCompatActivity implements NavigationView.
         }
         return super.onOptionsItemSelected(item);
     }
-
+    private void transFragment(Fragment fragment) {
+        drawerLayout.closeDrawer(GravityCompat.START);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.student_frame, fragment).commit();
+    }
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item)
     {
@@ -159,11 +168,7 @@ public class StudentLanding extends AppCompatActivity implements NavigationView.
         return false;
     }
 
-    private void transFragment(Fragment fragment) {
-        drawerLayout.closeDrawer(GravityCompat.START);
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.student_frame, fragment).commit();
-    }
+
     public void student_logout(){
         studentFireAuth = FirebaseAuth.getInstance();
         studentFireAuth.signOut();
