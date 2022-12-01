@@ -1,0 +1,85 @@
+Name: <JS Dandurand>
+
+What have you done since yesterday?
+   - fully implemented admin add courses
+   - refined admin add courses feature with various checkers for the vailidity of every field
+
+What are you planning on doing today?
+  - figure out how to update student info accordingly when admins change course information
+  	- ie: when the prerequisites of a course is changed, the student's timeline should change
+	- ie: when the course code of a course is changed, it should also be changed in the student's academic history and timeline
+
+Any impediments or stumbling blocks?
+	- None
+	
+Name: Miraj Ismail
+
+What have you done since yesterday?
+	- Created more tickets
+	- worked on bug fixes with the app so far
+
+What are you planning on doing today?
+	- testing templates and designs in android studio
+	- getting familiar with implementing buttons and text fields
+
+Any impediments or stumbling blocks?
+	- None
+	
+Name: Matthew Mao
+
+What have you done since yesterday?
+	- Working on design layout for login page (w/ others)
+	- Creating tickets
+	- Admin Add Course Page
+	- Creating textfields(course name, course code, prerequisites, sessions) for Add Course Admin Page
+	- Creating Add Course Button for Add Course Admin Page
+	- Attempting to send course info data to Firebase
+
+What are you planning on doing today?
+	- Attempting to send course info data to Firebase
+	
+
+Any impediments or stumbling blocks?
+	- None
+	
+Name: Alfonso Acosta
+
+What have you done since yesterday?
+	- Finished implementation of Academic History Page
+	-Added recyler view to Academic History Page
+	- Added text views to Academic History Page
+	- Allowed data extraction of history from firebase
+	- Allowed to send data to history page
+
+
+What are you planning on doing today?
+	- Make the UI pretty
+
+Any impediments or stumbling blocks?
+	- None
+
+Name: Junlin Qu
+
+What have you done since yesterday?
+	- Determine the data types to store academic history
+  - Merged the current markups to the main application
+
+What are you planning on doing today?
+	- Completed the design for the student landing page
+  - Implemented the design for the student landing page
+
+Any impediments or stumbling blocks?
+	- None
+	
+Name: Ashleigh Liu
+
+What have you done since yesterday?
+	- Dealt with some merge request issues
+
+What are you planning on doing today?
+	- Finish implementing student add courses page
+	- Tailored the app to align more correctly with original figma design
+	- Approve PRs and deal with merge issues
+  
+Any impediments or stumbling blocks?
+	- Encountered bugs where app would crash, used logcat to diagnose the issue
