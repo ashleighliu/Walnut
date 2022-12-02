@@ -34,13 +34,14 @@ What have you done since yesterday?
 	- Creating textfields(course name, course code, prerequisites, sessions) for Add Course Admin Page
 	- Creating Add Course Button for Add Course Admin Page
 	- Attempting to send course info data to Firebase
+	- Working on Course Timeline Display w/Miraj
 
 What are you planning on doing today?
-	- Attempting to send course info data to Firebase
+	-Add Courses Functionality & UI w/Miraj
 	
 
 Any impediments or stumbling blocks?
-	- None
+	- Getting comfortable navigating with DatabaseReference/FirebaseReference
 	
 Name: Alfonso Acosta
 
