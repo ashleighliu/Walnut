@@ -84,7 +84,7 @@ public class StudentLanding extends AppCompatActivity implements NavigationView.
 
         //Probably will be needed for updating the student account data (eg. adding courses, adding academic history);
         fire = FirebaseDatabase.getInstance().getReference();
-        user = fire.child("Students").child(uID);
+        user = fire.child("Accounts").child(uID);
 
         //Creating student object
         student = new StudentAccount(email, password, uID, history);

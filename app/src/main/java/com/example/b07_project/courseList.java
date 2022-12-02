@@ -54,8 +54,8 @@ public class courseList extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    History history = dataSnapshot.getValue(History.class);
-                    list.add(history);
+                    History history1 = dataSnapshot.getValue(History.class);
+                    list.add(history1);
                 }
 
                 myAdapter.notifyDataSetChanged();
