@@ -7,49 +7,40 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.MenuItem;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.navigation.Navigation;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class StudentLanding extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     public DrawerLayout drawerLayout;
     public ActionBarDrawerToggle actionBarDrawerToggle;
 
-    String uID;
-    String email;
-    String password;
+    static String uID;
+    static String email;
+    static String password;
     ArrayList<String> history;
     FirebaseAuth studentFireAuth;
     DatabaseReference fire;
     DatabaseReference user;
     StudentAccount student;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,9 +79,7 @@ public class StudentLanding extends AppCompatActivity implements NavigationView.
 
         //Creating student object
         student = new StudentAccount(email, password, uID, history);
-        transFragment(new AcademicHistory());
-        //Default just displaying the email
-
+        transFragment(new StudentDashboard());
     }
 
     // override the onOptionsItemSelected()
@@ -107,10 +96,20 @@ public class StudentLanding extends AppCompatActivity implements NavigationView.
         return super.onOptionsItemSelected(item);
     }
 
+    private void transFragment(Fragment fragment) {
+        drawerLayout.closeDrawer(GravityCompat.START);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.student_frame, fragment).commit();
+    }
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item)
     {
         switch(item.getItemId()) {
+            case R.id.nav_dashboard:
+                Fragment dashboard_ui = new StudentDashboard();
+                transFragment(dashboard_ui);
+                break;
             case R.id.nav_history:
                 Fragment history_ui = new AcademicHistory();
                 transFragment(history_ui);
@@ -133,11 +132,6 @@ public class StudentLanding extends AppCompatActivity implements NavigationView.
         return false;
     }
 
-    private void transFragment(Fragment fragment) {
-        drawerLayout.closeDrawer(GravityCompat.START);
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.student_frame, fragment).commit();
-    }
     public void student_logout(){
         studentFireAuth = FirebaseAuth.getInstance();
         studentFireAuth.signOut();

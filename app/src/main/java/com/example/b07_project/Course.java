@@ -7,12 +7,13 @@ import java.util.HashSet;
 
 public class Course {
 
+    private String ID;
     private String courseName;
     private String courseCode;
     private ArrayList<String> offeringSessions;
     private ArrayList<String> prereqs;
 
-    public Course(String courseName, String courseCode, String offeringSessions, String prereqs){
+    public Course(String courseName, String courseCode, String offeringSessions, String prereqs, String ID){
         this.courseName = courseName;
         this.courseCode = courseCode;
         String[] temp1 = offeringSessions.split(",");
@@ -25,6 +26,7 @@ public class Course {
         for (int i=0;i<temp2.length;i++) {
             this.prereqs.add(temp2[i].trim());
         }
+        this.ID = ID;
     }
     public Course(String courseName, String courseCode){
         this.courseName = courseName;
@@ -64,8 +66,8 @@ public class Course {
         this.courseName = courseName;
     }
 
-    public void setCourse_code(String course_code) {
-        this.courseCode = course_code;
-    }
+
+    public String getCourseID() { return ID;}
+
 }
 

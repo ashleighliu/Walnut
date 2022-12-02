@@ -34,22 +34,19 @@ What have you done since yesterday?
 	- Creating textfields(course name, course code, prerequisites, sessions) for Add Course Admin Page
 	- Creating Add Course Button for Add Course Admin Page
 	- Attempting to send course info data to Firebase
+	- Working on Course Timeline Display w/Miraj
 
 What are you planning on doing today?
-	- Attempting to send course info data to Firebase
+	-Add Courses Functionality & UI w/Miraj
 	
 
 Any impediments or stumbling blocks?
-	- None
+	- Getting comfortable navigating with DatabaseReference/FirebaseReference
 	
 Name: Alfonso Acosta
 
 What have you done since yesterday?
-	- Finished implementation of Academic History Page
-	-Added recyler view to Academic History Page
-	- Added text views to Academic History Page
-	- Allowed data extraction of history from firebase
-	- Allowed to send data to history page
+	- Finished the implementation of editing courses for Admin
 
 
 What are you planning on doing today?
@@ -63,6 +60,7 @@ Name: Junlin Qu
 What have you done since yesterday?
 	- Determine the data types to store academic history
   - Merged the current markups to the main application
+  
 
 What are you planning on doing today?
 	- Completed the design for the student landing page
@@ -74,12 +72,13 @@ Any impediments or stumbling blocks?
 Name: Ashleigh Liu
 
 What have you done since yesterday?
-	- Completed UI for student landing page
-	- Dealt with some merge request issues
+	- Looked into MVP design pattern
+	- Install required Mockito files
+	- Updated toasts for user logins
 
 What are you planning on doing today?
-	- Deal with merge issues
-	- Complete UI for student manage courses
+	- Completely refactor code according to design pattern
+	- Using Mockito for mock testing
   
 Any impediments or stumbling blocks?
-	- Had a lot of trouble with button usability. It turns out that buttons won't work if they have a background color over them.
+	- None

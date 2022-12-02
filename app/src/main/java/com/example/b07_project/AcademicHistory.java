@@ -104,7 +104,6 @@ public class AcademicHistory extends Fragment {
         if(setHistory != null)
         {
             history = new ArrayList<>(setHistory);
-
         }
     }
 }

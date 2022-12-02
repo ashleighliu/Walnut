@@ -9,14 +9,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import java.util.ArrayList;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
+public class AdminCourseAdapter extends RecyclerView.Adapter<AdminCourseAdapter.MyViewHolder> {
     Context myContext;
     ArrayList<Course> history_list;
 
-    public MyAdapter(Context context, ArrayList<Course> history)
+    public AdminCourseAdapter(Context context, ArrayList<Course> history)
     {
         myContext = context;
         history_list = history;
