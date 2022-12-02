@@ -81,6 +81,7 @@ What have you done since yesterday?
 
 What are you planning on doing today?
 	- Completely refactor code according to design pattern
+	- Using Mockito for mock testing
   
 Any impediments or stumbling blocks?
 	- None
