@@ -12,6 +12,7 @@ import android.view.MenuItem;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -82,49 +83,30 @@ public class StudentLanding extends AppCompatActivity implements NavigationView.
         student = new StudentAccount(email, password, uID, history);
 
         //Default just displaying the user part of the email
-        TextView text = (TextView)findViewById(R.id.welcomeStudent);
+        TextView text = (TextView) findViewById(R.id.welcomeStudent);
         text.setText("Okaeri, " + email.split("@")[0] + "!");
 
         //Updates the redirection buttons
-        Button currentCourses = (Button)findViewById(R.id.fullCourses);
-        currentCourses.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Fragment timeline = new CourseTimeline();
-                transFragment(timeline);
-            }
-
+        Button currentCourses = (Button) findViewById(R.id.fullCourses);
+        currentCourses.setOnClickListener(view -> {
+            Fragment timeline = new CourseTimeline();
+            transFragment(timeline);
         });
-        Button currentHistory = (Button)findViewById(R.id.history);
-        currentCourses.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Fragment history = new AcademicHistory();
-                transFragment(history);
-            }
+        Button currentHistory = (Button) findViewById(R.id.history);
+        currentHistory.setOnClickListener(view -> {
+            Fragment history = new AcademicHistory();
+            transFragment(history);
         });
-        Button allCourses = (Button)findViewById(R.id.viewAllCourses);
-        currentCourses.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Fragment timeline = new CourseTimeline();
-                transFragment(timeline);
-            }
-
-
+        Button allCourses = (Button) findViewById(R.id.viewAllCourses);
+        allCourses.setOnClickListener(view -> {
+            Fragment timeline = new CourseTimeline();
+            transFragment(timeline);
         });
-        Button addCourses = (Button)findViewById(R.id.addCourses);
-        currentCourses.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Fragment add = new AddHistory();
-                transFragment(add);
-            }
+        Button addCourses = (Button) findViewById(R.id.addCourses);
+        addCourses.setOnClickListener(view -> {
+            Fragment add = new AddHistory();
+            transFragment(add);
         });
-
-
-        //Shows the courses in the upcoming sessions
-
     }
 
     // override the onOptionsItemSelected()
@@ -140,11 +122,15 @@ public class StudentLanding extends AppCompatActivity implements NavigationView.
         }
         return super.onOptionsItemSelected(item);
     }
+
     private void transFragment(Fragment fragment) {
         drawerLayout.closeDrawer(GravityCompat.START);
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.student_frame, fragment).commit();
+        ConstraintLayout details = (ConstraintLayout) findViewById(R.id.studentLandingDetails);
+        details.setVisibility(View.GONE);
     }
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item)
     {
@@ -168,7 +154,6 @@ public class StudentLanding extends AppCompatActivity implements NavigationView.
         return false;
     }
 
-
     public void student_logout(){
         studentFireAuth = FirebaseAuth.getInstance();
         studentFireAuth.signOut();
@@ -176,6 +161,4 @@ public class StudentLanding extends AppCompatActivity implements NavigationView.
         startActivity(intent);
         finish();
     }
-
-
 }
