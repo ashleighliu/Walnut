@@ -1,24 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/courseCard"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="10dp">
+    android:layout_height="60dp">
 
-
-    <TextView
+    <LinearLayout
+        android:id="@+id/courseDetails"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id = "@+id/course_code"
-        android:text = "Course Code"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id = "@+id/course_name"
-        android:text = "Course Name"
-        />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/courseCode"
+            android:layout_width="96dp"
+            android:layout_height="23dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="courseCode"
+            android:textSize="15sp" />
 
+        <TextView
+            android:id="@+id/courseName"
+            android:layout_width="192dp"
+            android:layout_height="17dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="30dp"
+            android:text="Course Name"
+            android:textSize="10sp" />
 
-</LinearLayout>
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/editCourse"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:contentDescription="editCourses"
+        app:srcCompat="@drawable/draw"
+        tools:layout_marginLeft="5dp" />
+
+    <ImageButton
+        android:id="@+id/deleteCourse"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:contentDescription="deleteCourses"
+        app:srcCompat="@drawable/delete"
+        tools:layout_marginLeft="5dp" />
+
+</TableRow>

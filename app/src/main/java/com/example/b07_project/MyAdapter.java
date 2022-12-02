@@ -1,7 +1,6 @@
 package com.example.b07_project;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     Context myContext;
@@ -49,8 +47,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            course_name = itemView.findViewById(R.id.course_name);
-            course_code = itemView.findViewById(R.id.course_code);
+            course_name = itemView.findViewById(R.id.courseName);
+            course_code = itemView.findViewById(R.id.courseCode);
 
         }
     }
