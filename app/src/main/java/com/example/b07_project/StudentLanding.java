@@ -75,7 +75,7 @@ public class StudentLanding extends AppCompatActivity implements NavigationView.
 
         //Probably will be needed for updating the student account data (eg. adding courses, adding academic history);
         fire = FirebaseDatabase.getInstance().getReference();
-        user = fire.child("Students").child(uID);
+        user = fire.child("Accounts").child(uID);
 
         //Creating student object
         student = new StudentAccount(email, password, uID, history);
@@ -118,9 +118,12 @@ public class StudentLanding extends AppCompatActivity implements NavigationView.
                 Fragment timeline_ui = new CourseTimeline();
                 transFragment(timeline_ui);
                 break;
+//            case R.id.nav_addcourses:
+//                Fragment addCourse_ui = new AddHistory();
+//                transFragment(addCourse_ui);
+//                break;
             case R.id.nav_addcourses:
-                Fragment addCourse_ui = new AddHistory();
-                transFragment(addCourse_ui);
+                goToAddCoursesToHistory();
                 break;
             case R.id.nav_logout:
                 student_logout();
@@ -136,4 +139,11 @@ public class StudentLanding extends AppCompatActivity implements NavigationView.
         startActivity(intent);
         finish();
     }
+
+    public void goToAddCoursesToHistory(){
+        Intent intent = new Intent(StudentLanding.this, courseList.class);
+        startActivity(intent);
+        finish();
+    }
+
 }
