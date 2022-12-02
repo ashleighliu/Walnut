@@ -109,12 +109,26 @@ public class AddCourseToHistoryAdapter extends RecyclerView.Adapter<AddCourseToH
                                     addCourseID = courseID.getCourseID();
                                     Log.d("tag", "this is "+courseID.getCourseID());
                                     Prereq prereq = dataSnapshot.getValue(Prereq.class);
-                                    System.out.println(prereq.getPreReqs().toString());
                                     for (String s: prereq.getPreReqs()){
                                         prereqForCourses.add(s);
                                     }
 
                                 }
+                            }
+                            boolean toAdd = true;
+                            if (history.contains(history1.courseCode)) {
+                                toAdd = false;
+                            }
+                            else{
+                                for (String p : prereqForCourses) {
+                                    if (!history.contains(p)){
+                                        toAdd = false;
+                                        break;
+                                    }
+                                }
+                            }
+                            if (toAdd) {
+                                userCoursesTaken.child(addCourseID).setValue("");
                             }
                         }
 
@@ -123,27 +137,6 @@ public class AddCourseToHistoryAdapter extends RecyclerView.Adapter<AddCourseToH
 
                         }
                     });
-
-                    Log.d("tag", "this is "+addCourseID);
-                    boolean toAdd = true;
-                    Log.d("demo","testing for " + history1.courseCode);
-                    if (history.contains(history1.courseCode)) {
-                        toAdd = false;
-                    }
-                    else{
-                        for (String p : prereqForCourses) {
-                            if (!history.contains(p)){
-                                toAdd = false;
-                                break;
-                            }
-                        }
-                        System.out.print("kshjgdfjkjsahfasdjf" + toAdd);
-                    }
-                    if (toAdd) {
-                        //want to append history1.courseCode to Courses_taken
-                        //userCoursesTaken.child(Integer.toString(numCoursesTaken)).setValue(addCourseID);
-                        userCoursesTaken.child(addCourseID).setValue(addCourseID);
-                    }
                 }
             });
         }
