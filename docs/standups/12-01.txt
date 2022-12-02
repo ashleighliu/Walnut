@@ -63,6 +63,7 @@ Name: Junlin Qu
 What have you done since yesterday?
 	- Determine the data types to store academic history
   - Merged the current markups to the main application
+  
 
 What are you planning on doing today?
 	- Completed the design for the student landing page
@@ -76,9 +77,11 @@ Name: Ashleigh Liu
 What have you done since yesterday?
 	- Looked into MVP design pattern
 	- Install required Mockito files
+	- Updated toasts for user logins
 
 What are you planning on doing today?
 	- Completely refactor code according to design pattern
+	- Using Mockito for mock testing
   
 Any impediments or stumbling blocks?
 	- None
