@@ -121,7 +121,8 @@ public class AddCourseToHistoryAdapter extends RecyclerView.Adapter<AddCourseToH
                             }
                             else{
                                 for (String p : prereqForCourses) {
-                                    if (!history.contains(p)){
+                                    Log.d("tag", p);
+                                    if (!history.contains(p) && !p.equals("null")){
                                         toAdd = false;
                                         break;
                                     }
