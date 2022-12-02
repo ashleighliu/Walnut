@@ -33,16 +33,14 @@ public class StudentLanding extends AppCompatActivity implements NavigationView.
     public DrawerLayout drawerLayout;
     public ActionBarDrawerToggle actionBarDrawerToggle;
 
-    String uID;
-    String email;
-    String password;
+    static String uID;
+    static String email;
+    static String password;
     ArrayList<String> history;
     FirebaseAuth studentFireAuth;
     DatabaseReference fire;
     DatabaseReference user;
     StudentAccount student;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,32 +79,7 @@ public class StudentLanding extends AppCompatActivity implements NavigationView.
 
         //Creating student object
         student = new StudentAccount(email, password, uID, history);
-
-        //Default just displaying the user part of the email
-        TextView text = (TextView) findViewById(R.id.welcomeStudent);
-        text.setText("Okaeri, " + email.split("@")[0] + "!");
-
-        //Updates the redirection buttons
-        Button currentCourses = (Button) findViewById(R.id.fullCourses);
-        currentCourses.setOnClickListener(view -> {
-            Fragment timeline = new CourseTimeline();
-            transFragment(timeline);
-        });
-        Button currentHistory = (Button) findViewById(R.id.history);
-        currentHistory.setOnClickListener(view -> {
-            Fragment history = new AcademicHistory();
-            transFragment(history);
-        });
-        Button allCourses = (Button) findViewById(R.id.viewAllCourses);
-        allCourses.setOnClickListener(view -> {
-            Fragment timeline = new CourseTimeline();
-            transFragment(timeline);
-        });
-        Button addCourses = (Button) findViewById(R.id.addCourses);
-        addCourses.setOnClickListener(view -> {
-            Fragment add = new AddHistory();
-            transFragment(add);
-        });
+        transFragment(new StudentDashboard());
     }
 
     // override the onOptionsItemSelected()
@@ -127,14 +100,16 @@ public class StudentLanding extends AppCompatActivity implements NavigationView.
         drawerLayout.closeDrawer(GravityCompat.START);
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.student_frame, fragment).commit();
-        ConstraintLayout details = (ConstraintLayout) findViewById(R.id.studentLandingDetails);
-        details.setVisibility(View.GONE);
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item)
     {
         switch(item.getItemId()) {
+            case R.id.nav_dashboard:
+                Fragment dashboard_ui = new StudentDashboard();
+                transFragment(dashboard_ui);
+                break;
             case R.id.nav_history:
                 Fragment history_ui = new AcademicHistory();
                 transFragment(history_ui);
