@@ -88,8 +88,8 @@ public class ManageCourses extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        recyclerView = view.findViewById(R.id.recycler_view);
-        noCourses = view.findViewById((R.id.empty_set));
+        recyclerView = view.findViewById(R.id.viewCourses);
+        noCourses = view.findViewById((R.id.noCoursesAvailable));
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
         course_info  = new ArrayList<>();
