@@ -32,12 +32,12 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/tvcourseCode2"
+                app:layout_constraintEnd_toStartOf="@+id/tvcourseCode1"
                 tools:layout_conversion_absoluteHeight="27dp"
                 tools:layout_conversion_absoluteWidth="128dp" />
 
             <TextView
-                android:id="@+id/tvcourseCode2"
+                android:id="@+id/tvcourseCode1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="temp"
@@ -59,7 +59,7 @@
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/addCourseToTimelineButton"
-                app:layout_constraintStart_toEndOf="@+id/tvcourseCode2"
+                app:layout_constraintStart_toEndOf="@+id/tvcourseCode1"
                 app:layout_constraintTop_toTopOf="parent"/>
 
             <Button

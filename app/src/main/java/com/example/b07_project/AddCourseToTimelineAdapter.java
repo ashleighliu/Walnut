@@ -1,31 +1,27 @@
 package com.example.b07_project;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import android.content.Context;
-import android.widget.TextView;
-
+import com.example.b07_project.History;
+import com.example.b07_project.MyAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class AddCourseToTimelineAdapter extends RecyclerView.Adapter<AddCourseToTimelineAdapter.MyViewHolder> {
     String uID;
@@ -34,10 +30,10 @@ public class AddCourseToTimelineAdapter extends RecyclerView.Adapter<AddCourseTo
     DatabaseReference user;
     DatabaseReference allCourses;
     DatabaseReference userCoursesTaken;
-    ArrayList<String> coursesToTake = new ArrayList<>();
-
+    SharedPreferences p;
     Context context;
     ArrayList<History> list;
+
 
     public AddCourseToTimelineAdapter(Context context, ArrayList<History> list) {
         this.context = context;
@@ -47,21 +43,19 @@ public class AddCourseToTimelineAdapter extends RecyclerView.Adapter<AddCourseTo
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        //Retrieving account info from SharedPreferences
-        SharedPreferences p = context.getSharedPreferences("myPreferences", Context.MODE_PRIVATE);
+        p = context.getSharedPreferences("myPreferences", Context.MODE_PRIVATE);
         uID = p.getString("uID", "N/A");
         Set<String> set = p.getStringSet("history", new HashSet<String>());
         Log.i("myTag", String.valueOf(set.size()));
         history = new ArrayList<>(set);
 
 
-        //Probably will be needed for updating the student account data (eg. adding courses, adding academic history);
         fire = FirebaseDatabase.getInstance().getReference();
         user = fire.child("Accounts").child(uID);
         userCoursesTaken = user.child("Courses_taken");
         allCourses = fire.child("Courses");
 
-        View v = LayoutInflater.from(context).inflate(R.layout.item,parent,false);
+        View v = LayoutInflater.from(context).inflate(R.layout.timeline_item,parent,false);
         return new MyViewHolder(v);
     }
 
@@ -70,6 +64,7 @@ public class AddCourseToTimelineAdapter extends RecyclerView.Adapter<AddCourseTo
         History history1 = list.get(position);
         holder.courseCode.setText(history1.getCourseCode());
         holder.history1 = history1;
+
     }
 
     @Override
@@ -77,7 +72,8 @@ public class AddCourseToTimelineAdapter extends RecyclerView.Adapter<AddCourseTo
         return list.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+
+    public class MyViewHolder extends RecyclerView.ViewHolder{
         TextView courseCode;
         History history1;
         CourseID courseID;
@@ -87,7 +83,7 @@ public class AddCourseToTimelineAdapter extends RecyclerView.Adapter<AddCourseTo
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            courseCode = itemView.findViewById(R.id.tvcourseCode2);
+            courseCode = itemView.findViewById(R.id.tvcourseCode1);
 
             itemView.findViewById(R.id.addCourseToTimelineButton).setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -96,27 +92,30 @@ public class AddCourseToTimelineAdapter extends RecyclerView.Adapter<AddCourseTo
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                            for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                                 History temp = dataSnapshot.getValue(History.class);
-                                if (temp.getCourseCode().equals(history1.courseCode)) {
+                                if (temp.getCourseCode().equals(history1.courseCode)){
                                     courseID = dataSnapshot.getValue(CourseID.class);
                                     addCourseID = courseID.getCourseID();
-                                    Log.d("tag", "this is " + courseID.getCourseID());
-
+                                    Log.d("tag", "this is "+courseID.getCourseID());
                                 }
                             }
                             boolean toAdd = true;
-                            if (history.contains(history1.courseCode)) {
+                            if (history.contains(addCourseID)) {
                                 toAdd = false;
-                            } else {
-                                toAdd = true;
+                            }
+                            else{
+
                             }
                             if (toAdd) {
-                                userCoursesTaken.child(addCourseID).setValue("");
-                                coursesToTake.add(history1.courseCode);
+                                history.add(addCourseID);
+                                user.child("Courses_taken").setValue(history);
+                                Set set = p.getStringSet("history", new HashSet<String>());
+                                set.add(addCourseID);
+                                SharedPreferences.Editor editor = p.edit();
+                                editor.putStringSet("history", set);
                             }
                         }
-
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
@@ -125,8 +124,8 @@ public class AddCourseToTimelineAdapter extends RecyclerView.Adapter<AddCourseTo
                     });
                 }
             });
-            //if you click generate:
-            //  go to next activity
+
         }
     }
+
 }

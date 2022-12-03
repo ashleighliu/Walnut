@@ -7,20 +7,20 @@
     tools:context=".courseList">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/courseListForTimeline"
+        android:id="@+id/courseTimelineList"
         android:layout_width="412dp"
         android:layout_height="714dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/backButtonForAddToTimeline"
+        app:layout_constraintTop_toBottomOf="@+id/backButton1"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/backButtonForAddToTimeline"
-        android:layout_width="109dp"
-        android:layout_height="48dp"
+        android:id="@+id/backButton1"
+        android:layout_width="103dp"
+        android:layout_height="56dp"
         android:text="Back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,14 +31,14 @@
 
     <Button
         android:id="@+id/generateTimelineButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="1dp"
+        android:layout_width="121dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="8dp"
         android:text="Generate"
-        app:layout_constraintBottom_toTopOf="@+id/courseListForTimeline"
+        app:layout_constraintBottom_toTopOf="@+id/courseTimelineList"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.84"
-        app:layout_constraintStart_toEndOf="@+id/backButtonForAddToTimeline"
+        app:layout_constraintHorizontal_bias="0.907"
+        app:layout_constraintStart_toEndOf="@+id/backButton1"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

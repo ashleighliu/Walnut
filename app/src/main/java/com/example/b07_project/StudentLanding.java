@@ -142,7 +142,7 @@ public class StudentLanding extends AppCompatActivity implements NavigationView.
     }
 
     public void goToAddCoursesToTimeline(){
-        Intent intent = new Intent(StudentLanding.this, courseListForTimeline.class);
+        Intent intent = new Intent(StudentLanding.this, courseTimelineList.class);
         startActivity(intent);
         finish();
     }

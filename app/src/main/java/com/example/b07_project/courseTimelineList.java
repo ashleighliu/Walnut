@@ -18,19 +18,21 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class courseListForTimeline extends AppCompatActivity {
-    Button backButtonForAddToTimeline;
+public class courseTimelineList extends AppCompatActivity {
+    Button backButton1;
+    Button generateTimelineButton;
     RecyclerView recyclerView;
     DatabaseReference database;
     AddCourseToTimelineAdapter myAdapter;
     ArrayList<History> list;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_course_list_for_timeline);
+        setContentView(R.layout.activity_course_timeline_list);
 
-        recyclerView = findViewById(R.id.courseListForTimeline);
+        recyclerView = findViewById(R.id.courseTimelineList);
 
         database = FirebaseDatabase.getInstance().getReference("Courses");
         recyclerView.setHasFixedSize(true);
@@ -39,14 +41,23 @@ public class courseListForTimeline extends AppCompatActivity {
         myAdapter = new AddCourseToTimelineAdapter(this, list);
         recyclerView.setAdapter(myAdapter);
 
-        backButtonForAddToTimeline = findViewById(R.id.backButtonForAddToTimeline);
-        backButtonForAddToTimeline.setOnClickListener(new View.OnClickListener() {
+        backButton1 = findViewById(R.id.backButton1);
+        generateTimelineButton = findViewById(R.id.generateTimelineButton);
+        backButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(courseListForTimeline.this,StudentLanding.class));
+                startActivity(new Intent(courseTimelineList.this,StudentLanding.class));
             }
         });
 
+        /* --> WIP
+        generateTimelineButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(courseTimelineList.this,[INSERTHERE].class));
+            }
+        });
+        */
 
         database.addValueEventListener(new ValueEventListener() {
             @Override
