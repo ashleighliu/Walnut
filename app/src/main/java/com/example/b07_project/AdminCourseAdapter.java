@@ -13,31 +13,30 @@ import java.util.ArrayList;
 
 public class AdminCourseAdapter extends RecyclerView.Adapter<AdminCourseAdapter.MyViewHolder> {
     Context myContext;
-    ArrayList<Course> history_list;
+    ArrayList<Course> course_list;
 
-    public AdminCourseAdapter(Context context, ArrayList<Course> history)
-    {
+    public AdminCourseAdapter(Context context, ArrayList<Course> course) {
         myContext = context;
-        history_list = history;
-        //could change this to be an arraylist adapter or some shit
+        course_list = course;
     }
+
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(myContext).inflate(R.layout.course_info, parent, false);
+        View v = LayoutInflater.from(myContext).inflate(R.layout.course_info_admin, parent, false);
         return new MyViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Course course = history_list.get(position);
+        Course course = course_list.get(position);
         holder.course_code.setText(course.getCourseCode());
         holder.course_name.setText(course.getCourseName());
     }
 
     @Override
     public int getItemCount() {
-        return history_list.size();
+        return course_list.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{

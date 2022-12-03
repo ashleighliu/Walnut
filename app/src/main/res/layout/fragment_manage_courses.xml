@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -16,6 +16,7 @@
             android:id="@+id/searchBar"
             android:layout_width="380dp"
             android:layout_height="50dp"
+            android:layout_marginTop="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -28,6 +29,15 @@
         android:id="@+id/viewCourses"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="50dp" />
+        android:layout_marginTop="70dp" />
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/noCoursesAvailable"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="false"
+        android:layout_marginTop="70dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="No Courses Available!" />
+
+</FrameLayout>
