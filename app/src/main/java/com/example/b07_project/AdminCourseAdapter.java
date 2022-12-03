@@ -1,6 +1,7 @@
 package com.example.b07_project;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,11 +23,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class AdminCourseAdapter extends RecyclerView.Adapter<AdminCourseAdapter.MyViewHolder> {
     Context myContext;
     ArrayList<Course> course_list;
+    DatabaseReference fire;
 
     public AdminCourseAdapter(Context context, ArrayList<Course> course) {
         myContext = context;
@@ -63,6 +66,18 @@ public class AdminCourseAdapter extends RecyclerView.Adapter<AdminCourseAdapter.
             course_code = itemView.findViewById(R.id.adminCourseCode);
             edit  = itemView.findViewById(R.id.editCourse);
             delete = itemView.findViewById(R.id.deleteCourse);
+
+            delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    fire = FirebaseDatabase.getInstance().getReference();
+                    String courseID = (course_list.get(getAdapterPosition())).getCourseID();
+                    deleteFromCourses(courseID);
+                    deleteFromStudent(courseID);
+                    notifyDataSetChanged();
+                }
+            });
+
 
             edit.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -110,4 +125,76 @@ public class AdminCourseAdapter extends RecyclerView.Adapter<AdminCourseAdapter.
 
         }
     }
+    public void deleteFromStudent(String courseID)
+    {
+        DatabaseReference students = fire.child("Accounts");
+        students.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot x : snapshot.getChildren()) {
+                    if (x.child("isAdmin").getValue(Boolean.class).equals(true)) {
+                        break;
+                    } else {
+                        ArrayList<String> courses = new ArrayList<>();
+                        DataSnapshot here = x.child("Courses_taken");
+                        for (DataSnapshot y : here.getChildren()) {
+                            if (!y.getValue(String.class).equals(courseID)) {
+                                courses.add(y.getValue(String.class));
+                            }
+                            nullers(courses);
+                            students.child(x.getKey()).child("Courses_taken").setValue(courses);
+                        }
+                    }
+                    students.removeEventListener(this);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    public void deleteFromCourses(String courseID)
+    {
+        Log.i("myTag", courseID);
+        DatabaseReference courses = fire.child("Courses");
+        courses.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot x : snapshot.getChildren()) {
+                    if (x.getKey().equals(courseID)) {
+                        courses.child(x.getKey()).removeValue();
+
+                    } else {
+                        DataSnapshot goPrereq = x.child("prereqs");
+                        ArrayList<String> temp_clone = new ArrayList<>();
+                        for (DataSnapshot y : goPrereq.getChildren()) {
+                            if (!(y.getValue(String.class).equals(courseID))) {
+                                temp_clone.add(y.getValue(String.class));
+                                Log.i("Size", String.valueOf(temp_clone.size()));
+                            }
+                        }
+                        nullers(temp_clone);
+                        courses.child(x.getKey()).child("prereqs").setValue(temp_clone);
+                    }
+                }
+                courses.removeEventListener(this);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
+    public void nullers(ArrayList<String> check){
+        if(check.size() == 0){
+            check.add("null");
+        }
+    }
+
 }
