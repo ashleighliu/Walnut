@@ -129,7 +129,6 @@ public class MainActivity extends AppCompatActivity {
                                                 }
                                                 Set<String> set = new HashSet<>();
                                                 set.addAll(history);
-                                                Log.i("myTag", String.valueOf(set.size()));
                                                 editor.putStringSet("history", set);
                                                 editor.commit();
                                                 progressDialog.dismiss();
