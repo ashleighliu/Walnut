@@ -19,15 +19,15 @@
 
     <Button
         android:id="@+id/backButton1"
-        android:layout_width="103dp"
-        android:layout_height="56dp"
+        android:layout_width="96dp"
+        android:layout_height="55dp"
         android:text="Back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintHorizontal_bias="0.051"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.01" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/generateTimelineButton"
@@ -37,8 +37,8 @@
         android:text="Generate"
         app:layout_constraintBottom_toTopOf="@+id/courseTimelineList"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.907"
+        app:layout_constraintHorizontal_bias="0.906"
         app:layout_constraintStart_toEndOf="@+id/backButton1"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

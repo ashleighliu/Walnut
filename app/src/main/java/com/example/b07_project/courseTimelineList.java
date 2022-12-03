@@ -16,6 +16,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class courseTimelineList extends AppCompatActivity {
@@ -25,6 +26,11 @@ public class courseTimelineList extends AppCompatActivity {
     DatabaseReference database;
     AddCourseToTimelineAdapter myAdapter;
     ArrayList<History> list;
+    ArrayList<String> courseToTake = new ArrayList<String>();
+
+
+    //courseToTake = myAdapter.getCourseToTake();
+
 
 
     @Override
@@ -50,14 +56,13 @@ public class courseTimelineList extends AppCompatActivity {
             }
         });
 
-        /* --> WIP
         generateTimelineButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(courseTimelineList.this,[INSERTHERE].class));
+                startActivity(new Intent(courseTimelineList.this,Timeline.class));
             }
         });
-        */
+
 
         database.addValueEventListener(new ValueEventListener() {
             @Override

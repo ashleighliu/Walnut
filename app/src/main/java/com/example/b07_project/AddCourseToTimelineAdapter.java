@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -33,7 +34,12 @@ public class AddCourseToTimelineAdapter extends RecyclerView.Adapter<AddCourseTo
     SharedPreferences p;
     Context context;
     ArrayList<History> list;
+    Set<String> courseToTakeSet = new HashSet<String>();
+    ArrayList<String> courseToTake; //= new ArrayList<String>();
 
+//    public ArrayList getCourseToTake(){
+//        return courseToTake;
+//    }
 
     public AddCourseToTimelineAdapter(Context context, ArrayList<History> list) {
         this.context = context;
@@ -49,13 +55,13 @@ public class AddCourseToTimelineAdapter extends RecyclerView.Adapter<AddCourseTo
         Log.i("myTag", String.valueOf(set.size()));
         history = new ArrayList<>(set);
 
-
         fire = FirebaseDatabase.getInstance().getReference();
         user = fire.child("Accounts").child(uID);
         userCoursesTaken = user.child("Courses_taken");
         allCourses = fire.child("Courses");
 
         View v = LayoutInflater.from(context).inflate(R.layout.timeline_item,parent,false);
+
         return new MyViewHolder(v);
     }
 
@@ -97,24 +103,26 @@ public class AddCourseToTimelineAdapter extends RecyclerView.Adapter<AddCourseTo
                                 if (temp.getCourseCode().equals(history1.courseCode)){
                                     courseID = dataSnapshot.getValue(CourseID.class);
                                     addCourseID = courseID.getCourseID();
-                                    Log.d("tag", "this is "+courseID.getCourseID());
                                 }
                             }
                             boolean toAdd = true;
                             if (history.contains(addCourseID)) {
                                 toAdd = false;
                             }
-                            else{
+//                            else{
+//                                toAdd = true;
+//                            }
+                            if (toAdd) {
+//                                history.add(addCourseID);
+//                                user.child("Courses_taken").setValue(history);
+//                                Set set = p.getStringSet("history", new HashSet<String>());
+//                                set.add(addCourseID);
+//                                SharedPreferences.Editor editor = p.edit();
+//                                editor.putStringSet("history", set);
+                                courseToTakeSet.add(addCourseID);
 
                             }
-                            if (toAdd) {
-                                history.add(addCourseID);
-                                user.child("Courses_taken").setValue(history);
-                                Set set = p.getStringSet("history", new HashSet<String>());
-                                set.add(addCourseID);
-                                SharedPreferences.Editor editor = p.edit();
-                                editor.putStringSet("history", set);
-                            }
+                            courseToTake = new ArrayList<>(courseToTakeSet);
                         }
 
                         @Override
