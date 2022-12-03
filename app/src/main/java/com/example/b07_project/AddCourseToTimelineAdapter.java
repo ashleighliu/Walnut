@@ -27,19 +27,19 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
-public class AddCourseToHistoryAdapter extends RecyclerView.Adapter<AddCourseToHistoryAdapter.MyViewHolder> {
+public class AddCourseToTimelineAdapter extends RecyclerView.Adapter<AddCourseToTimelineAdapter.MyViewHolder> {
     String uID;
-    ArrayList<String> prereqs;
     ArrayList<String> history;
     DatabaseReference fire;
     DatabaseReference user;
     DatabaseReference allCourses;
     DatabaseReference userCoursesTaken;
-    SharedPreferences p;
+    ArrayList<String> coursesToTake = new ArrayList<>();
+
     Context context;
     ArrayList<History> list;
 
-    public AddCourseToHistoryAdapter(Context context, ArrayList<History> list) {
+    public AddCourseToTimelineAdapter(Context context, ArrayList<History> list) {
         this.context = context;
         this.list = list;
     }
@@ -48,12 +48,10 @@ public class AddCourseToHistoryAdapter extends RecyclerView.Adapter<AddCourseToH
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         //Retrieving account info from SharedPreferences
-        p = context.getSharedPreferences("myPreferences", Context.MODE_PRIVATE);
+        SharedPreferences p = context.getSharedPreferences("myPreferences", Context.MODE_PRIVATE);
         uID = p.getString("uID", "N/A");
-        Set<String> prereqSet = p.getStringSet("prereqs", new HashSet<String>());
         Set<String> set = p.getStringSet("history", new HashSet<String>());
         Log.i("myTag", String.valueOf(set.size()));
-        prereqs = new ArrayList<>(prereqSet);
         history = new ArrayList<>(set);
 
 
@@ -82,60 +80,43 @@ public class AddCourseToHistoryAdapter extends RecyclerView.Adapter<AddCourseToH
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView courseCode;
         History history1;
-        ArrayList<String> prereqForCourses = new ArrayList<>();
         CourseID courseID;
 
         String addCourseID;
 
-        int numCoursesTaken = history.size();
-
-
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            courseCode = itemView.findViewById(R.id.tvcourseCode);
+            courseCode = itemView.findViewById(R.id.tvcourseCode2);
 
-            itemView.findViewById(R.id.addCourseButton).setOnClickListener(new View.OnClickListener() {
+            itemView.findViewById(R.id.addCourseToTimelineButton).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     allCourses.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                            for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                                 History temp = dataSnapshot.getValue(History.class);
-                                if (temp.getCourseCode().equals(history1.courseCode)){
+                                if (temp.getCourseCode().equals(history1.courseCode)) {
                                     courseID = dataSnapshot.getValue(CourseID.class);
                                     addCourseID = courseID.getCourseID();
-                                    Log.d("tag", "this is "+courseID.getCourseID());
-                                    Prereq prereq = dataSnapshot.getValue(Prereq.class);
-                                    for (String s: prereq.getPreReqs()){
-                                        prereqForCourses.add(s);
-                                    }
+                                    Log.d("tag", "this is " + courseID.getCourseID());
 
                                 }
                             }
                             boolean toAdd = true;
-                            if (history.contains(addCourseID)) {
+                            if (history.contains(history1.courseCode)) {
                                 toAdd = false;
-                            }
-                            else{
-                                for (String p : prereqForCourses) {
-                                    if (!history.contains(p) && !p.equals("null")){
-                                        toAdd = false;
-                                        break;
-                                    }
-                                }
+                            } else {
+                                toAdd = true;
                             }
                             if (toAdd) {
-                                history.add(addCourseID);
-                                user.child("Courses_taken").setValue(history);
-                                Set set = p.getStringSet("history", new HashSet<String>());
-                                set.add(addCourseID);
-                                SharedPreferences.Editor editor = p.edit();
-                                editor.putStringSet("history", set);
+                                userCoursesTaken.child(addCourseID).setValue("");
+                                coursesToTake.add(history1.courseCode);
                             }
                         }
+
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
@@ -144,6 +125,8 @@ public class AddCourseToHistoryAdapter extends RecyclerView.Adapter<AddCourseToH
                     });
                 }
             });
+            //if you click generate:
+            //  go to next activity
         }
     }
 }
