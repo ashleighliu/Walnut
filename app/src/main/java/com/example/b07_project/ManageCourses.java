@@ -102,11 +102,19 @@ public class ManageCourses extends Fragment {
             databaseReference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    String prereqsString = "";
+                    String offeringSessionsString = "";
+                    for (DataSnapshot data : snapshot.child("prereqs").getChildren()){
+                        prereqsString = prereqsString + data.getValue(String.class) + ",";
+                    }
+                    for (DataSnapshot data : snapshot.child("offeringSessions").getChildren()){
+                        offeringSessionsString = offeringSessionsString + data.getValue(String.class) + ",";
+                    }
                     for (DataSnapshot data : snapshot.getChildren()) {
                         Course course = new Course(data.child("courseName").getValue(String.class),
                                 data.child("courseCode").getValue(String.class),
-                                data.child("offeringSessions").getValue(String.class),
-                                data.child("prereqs").getValue(String.class),
+                                offeringSessionsString,
+                                prereqsString,
                                 data.child("courseID").getValue(String.class));
                         course_info.add(course);
                     }
@@ -120,6 +128,7 @@ public class ManageCourses extends Fragment {
                         noCourses.setVisibility(View.GONE);
                         recyclerView.setVisibility(View.VISIBLE);
                     }
+
                 }
 
                 @Override
