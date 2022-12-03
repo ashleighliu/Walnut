@@ -35,7 +35,7 @@ public class AddCourseToHistoryAdapter extends RecyclerView.Adapter<AddCourseToH
     DatabaseReference user;
     DatabaseReference allCourses;
     DatabaseReference userCoursesTaken;
-
+    SharedPreferences p;
     Context context;
     ArrayList<History> list;
 
@@ -48,7 +48,7 @@ public class AddCourseToHistoryAdapter extends RecyclerView.Adapter<AddCourseToH
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         //Retrieving account info from SharedPreferences
-        SharedPreferences p = context.getSharedPreferences("myPreferences", Context.MODE_PRIVATE);
+        p = context.getSharedPreferences("myPreferences", Context.MODE_PRIVATE);
         uID = p.getString("uID", "N/A");
         Set<String> prereqSet = p.getStringSet("prereqs", new HashSet<String>());
         Set<String> set = p.getStringSet("history", new HashSet<String>());
@@ -129,6 +129,11 @@ public class AddCourseToHistoryAdapter extends RecyclerView.Adapter<AddCourseToH
                             }
                             if (toAdd) {
                                 userCoursesTaken.child(addCourseID).setValue("");
+                                Set set = p.getStringSet("history", new HashSet<String>());
+                                set.add(addCourseID);
+                                SharedPreferences.Editor editor = p.edit();
+                                editor.putStringSet("history", set);
+                                history = new ArrayList<>(set);
                             }
                         }
 
