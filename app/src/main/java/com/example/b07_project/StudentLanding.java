@@ -12,6 +12,7 @@ import android.view.MenuItem;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -32,16 +33,14 @@ public class StudentLanding extends AppCompatActivity implements NavigationView.
     public DrawerLayout drawerLayout;
     public ActionBarDrawerToggle actionBarDrawerToggle;
 
-    String uID;
-    String email;
-    String password;
+    static String uID;
+    static String email;
+    static String password;
     ArrayList<String> history;
     FirebaseAuth studentFireAuth;
     DatabaseReference fire;
     DatabaseReference user;
     StudentAccount student;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,55 +75,11 @@ public class StudentLanding extends AppCompatActivity implements NavigationView.
 
         //Probably will be needed for updating the student account data (eg. adding courses, adding academic history);
         fire = FirebaseDatabase.getInstance().getReference();
-        user = fire.child("Students").child(uID);
+        user = fire.child("Accounts").child(uID);
 
         //Creating student object
         student = new StudentAccount(email, password, uID, history);
-
-        //Default just displaying the user part of the email
-        TextView text = (TextView)findViewById(R.id.welcomeStudent);
-        text.setText("Okaeri, " + email.split("@")[0] + "!");
-
-        //Updates the redirection buttons
-        Button currentCourses = (Button)findViewById(R.id.fullCourses);
-        currentCourses.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Fragment timeline = new CourseTimeline();
-                transFragment(timeline);
-            }
-
-        });
-        Button currentHistory = (Button)findViewById(R.id.history);
-        currentCourses.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Fragment history = new AcademicHistory();
-                transFragment(history);
-            }
-        });
-        Button allCourses = (Button)findViewById(R.id.viewAllCourses);
-        currentCourses.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Fragment timeline = new CourseTimeline();
-                transFragment(timeline);
-            }
-
-
-        });
-        Button addCourses = (Button)findViewById(R.id.addCourses);
-        currentCourses.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Fragment add = new AddHistory();
-                transFragment(add);
-            }
-        });
-
-
-        //Shows the courses in the upcoming sessions
-
+        transFragment(new StudentDashboard());
     }
 
     // override the onOptionsItemSelected()
@@ -140,15 +95,21 @@ public class StudentLanding extends AppCompatActivity implements NavigationView.
         }
         return super.onOptionsItemSelected(item);
     }
+
     private void transFragment(Fragment fragment) {
         drawerLayout.closeDrawer(GravityCompat.START);
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.student_frame, fragment).commit();
     }
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item)
     {
         switch(item.getItemId()) {
+            case R.id.nav_dashboard:
+                Fragment dashboard_ui = new StudentDashboard();
+                transFragment(dashboard_ui);
+                break;
             case R.id.nav_history:
                 Fragment history_ui = new AcademicHistory();
                 transFragment(history_ui);
@@ -157,9 +118,12 @@ public class StudentLanding extends AppCompatActivity implements NavigationView.
                 Fragment timeline_ui = new CourseTimeline();
                 transFragment(timeline_ui);
                 break;
+//            case R.id.nav_addcourses:
+//                Fragment addCourse_ui = new AddHistory();
+//                transFragment(addCourse_ui);
+//                break;
             case R.id.nav_addcourses:
-                Fragment addCourse_ui = new AddHistory();
-                transFragment(addCourse_ui);
+                goToAddCoursesToHistory();
                 break;
             case R.id.nav_logout:
                 student_logout();
@@ -167,7 +131,6 @@ public class StudentLanding extends AppCompatActivity implements NavigationView.
         }
         return false;
     }
-
 
     public void student_logout(){
         studentFireAuth = FirebaseAuth.getInstance();
@@ -177,5 +140,10 @@ public class StudentLanding extends AppCompatActivity implements NavigationView.
         finish();
     }
 
+    public void goToAddCoursesToHistory(){
+        Intent intent = new Intent(StudentLanding.this, courseList.class);
+        startActivity(intent);
+        finish();
+    }
 
 }

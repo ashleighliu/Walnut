@@ -4,6 +4,10 @@
     tools:ignore="HardcodedText">
 
     <item
+        android:id="@+id/nav_dashboard"
+        android:title="Dashboard" />
+
+    <item
         android:id="@+id/nav_addcourses"
         android:title="Add Courses" />
 

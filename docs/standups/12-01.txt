@@ -1,16 +1,13 @@
 Name: <JS Dandurand>
 
 What have you done since yesterday?
-   - refactored firebase database storage to store unique Course IDs as elements in the Courses list rather than the course code
-   	- this is done so that when admins update course info, no updates are required on the side of the students
-   - refacted Course.java and AddCourse.java accordingly to this change, which included figuring out an algorithm to determine a Course's ID given
-   its code.
-   	- part of this refactoring also included ensuring prerequisites for courses were also stored on firebase as Course IDs rather than course codes,
-	once again so that these fields would not have to be updated in the event that an admin updated a course's info
-	
+   - fully implemented admin add courses
+   - refined admin add courses feature with various checkers for the vailidity of every field
 
 What are you planning on doing today?
-  - Once Admin manage courses page is implemented, I plan to work on Admin edit course
+  - figure out how to update student info accordingly when admins change course information
+  	- ie: when the prerequisites of a course is changed, the student's timeline should change
+	- ie: when the course code of a course is changed, it should also be changed in the student's academic history and timeline
 
 Any impediments or stumbling blocks?
 	- None
@@ -37,25 +34,23 @@ What have you done since yesterday?
 	- Creating textfields(course name, course code, prerequisites, sessions) for Add Course Admin Page
 	- Creating Add Course Button for Add Course Admin Page
 	- Attempting to send course info data to Firebase
+	- Working on Course Timeline Display w/Miraj
 
 What are you planning on doing today?
-	- Working on Course Timeline Display w/Miraj
+	-Add Courses Functionality & UI w/Miraj
 	
 
 Any impediments or stumbling blocks?
-	- None
+	- Getting comfortable navigating with DatabaseReference/FirebaseReference
 	
 Name: Alfonso Acosta
 
 What have you done since yesterday?
-	- Finished the implementation of deleteing courses for admin
-	- deletes from student
-	- deletes from courses
-
+	- Finished the implementation of editing courses for Admin
 
 
 What are you planning on doing today?
-	- Finish the implementation of editing courses for admin
+	- Make the UI pretty
 
 Any impediments or stumbling blocks?
 	- None
@@ -65,6 +60,7 @@ Name: Junlin Qu
 What have you done since yesterday?
 	- Determine the data types to store academic history
   - Merged the current markups to the main application
+  
 
 What are you planning on doing today?
 	- Completed the design for the student landing page
@@ -76,10 +72,13 @@ Any impediments or stumbling blocks?
 Name: Ashleigh Liu
 
 What have you done since yesterday?
-	- Merge files to main
+	- Looked into MVP design pattern
+	- Install required Mockito files
+	- Updated toasts for user logins
 
 What are you planning on doing today?
-	- Look into firebase, connect student add courses to firebase for admin's implemented courses
+	- Completely refactor code according to design pattern
+	- Using Mockito for mock testing
   
 Any impediments or stumbling blocks?
-	- Used logcat to diagnose some issues
+	- None
