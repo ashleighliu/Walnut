@@ -132,6 +132,8 @@ public class AddCourseToHistoryAdapter extends RecyclerView.Adapter<AddCourseToH
                                 set.add(addCourseID);
                                 SharedPreferences.Editor editor = p.edit();
                                 editor.putStringSet("history", set);
+                                editor.commit();
+
                             }
                         }
 

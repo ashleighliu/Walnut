@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -154,6 +155,8 @@ public class EditCourse extends Fragment {
                         }
                         Course edittedCourse = new Course(courseName, courseCode, offeringSessions, prereqIDString, courseID);
                         dB.child(courseID).setValue(edittedCourse);
+                        Toast.makeText(getActivity(), "Course Edit Successful", Toast.LENGTH_SHORT).show();
+
                     }
                     dB.removeEventListener(this);
                 }
