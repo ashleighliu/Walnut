@@ -44,6 +44,7 @@ public class LoginPresenter {
             valid = false;
         }
         if (!valid) {
+            view.loginFailure("Login Unsuccessful");
             return;
         }
         //Signing in with firebase
