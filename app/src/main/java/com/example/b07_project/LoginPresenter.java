@@ -76,7 +76,7 @@ public class LoginPresenter {
                                         @Override
                                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                                             for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                                                history.add(dataSnapshot.getKey());
+                                                history.add(dataSnapshot.getValue(String.class));
                                             }
                                             Set<String> set = new HashSet<>();
                                             set.addAll(history);

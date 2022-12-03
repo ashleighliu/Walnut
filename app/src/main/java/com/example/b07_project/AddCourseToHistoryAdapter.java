@@ -128,6 +128,7 @@ public class AddCourseToHistoryAdapter extends RecyclerView.Adapter<AddCourseToH
                             if (toAdd) {
                                 history.add(addCourseID);
                                 user.child("Courses_taken").setValue(history);
+
                                 Set set = p.getStringSet("history", new HashSet<String>());
                                 set.add(addCourseID);
                                 SharedPreferences.Editor editor = p.edit();
