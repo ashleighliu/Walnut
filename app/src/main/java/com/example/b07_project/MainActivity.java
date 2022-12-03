@@ -11,16 +11,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.b07_project.Presenter.LoginContract;
-import com.example.b07_project.Presenter.LoginPresenter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-    public class MainActivity extends AppCompatActivity implements View.OnClickListener, LoginContract.View {
+    public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     Button btnNewAccount;
     EditText inputEmail, inputPassword;
     Button btnLogin;
-    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     ProgressDialog progressDialog;
     FirebaseAuth fire;
     FirebaseUser user;
@@ -39,7 +36,7 @@ import com.google.firebase.auth.FirebaseUser;
         progressDialog = new ProgressDialog(this);
         fire = FirebaseAuth.getInstance();
         user = fire.getCurrentUser();
-        lp = new LoginPresenter(this);
+        lp = new LoginPresenter(this, new LoginModel(this));
     }
 
     @Override
@@ -49,37 +46,20 @@ import com.google.firebase.auth.FirebaseUser;
                 startActivity(new Intent(MainActivity.this, RegisterActivity.class));
                 break;
             case R.id.btnLogin:
-                validate();
+                commenceLogin();
                 break;
         }
     }
 
-    private void commenceLogin(String email, String password) {
+    private void commenceLogin() {
         //progressDialog is just for UI purposes, if it causes too many problems feel free to remove
         progressDialog.setMessage("Please Wait While Logging in...");
         progressDialog.setTitle("Login");
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
-        lp.login(this, email, password);
-    }
-
-    private void validate() {
         String email = inputEmail.getText().toString();
         String password = inputPassword.getText().toString();
-        //Checking validity
-        boolean valid = true;
-        if (!email.matches(emailPattern)) {
-            inputEmail.setError("Enter Valid Email");
-            valid = false;
-        }
-        if (password.isEmpty() || password.length() < 6){
-            inputPassword.setError("Enter Proper Password of At Least 6 Characters");
-            valid = false;
-        }
-        if (!valid) {
-            return;
-        }
-        commenceLogin(email, password);
+        lp.login(email, password);
     }
 
     private void sendUserToNextStudentActivity(){
@@ -94,8 +74,15 @@ import com.google.firebase.auth.FirebaseUser;
         startActivity(intent);
     }
 
-    @Override
-    public void onSuccessfulLogin(String message, boolean isAdmin) {
+    public void emitEmailError() {
+        inputEmail.setError("Enter Valid Email");
+    }
+
+    public void emitPasswordError() {
+        inputPassword.setError("Enter Proper Password of At Least 6 Characters");
+    }
+
+    public void loginSuccess(String message, boolean isAdmin) {
         progressDialog.dismiss();
         Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
         if (isAdmin) {
@@ -105,8 +92,7 @@ import com.google.firebase.auth.FirebaseUser;
         }
     }
 
-    @Override
-    public void onFailedLogin(String message) {
+    public void loginFailure(String message) {
         progressDialog.dismiss();
         Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
     }

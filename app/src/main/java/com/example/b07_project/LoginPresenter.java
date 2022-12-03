@@ -1,4 +1,4 @@
-package com.example.b07_project.Presenter;
+package com.example.b07_project;
 
 import android.app.Activity;
 import android.content.Context;
@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+
+import com.example.b07_project.MainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -20,21 +22,37 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-public class LoginInteractor implements LoginContract.Interactor {
-    LoginContract.onLoginListener listener;
+public class LoginPresenter {
+    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+    MainActivity view;
+    LoginModel model;
 
-    public LoginInteractor(LoginContract.onLoginListener listener) {
-        this.listener = listener;
+    public LoginPresenter(MainActivity view, LoginModel model) {
+        this.view = view;
+        this.model = model;
     }
 
-    @Override
-    public void attemptLogin(Activity activity, String email, String password) {
+    public void login(String email, String password) {
+        //Checking validity
+        boolean valid = true;
+        if (!email.matches(emailPattern)) {
+            view.emitEmailError();
+            valid = false;
+        }
+        if (password.isEmpty() || password.length() < 6){
+            view.emitPasswordError();
+            valid = false;
+        }
+        if (!valid) {
+            return;
+        }
         //Signing in with firebase
         FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     String uID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
                     //SharedPreferences stuff
                     //Needed to retrieve data once you're in student landing page
                     FirebaseDatabase.getInstance().getReference().child("Accounts").child(uID).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
@@ -47,12 +65,7 @@ public class LoginInteractor implements LoginContract.Interactor {
                                 String password = String.valueOf(task.getResult().child("password").getValue());
                                 //Passing info of account through SharedPreferences to landing page
                                 //More of these will be needed for other info (eg. AcademicHistory)
-                                SharedPreferences p = activity.getSharedPreferences("myPreferences", Context.MODE_PRIVATE);
-                                SharedPreferences.Editor editor = p.edit();
-                                editor.putString("uID", uID);
-                                editor.putString("email", email);
-                                editor.putString("password", password);
-                                editor.apply();
+                                model.addStringsToSharedPreferences(uID, email, password);
 
                                 if (isAdmin.equals("false")){
                                     ArrayList<String> history = new ArrayList<>();
@@ -67,9 +80,8 @@ public class LoginInteractor implements LoginContract.Interactor {
                                             Set<String> set = new HashSet<>();
                                             set.addAll(history);
                                             Log.i("myTag", String.valueOf(set.size()));
-                                            editor.putStringSet("history", set);
-                                            editor.commit();
-                                            listener.onSuccess("Login Successful", false);
+                                            model.addAcademicHistory(set);
+                                            view.loginSuccess("Login Successful", false);
                                             history_ref.removeEventListener(this);
                                         }
 
@@ -77,13 +89,11 @@ public class LoginInteractor implements LoginContract.Interactor {
                                         public void onCancelled(@NonNull DatabaseError error) {
 
                                         }
-
                                     });
-
                                 }
                                 else{
                                     //Redirect to admin landing page
-                                    listener.onSuccess("Login Successful", true);
+                                    view.loginSuccess("Login Successful", true);
                                 }
                             }
                             else{
@@ -91,10 +101,9 @@ public class LoginInteractor implements LoginContract.Interactor {
                             }
                         }
                     });
-
                 }
                 else{
-                    listener.onFailure("Login Unsuccessful"); //If login credentials incorrect
+                    view.loginFailure("Login Unsuccessful"); //If login credentials incorrect
                 }
             }
         });
