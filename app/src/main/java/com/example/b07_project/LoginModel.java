@@ -3,6 +3,7 @@ package com.example.b07_project;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import java.util.ArrayList;
 import java.util.Set;
 
 public class LoginModel {
@@ -22,7 +23,13 @@ public class LoginModel {
     }
 
     public void addAcademicHistory(Set<String> history){
-        editor.putStringSet("history", history);
+        ArrayList<String> temp = new ArrayList<>(history);
+        String historyList = "";
+        for(int i = 0; i<temp.size()-1;i++){
+            historyList = historyList + temp.get(i) + ";";
+        }
+        if(temp.size() >= 1) {historyList = historyList + temp.get(temp.size()-1);}
+        editor.putString("history", historyList);
         editor.commit();
     }
 }

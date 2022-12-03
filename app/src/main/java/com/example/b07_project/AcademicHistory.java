@@ -98,10 +98,14 @@ public class AcademicHistory extends Fragment {
 
     public void historyInitialize(){
         SharedPreferences p = getActivity().getSharedPreferences("myPreferences", Context.MODE_PRIVATE);
-        Set<String> setHistory = p.getStringSet("history", new HashSet<String>());
-        if(setHistory != null)
+        String historyList = p.getString("history", "N/A");
+        history = new ArrayList<>();
+        if(!historyList.equals("N/A") && !historyList.equals(""))
         {
-            history = new ArrayList<>(setHistory);
+            String[] temp = historyList.split(";");
+            for(int i=0;i<temp.length;i++){
+                history.add(temp[i]);
+            }
         }
     }
 }

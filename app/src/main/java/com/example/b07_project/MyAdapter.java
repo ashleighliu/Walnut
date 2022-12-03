@@ -83,9 +83,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                 public void onClick(View view) {
                     SharedPreferences p = myContext.getSharedPreferences("myPreferences", Context.MODE_PRIVATE);
                     String uID = p.getString("uID", "oh no");
+                    String historyList = p.getString("history", "N/A");
+                    String[] temp = historyList.split(";");
                     DatabaseReference studentHistory = FirebaseDatabase.getInstance().getReference();
-                    ArrayList<String> courseTaken = new ArrayList<>(p.getStringSet("history", new HashSet<>()));
-                    String x = p.getString("uID", "oh no");
+                    ArrayList<String> courseTaken = new ArrayList<>();
+                    for(int i = 0; i<temp.length;i++){
+                        courseTaken.add(temp[i]);
+                    }
                     studentHistory.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -108,12 +112,17 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
                             }
                             if (deletable) {
-                                studentHistory.child("Accounts").child(uID).child("Courses_taken").child(String.valueOf(getAdapterPosition())).removeValue();
                                 Log.i("myTag", String.valueOf(getAdapterPosition()));
                                 history_list.remove(getAdapterPosition());
                                 SharedPreferences.Editor editor = p.edit();
                                 courseTaken.remove(getAdapterPosition());
-                                editor.putStringSet("history", new HashSet<>(courseTaken));
+                                studentHistory.child("Accounts").child(uID).child("Courses_taken").setValue(courseTaken);
+                                String historyList = "";
+                                for(int i=0;i<courseTaken.size()-1;i++){
+                                    historyList = historyList + courseTaken.get(i) + ";";
+                                }
+                                if(courseTaken.size() >=1){historyList = historyList + courseTaken.get(courseTaken.size()-1);}
+                                editor.putString("history", historyList);
                                 editor.commit();
 
 
