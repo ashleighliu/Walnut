@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                                                    history.add(dataSnapshot.getKey());
+                                                    history.add((String) dataSnapshot.getValue());
                                                 }
                                                 Set<String> set = new HashSet<>();
                                                 set.addAll(history);

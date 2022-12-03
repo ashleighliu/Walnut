@@ -116,7 +116,7 @@ public class AddCourseToHistoryAdapter extends RecyclerView.Adapter<AddCourseToH
                                 }
                             }
                             boolean toAdd = true;
-                            if (history.contains(history1.courseCode)) {
+                            if (history.contains(addCourseID)) {
                                 toAdd = false;
                             }
                             else{
@@ -128,12 +128,12 @@ public class AddCourseToHistoryAdapter extends RecyclerView.Adapter<AddCourseToH
                                 }
                             }
                             if (toAdd) {
-                                userCoursesTaken.child(addCourseID).setValue("");
+                                history.add(addCourseID);
+                                user.child("Courses_taken").setValue(history);
                                 Set set = p.getStringSet("history", new HashSet<String>());
                                 set.add(addCourseID);
                                 SharedPreferences.Editor editor = p.edit();
                                 editor.putStringSet("history", set);
-                                history = new ArrayList<>(set);
                             }
                         }
 
