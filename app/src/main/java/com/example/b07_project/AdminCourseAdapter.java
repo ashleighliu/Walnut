@@ -74,7 +74,9 @@ public class AdminCourseAdapter extends RecyclerView.Adapter<AdminCourseAdapter.
                     String courseID = (course_list.get(getAdapterPosition())).getCourseID();
                     deleteFromCourses(courseID);
                     deleteFromStudent(courseID);
+                    course_list.remove(getAdapterPosition());
                     notifyDataSetChanged();
+
                 }
             });
 
