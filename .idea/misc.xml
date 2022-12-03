@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Daniel Qu/Dropbox/UTSC/Y2 S1/CSCB07/B07-Project/app/src/main/res/layout/activity_student_landing.xml" value="0.4346013548723293" />
+        <entry key="..\:/Users/Daniel Qu/Dropbox/UTSC/Y2 S1/CSCB07/B07-Project/app/src/main/res/layout/fragment_manage_courses.xml" value="0.6162011173184357" />
+      </map>
+    </option>
+  </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />

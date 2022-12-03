@@ -1,24 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    android:id="@+id/adminCourseCard"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="10dp">
-
+    android:layout_height="60dp"
+    android:orientation="vertical">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id = "@+id/course_code"
-        android:text = "Course Code"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id = "@+id/course_name"
-        android:text = "Course Name"
-        />
+        android:id="@+id/adminCourseCode"
+        android:layout_width="96dp"
+        android:layout_height="23dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="courseCode"
+        android:textSize="15sp" />
 
+    <TextView
+        android:id="@+id/adminCourseName"
+        android:layout_width="192dp"
+        android:layout_height="17dp"
+        android:layout_marginLeft="10dp"
+        android:text="Course Name"
+        android:textSize="10sp" />
 
 
 </LinearLayout>
