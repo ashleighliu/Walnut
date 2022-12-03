@@ -45,11 +45,12 @@ Any impediments or stumbling blocks?
 Name: Alfonso Acosta
 
 What have you done since yesterday?
-	- Finished the implementation of editing courses for Admin
+	- Refactored code for displaying recycler view so that it shows in order the way it is set up in fire base
+	
 
 
 What are you planning on doing today?
-	- Make the UI pretty
+	- Allow students to delete from academic history given that they first delete a course with no parent
 
 Any impediments or stumbling blocks?
 	- None
