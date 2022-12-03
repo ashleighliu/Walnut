@@ -15,14 +15,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-<<<<<<< HEAD
-import com.example.b07_project.MVP.LoginContract;
-import com.example.b07_project.MVP.LoginPresenter;
-=======
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
->>>>>>> parent of 2906321 (Merge pull request #9 from ashleighliu/RefactorMVP)
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
