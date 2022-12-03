@@ -1,4 +1,4 @@
-package com.example.b07_project.Presenter;
+package com.example.b07_project.MVP;
 
 import android.app.Activity;
 import android.content.Context;
@@ -28,7 +28,7 @@ public class LoginInteractor implements LoginContract.Interactor {
     }
 
     @Override
-    public void attemptLogin(Activity activity, String email, String password) {
+    public void attemptLogin(Activity activity, String email, String password, Model model) {
         //Signing in with firebase
         FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -47,12 +47,7 @@ public class LoginInteractor implements LoginContract.Interactor {
                                 String password = String.valueOf(task.getResult().child("password").getValue());
                                 //Passing info of account through SharedPreferences to landing page
                                 //More of these will be needed for other info (eg. AcademicHistory)
-                                SharedPreferences p = activity.getSharedPreferences("myPreferences", Context.MODE_PRIVATE);
-                                SharedPreferences.Editor editor = p.edit();
-                                editor.putString("uID", uID);
-                                editor.putString("email", email);
-                                editor.putString("password", password);
-                                editor.apply();
+                                model.addStringsToSharedPreferences(uID, email, password);
 
                                 if (isAdmin.equals("false")){
                                     ArrayList<String> history = new ArrayList<>();
@@ -67,8 +62,7 @@ public class LoginInteractor implements LoginContract.Interactor {
                                             Set<String> set = new HashSet<>();
                                             set.addAll(history);
                                             Log.i("myTag", String.valueOf(set.size()));
-                                            editor.putStringSet("history", set);
-                                            editor.commit();
+                                            model.addAcademicHistory(set);
                                             listener.onSuccess("Login Successful", false);
                                             history_ref.removeEventListener(this);
                                         }

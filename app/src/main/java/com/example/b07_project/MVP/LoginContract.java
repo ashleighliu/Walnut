@@ -1,4 +1,4 @@
-package com.example.b07_project.Presenter;
+package com.example.b07_project.MVP;
 
 import android.app.Activity;
 
@@ -13,7 +13,7 @@ public class LoginContract {
     }
 
     interface Interactor {
-        void attemptLogin(Activity activity, String email, String password);
+        void attemptLogin(Activity activity, String email, String password, Model model);
     }
 
     interface onLoginListener {

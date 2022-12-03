@@ -1,10 +1,14 @@
-package com.example.b07_project.Presenter;
+package com.example.b07_project.MVP;
 
 import android.app.Activity;
+
+import com.example.b07_project.MainActivity;
 
 public class LoginPresenter implements LoginContract.Presenter, LoginContract.onLoginListener {
     LoginContract.View lv;
     LoginInteractor li;
+    Model model;
+    MainActivity main;
 
     public LoginPresenter(LoginContract.View lv) {
         this.lv = lv;
@@ -13,7 +17,7 @@ public class LoginPresenter implements LoginContract.Presenter, LoginContract.on
 
     @Override
     public void login(Activity activity, String email, String password) {
-        li.attemptLogin(activity, email, password);
+        li.attemptLogin(activity, email, password, model);
     }
 
     @Override

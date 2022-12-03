@@ -11,8 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.b07_project.Presenter.LoginContract;
-import com.example.b07_project.Presenter.LoginPresenter;
+import com.example.b07_project.MVP.LoginContract;
+import com.example.b07_project.MVP.LoginPresenter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
