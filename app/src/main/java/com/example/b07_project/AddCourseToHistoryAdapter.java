@@ -18,6 +18,7 @@ import java.util.Set;
 
 import android.content.Context;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,7 +30,6 @@ import org.w3c.dom.Text;
 
 public class AddCourseToHistoryAdapter extends RecyclerView.Adapter<AddCourseToHistoryAdapter.MyViewHolder> {
     String uID;
-    ArrayList<String> prereqs;
     ArrayList<String> history;
     DatabaseReference fire;
     DatabaseReference user;
@@ -50,10 +50,8 @@ public class AddCourseToHistoryAdapter extends RecyclerView.Adapter<AddCourseToH
         //Retrieving account info from SharedPreferences
         p = context.getSharedPreferences("myPreferences", Context.MODE_PRIVATE);
         uID = p.getString("uID", "N/A");
-        Set<String> prereqSet = p.getStringSet("prereqs", new HashSet<String>());
         Set<String> set = p.getStringSet("history", new HashSet<String>());
         Log.i("myTag", String.valueOf(set.size()));
-        prereqs = new ArrayList<>(prereqSet);
         history = new ArrayList<>(set);
 
 
