@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/editFrameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditCourse" >
+
+    <EditText
+        android:id="@+id/editCode"
+        android:layout_width="275dp"
+        android:layout_height="60dp"
+        android:ems="10"
+        android:hint="Course Code"
+        android:inputType="text"
+        android:textAlignment="center"
+        tools:layout_editor_absoluteX="68dp"
+        tools:layout_editor_absoluteY="286dp"
+        app:layout_constraintBottom_toTopOf="@+id/editSessions"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTitle" />
+
+    <EditText
+        android:id="@+id/editSessions"
+        android:layout_width="275dp"
+        android:layout_height="60dp"
+        android:ems="10"
+        android:hint="Sessions(comma-separated)"
+        android:inputType="text"
+        android:textAlignment="center"
+        tools:layout_editor_absoluteX="68dp"
+        tools:layout_editor_absoluteY="391dp"
+        app:layout_constraintBottom_toTopOf="@+id/editPrereqs"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editCode" />
+
+    <EditText
+        android:id="@+id/editPrereqs"
+        android:layout_width="275dp"
+        android:layout_height="60dp"
+        android:ems="10"
+        android:hint="Prerequisites(comma-separated)"
+        android:inputType="text"
+        android:textAlignment="center"
+        tools:layout_editor_absoluteX="68dp"
+        tools:layout_editor_absoluteY="492dp"
+        app:layout_constraintBottom_toTopOf="@+id/editCourseBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editSessions" />
+
+    <TextView
+        android:id="@+id/editCourseTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit Course"
+        android:textAlignment="center"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.088" />
+
+    <EditText
+        android:id="@+id/editTitle"
+        android:layout_width="275dp"
+        android:layout_height="60dp"
+        android:ems="10"
+        android:hint="Course Title"
+        android:inputType="text"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/editCode"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editCourseTitle" />
+
+    <Button
+        android:id="@+id/editCourseBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit Course"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.931"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/manageFrame"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
@@ -25,11 +26,6 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/viewCourses"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="70dp" />
 
     <TextView
         android:id="@+id/noCoursesAvailable"
@@ -39,5 +35,11 @@
         android:layout_marginTop="70dp"
         android:gravity="center_horizontal|center_vertical"
         android:text="No Courses Available!" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/viewCourses"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="70dp" />
 
 </FrameLayout>

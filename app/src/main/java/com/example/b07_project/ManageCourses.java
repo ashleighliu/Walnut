@@ -102,24 +102,30 @@ public class ManageCourses extends Fragment {
             databaseReference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    String prereqsString = "";
-                    String offeringSessionsString = "";
-                    for (DataSnapshot data : snapshot.child("prereqs").getChildren()){
-                        prereqsString = prereqsString + data.getValue(String.class) + ",";
-                    }
-                    for (DataSnapshot data : snapshot.child("offeringSessions").getChildren()){
-                        offeringSessionsString = offeringSessionsString + data.getValue(String.class) + ",";
-                    }
-                    for (DataSnapshot data : snapshot.getChildren()) {
-                        Course course = new Course(data.child("courseName").getValue(String.class),
-                                data.child("courseCode").getValue(String.class),
-                                offeringSessionsString,
-                                prereqsString,
-                                data.child("courseID").getValue(String.class));
+                    for(DataSnapshot x : snapshot.getChildren()){
+                        String courseName = x.child("courseName").getValue(String.class);
+                        String courseCode = x.child("courseCode").getValue(String.class);
+                        String prereqsString = "";
+                        String offeringSessionsString = "";
+                        DataSnapshot gotoPrereqs = x.child("prereqs");
+                        for(DataSnapshot y: gotoPrereqs.getChildren()){
+                            prereqsString += y.getValue(String.class) + ", ";
+                        }
+                        DataSnapshot gotoOffering = x.child("offeringSessions");
+                        for(DataSnapshot z : gotoOffering.getChildren()){
+                            offeringSessionsString += z.getValue(String.class) + ", ";
+                        }
+                        prereqsString = prereqsString.trim();
+                        offeringSessionsString = offeringSessionsString.trim();
+                        Log.i("myTag", offeringSessionsString);
+                        Log.i("req", prereqsString);
+                        Course course = new Course(courseName, courseCode, offeringSessionsString, prereqsString, x.getKey());
                         course_info.add(course);
-                    }
-                    databaseReference.removeEventListener(this);
 
+                    }
+
+
+                    databaseReference.removeEventListener(this);
                     if (course_info.isEmpty()) {
                         noCourses.setVisibility(View.VISIBLE);
                         recyclerView.setVisibility(View.GONE);
@@ -128,6 +134,7 @@ public class ManageCourses extends Fragment {
                         noCourses.setVisibility(View.GONE);
                         recyclerView.setVisibility(View.VISIBLE);
                     }
+
 
                 }
 
