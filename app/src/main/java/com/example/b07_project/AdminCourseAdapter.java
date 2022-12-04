@@ -143,7 +143,6 @@ public class AdminCourseAdapter extends RecyclerView.Adapter<AdminCourseAdapter.
                             if (!y.getValue(String.class).equals(courseID)) {
                                 courses.add(y.getValue(String.class));
                             }
-                            nullers(courses);
                             students.child(x.getKey()).child("Courses_taken").setValue(courses);
                         }
                     }
