@@ -34,9 +34,10 @@ What have you done since yesterday?
 	- Creating Add Course Button for Add Course Admin Page
 	- Attempting to send course info data to Firebase
 	- Working on Course Timeline Display w/Miraj
-
-What are you planning on doing today?
 	-Add Courses Functionality & UI w/Miraj
+	
+What are you planning on doing today?
+	-Creating Course Timeline w/Miraj
 	
 
 Any impediments or stumbling blocks?
