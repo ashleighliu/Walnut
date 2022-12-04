@@ -1,12 +1,30 @@
 package com.example.b07_project;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +32,11 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class ManageCourses extends Fragment {
+    RecyclerView recyclerView;
+    DatabaseReference databaseReference;
+    AdminCourseAdapter adminAdapter;
+    ArrayList<Course> course_info;
+    TextView noCourses;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -60,5 +83,66 @@ public class ManageCourses extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_manage_courses, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        recyclerView = view.findViewById(R.id.viewCourses);
+        noCourses = view.findViewById((R.id.noCoursesAvailable));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setHasFixedSize(true);
+        course_info  = new ArrayList<>();
+        adminAdapter = new AdminCourseAdapter(getContext(), course_info);
+        recyclerView.setAdapter(adminAdapter);
+
+        if (course_info != null) {
+            Log.i("myTa", "Found all courses...");
+            databaseReference = FirebaseDatabase.getInstance().getReference().child("Courses");
+            databaseReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for(DataSnapshot x : snapshot.getChildren()){
+                        String courseName = x.child("courseName").getValue(String.class);
+                        String courseCode = x.child("courseCode").getValue(String.class);
+                        String prereqsString = "";
+                        String offeringSessionsString = "";
+                        DataSnapshot gotoPrereqs = x.child("prereqs");
+                        for(DataSnapshot y: gotoPrereqs.getChildren()){
+                            prereqsString += y.getValue(String.class) + ", ";
+                        }
+                        DataSnapshot gotoOffering = x.child("offeringSessions");
+                        for(DataSnapshot z : gotoOffering.getChildren()){
+                            offeringSessionsString += z.getValue(String.class) + ", ";
+                        }
+                        prereqsString = prereqsString.trim();
+                        offeringSessionsString = offeringSessionsString.trim();
+                        Log.i("myTag", offeringSessionsString);
+                        Log.i("req", prereqsString);
+                        Course course = new Course(courseName, courseCode, offeringSessionsString, prereqsString, x.getKey());
+                        course_info.add(course);
+
+                    }
+
+
+                    databaseReference.removeEventListener(this);
+                    if (course_info.isEmpty()) {
+                        noCourses.setVisibility(View.VISIBLE);
+                        recyclerView.setVisibility(View.GONE);
+                    }
+                    else {
+                        noCourses.setVisibility(View.GONE);
+                        recyclerView.setVisibility(View.VISIBLE);
+                    }
+
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Log.i("ERROR:", "Data call unsuccessful");
+                }
+            });
+        }
     }
 }

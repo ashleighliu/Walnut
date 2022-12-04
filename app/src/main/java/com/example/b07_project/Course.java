@@ -19,8 +19,10 @@ public class Course {
         String[] temp1 = offeringSessions.split(",");
         this.offeringSessions = new ArrayList<String>();
         this.prereqs = new ArrayList<String>();
-        for (int i=0;i<temp1.length;i++) {
-            this.offeringSessions.add(temp1[i].trim().toLowerCase());
+        if(prereqs != null) {
+            for (int i = 0; i < temp1.length; i++) {
+                this.offeringSessions.add(temp1[i].trim().toLowerCase());
+            }
         }
         String[] temp2 = prereqs.split(",");
         for (int i=0;i<temp2.length;i++) {
@@ -41,6 +43,7 @@ public class Course {
     public String getCourseCode() {
         return courseCode;
     }
+
 
     public ArrayList<String> getOfferingSessions() {
         return offeringSessions;

@@ -18,6 +18,7 @@ import java.util.Set;
 
 import android.content.Context;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,8 +30,8 @@ import org.w3c.dom.Text;
 
 public class AddCourseToHistoryAdapter extends RecyclerView.Adapter<AddCourseToHistoryAdapter.MyViewHolder> {
     String uID;
-    ArrayList<String> prereqs;
     ArrayList<String> history;
+    String historyString;
     DatabaseReference fire;
     DatabaseReference user;
     DatabaseReference allCourses;
@@ -50,11 +51,15 @@ public class AddCourseToHistoryAdapter extends RecyclerView.Adapter<AddCourseToH
         //Retrieving account info from SharedPreferences
         p = context.getSharedPreferences("myPreferences", Context.MODE_PRIVATE);
         uID = p.getString("uID", "N/A");
-        Set<String> prereqSet = p.getStringSet("prereqs", new HashSet<String>());
-        Set<String> set = p.getStringSet("history", new HashSet<String>());
-        Log.i("myTag", String.valueOf(set.size()));
-        prereqs = new ArrayList<>(prereqSet);
-        history = new ArrayList<>(set);
+        historyString = p.getString("history", "N/A");
+        history = new ArrayList<>();
+        if(!historyString.equals("")) {
+            String[] temp = historyString.split(";");
+
+            for (int i = 0; i < temp.length; i++) {
+                history.add(temp[i]);
+            }
+        }
 
 
         //Probably will be needed for updating the student account data (eg. adding courses, adding academic history);
@@ -130,10 +135,12 @@ public class AddCourseToHistoryAdapter extends RecyclerView.Adapter<AddCourseToH
                             if (toAdd) {
                                 history.add(addCourseID);
                                 user.child("Courses_taken").setValue(history);
-                                Set set = p.getStringSet("history", new HashSet<String>());
-                                set.add(addCourseID);
+                                if(historyString != ""){historyString = historyString + ";" + addCourseID;}
+                                else{historyString = addCourseID;}
                                 SharedPreferences.Editor editor = p.edit();
-                                editor.putStringSet("history", set);
+                                editor.putString("history", historyString);
+                                editor.commit();
+                                
                             }
                         }
 

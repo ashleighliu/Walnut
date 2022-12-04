@@ -68,9 +68,14 @@ public class StudentLanding extends AppCompatActivity implements NavigationView.
         uID = p.getString("uID", "N/A");
         email = p.getString("email", "N/A");
         password = p.getString("password", "N/A");
-        Set<String> set = p.getStringSet("history", new HashSet<String>());
-        Log.i("myTag", String.valueOf(set.size()));
-        history = new ArrayList<>(set);
+        String historyString = p.getString("history", "N/A");
+        history = new ArrayList<>();
+        if(!historyString.equals("") && !historyString.equals("N/A")) {
+            String[] temp = historyString.split(";");
+            for (int i = 0; i < temp.length; i++) {
+                history.add(temp[i]);
+            }
+        }
 
 
         //Probably will be needed for updating the student account data (eg. adding courses, adding academic history);

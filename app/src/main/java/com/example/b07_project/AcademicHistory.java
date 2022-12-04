@@ -24,6 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -63,15 +64,15 @@ public class AcademicHistory extends Fragment {
             databaseReference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                        if (history.contains(dataSnapshot.getKey())) {
+                    for(int i = 0; i < history.size(); i++)
+                    {
 
-                            Course taken = new Course(dataSnapshot.child("courseName").getValue(String.class),
-                                    dataSnapshot.child("courseCode").getValue(String.class));
-                            history_info.add(taken);
-                            Log.i("myTag", String.valueOf(history_info.size()));
-                        }
+                        String name = snapshot.child(history.get(i)).child("courseName").getValue(String.class);
+                        String code = snapshot.child(history.get(i)).child("courseCode").getValue(String.class);
+                        Course course = new Course(name, code);
+                        history_info.add(course);
                     }
+
                     databaseReference.removeEventListener(this);
                     if(history_info.isEmpty()) {
                         no_data.setVisibility(View.VISIBLE);
@@ -93,17 +94,18 @@ public class AcademicHistory extends Fragment {
             });
         }
 
-
-
-
     }
 
     public void historyInitialize(){
         SharedPreferences p = getActivity().getSharedPreferences("myPreferences", Context.MODE_PRIVATE);
-        Set<String> setHistory = p.getStringSet("history", new HashSet<String>());
-        if(setHistory != null)
+        String historyList = p.getString("history", "N/A");
+        history = new ArrayList<>();
+        if(!historyList.equals("N/A") && !historyList.equals(""))
         {
-            history = new ArrayList<>(setHistory);
+            String[] temp = historyList.split(";");
+            for(int i=0;i<temp.length;i++){
+                history.add(temp[i]);
+            }
         }
     }
 }

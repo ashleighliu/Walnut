@@ -36,4 +36,4 @@ public class LoginPresenter {
     public void rejectLogin(String message) {
         view.loginFailure(message);
     }
-}//test
+}

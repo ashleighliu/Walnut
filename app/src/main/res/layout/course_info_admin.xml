@@ -37,7 +37,10 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginTop="5dp"
+        android:adjustViewBounds="false"
         android:contentDescription="editCourses"
+        android:cropToPadding="false"
+        android:scaleType="centerCrop"
         app:srcCompat="@drawable/draw"
         tools:layout_marginLeft="5dp" />
 
@@ -47,6 +50,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="5dp"
         android:contentDescription="deleteCourses"
+        android:scaleType="centerCrop"
         app:srcCompat="@drawable/delete"
         tools:layout_marginLeft="5dp" />
 

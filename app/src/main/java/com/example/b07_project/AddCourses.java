@@ -174,8 +174,7 @@ public class AddCourses extends Fragment {
                         for (int i = 0;i<prereqIDArr.length;i++){
                             prereqIDString = prereqIDString  + prereqIDArr[i]+ ",";
                         }
-                        Course newCourse = new Course(courseName, courseCode, offeringSessions, prereqIDString, courseID);
-                        storeToFirebase(newCourse);
+                        Course newCourse = new Course(courseName, courseCode, offeringSessions, prereqIDString, courseID);storeToFirebase(newCourse);
 
                     }
                     dbReference.removeEventListener(this);
