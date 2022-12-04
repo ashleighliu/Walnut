@@ -1,20 +1,34 @@
 package com.example.b07_project;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-    public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     Button btnNewAccount;
     EditText inputEmail, inputPassword;
     Button btnLogin;
@@ -36,7 +50,9 @@ import com.google.firebase.auth.FirebaseUser;
         progressDialog = new ProgressDialog(this);
         fire = FirebaseAuth.getInstance();
         user = fire.getCurrentUser();
-        lp = new LoginPresenter(this, new LoginModel(this));
+        LoginModel lm = new LoginModel(this);
+        lp = new LoginPresenter(this, lm);
+        lm.setLoginPresenter(lp);
     }
 
     @Override
@@ -46,12 +62,12 @@ import com.google.firebase.auth.FirebaseUser;
                 startActivity(new Intent(MainActivity.this, RegisterActivity.class));
                 break;
             case R.id.btnLogin:
-                commenceLogin();
+                attemptLogin();
                 break;
         }
     }
 
-    private void commenceLogin() {
+    private void attemptLogin() {
         //progressDialog is just for UI purposes, if it causes too many problems feel free to remove
         progressDialog.setMessage("Please Wait While Logging in...");
         progressDialog.setTitle("Login");
@@ -59,16 +75,16 @@ import com.google.firebase.auth.FirebaseUser;
         progressDialog.show();
         String email = inputEmail.getText().toString();
         String password = inputPassword.getText().toString();
-        lp.login(email, password);
+        lp.validate(email, password);
     }
 
-    private void sendUserToNextStudentActivity(){
+    public void sendUserToNextStudentActivity(){
         Intent intent = new Intent(MainActivity.this, StudentLanding.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 
-    private void sendUserToNextAdminActivity(){
+    public void sendUserToNextAdminActivity(){
         Intent intent = new Intent(MainActivity.this, AdminLanding.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
