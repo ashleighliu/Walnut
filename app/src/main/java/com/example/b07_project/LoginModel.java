@@ -42,7 +42,13 @@ public class LoginModel {
     }
 
     public void addAcademicHistory(Set<String> history){
-        editor.putStringSet("history", history);
+        ArrayList<String> temp = new ArrayList<>(history);
+        String historyList = "";
+        for(int i = 0; i<temp.size()-1;i++){
+            historyList = historyList + temp.get(i) + ";";
+        }
+        if(temp.size() >= 1) {historyList = historyList + temp.get(temp.size()-1);}
+        editor.putString("history", historyList);
         editor.commit();
     }
 
@@ -78,7 +84,7 @@ public class LoginModel {
                                             }
                                             Set<String> set = new HashSet<>();
                                             set.addAll(history);
-                                            Log.i("myTag", String.valueOf(set.size()));
+                                            //Log.i("myTag", String.valueOf(set.size()));
                                             addAcademicHistory(set);
                                             lp.allowLogin("Login Successful", false);
                                             history_ref.removeEventListener(this);
