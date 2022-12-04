@@ -33,18 +33,7 @@ public class ExampleUnitTest {
             return null;
         }).when(model).login("student@test.com", "123456");
         lp.validate("student@test.com", "123456");
-        verify(view).loginSuccess("Login Successful", false);
-    }
-
-    @Test
-    public void testInvalidPasswordLength(){
-        LoginPresenter lp = new LoginPresenter(view, model);
-        doAnswer(invocation -> {
-            view.loginFailure("Password must be at least 6 characters.");
-            return null;
-        }).when(model).login("student@test.com", "12345");
-        lp.validate("student@test.com", "12345");
-        verify(view).loginFailure("Password must be at least 6 characters.");
+        verify(view).sendUserToNextStudentActivity();
     }
 
     @Test
@@ -55,24 +44,31 @@ public class ExampleUnitTest {
             return null;
         }).when(model).login("admin@test.com", "123456");
         lp.validate("admin@test.com", "123456");
-        verify(view).loginSuccess("Login Successful", true);
-
+        verify(view).sendUserToNextAdminActivity();
     }
 
+    @Test
+    public void testInvalidLogin() {
+        LoginPresenter lp = new LoginPresenter(view, model);
+        doAnswer(invocation -> {
+            view.loginFailure("Unsuccessful Login");
+            return null;
+        }).when(model).login("ligma@test.com", "123456");
+        lp.validate("ligma@test.com", "123456");
+        verify(view).loginFailure("Unsuccessful Login");
+    }
+
+    @Test
+    public void testInvalidStudentPasswordLength(){
+        LoginPresenter lp = new LoginPresenter(view, model);
+        lp.validate("student@test.com", "12345");
+        verify(view).loginFailure("Login Unsuccessful");
+    }
+
+    @Test
+    public void testInvalidEmail(){
+        LoginPresenter lp = new LoginPresenter(view, model);
+        lp.validate("ligma", "123456");
+        verify(view).loginFailure("Login Unsuccessful");
+    }
 }
-//
-//    when(view.getUsername()).thenReturn("abc");
-//        //username is found
-//        when(model.isFound("abc")).thenReturn(true);
-//        LoginPresenter presenter = new LoginPresenter(model, view);
-//        presenter.checkUsername();
-//        verify(view).displayMessage(anyString());
-//
-//
-//        ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
-//        verify(view).displayMessage(captor.capture());
-//        assertEquals(captor.getValue(), "user found");
-//
-//        InOrder order = inOrder(model, view);
-//        order.verify(model).isFound("abc");
-//        order.verify(view).displayMessage("user found");
