@@ -41,13 +41,12 @@ public class LoginModel {
         editor.apply();
     }
 
-    public void addAcademicHistory(Set<String> history){
-        ArrayList<String> temp = new ArrayList<>(history);
+    public void addAcademicHistory(ArrayList<String> history){
         String historyList = "";
-        for(int i = 0; i<temp.size()-1;i++){
-            historyList = historyList + temp.get(i) + ";";
+        for(int i = 0; i<history.size()-1;i++){
+            historyList = historyList + history.get(i) + ";";
         }
-        if(temp.size() >= 1) {historyList = historyList + temp.get(temp.size()-1);}
+        if(history.size() >= 1) {historyList = historyList + history.get(history.size()-1);}
         editor.putString("history", historyList);
         editor.commit();
     }
@@ -82,10 +81,8 @@ public class LoginModel {
                                             for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                                                 history.add((String) dataSnapshot.getValue());
                                             }
-                                            Set<String> set = new HashSet<>();
-                                            set.addAll(history);
                                             //Log.i("myTag", String.valueOf(set.size()));
-                                            addAcademicHistory(set);
+                                            addAcademicHistory(history);
                                             lp.allowLogin("Login Successful", false);
                                             history_ref.removeEventListener(this);
                                         }
