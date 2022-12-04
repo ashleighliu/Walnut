@@ -108,10 +108,15 @@ public class GenerateTimelineAdapter extends RecyclerView.Adapter<GenerateTimeli
         ArrayList<String> offeringSessionsForCourses;
         ArrayList<String> prereqForCourses;
         CourseID courseID;
+        CourseID courseID2;
         String addCourseID;
+        String addCourseID2;
 
         History historyCourseCode;
+        History historyCourseCode2;
+
         String courseCode;
+        String courseCode2;
 
 //        TextView firstName, lastName, age;
 
@@ -125,11 +130,34 @@ public class GenerateTimelineAdapter extends RecyclerView.Adapter<GenerateTimeli
                         addCourseID = courseID.getCourseID(); //actual value of courseID to be added somewhere
                         historyCourseCode = dataSnapshot.getValue(History.class);
                         courseCode = historyCourseCode.getCourseCode();
+                        mapOfSessionPrereq = new HashMap<>();
                         Prereq prereq = dataSnapshot.getValue(Prereq.class);
                         prereqForCourses = new ArrayList<String>();
                         for (String s: prereq.getPreReqs()){
                             prereqForCourses.add(s); //prereqForCourses contain values of courseIDs to be added
                         }
+                        for(String pre : prereqForCourses){
+                            for(DataSnapshot preSnap : snapshot.getChildren()){
+                                courseID2 = preSnap.getValue(CourseID.class);
+                                addCourseID2 = courseID2.getCourseID();
+                                historyCourseCode2 = preSnap.getValue(History.class);
+                                courseCode2 = historyCourseCode2.getCourseCode();
+                                if(pre.equals(courseID2)){
+                                    prereqForCourses.set(prereqForCourses.indexOf(pre), courseCode2);
+                                }
+                            }
+                        }
+                        mapOfSessionPrereq.put("prereqs", prereqForCourses);
+
+                        offeringSession = dataSnapshot.getValue(OfferingSession.class);
+                        offeringSessionsForCourses = new ArrayList<String>();
+                        for (String s: offeringSession.getOfferingSessions()){
+                            offeringSessionsForCourses.add(s); //offeringSessionsForCourses contain vals of course sessions t.b.a
+                        }
+
+                        mapOfSessionPrereq.put("sessions", offeringSessionsForCourses);
+                        allCoursesMap.put(courseCode, mapOfSessionPrereq);
+
                         /// building mapallcourses
                         //for pre in prereqforcourses:
                         //      for each datasnapshot:
@@ -140,13 +168,7 @@ public class GenerateTimelineAdapter extends RecyclerView.Adapter<GenerateTimeli
                         //          if pre = addCourseID2: prereq.set(prereqforcourses.indexof(pre), courseCode2);
                         //mapOfSessionPrereq.put("prereqs", prereqForCourses);
                         //do mapOfSessionPrereq.put("sessions", offeringSessionsForCourses)
-                        //mapAllCourses.put("courseCode", mapOfSessionPrereq)
-
-                        offeringSession = dataSnapshot.getValue(OfferingSession.class);
-                        offeringSessionsForCourses = new ArrayList<String>();
-                        for (String s: offeringSession.getOfferingSessions()){
-                            offeringSessionsForCourses.add(s); //offeringSessionsForCourses contain vals of course sessions t.b.a
-                        }
+                        //allCoursesMap.put("courseCode", mapOfSessionPrereq) <-- Confirm if it's the actual courseCode or 'courseCode'
                     }
 
                 }

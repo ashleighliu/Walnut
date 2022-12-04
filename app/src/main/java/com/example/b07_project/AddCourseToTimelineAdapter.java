@@ -131,7 +131,7 @@ public class AddCourseToTimelineAdapter extends RecyclerView.Adapter<AddCourseTo
 //                                set.add(addCourseID);
 //                                SharedPreferences.Editor editor = p.edit();
 //                                editor.putStringSet("history", set);
-                                courseToTakeSet.add(addCourseID);
+                                courseToTakeSet.add(history1.courseCode); //Now a ArrayList<String> of courseCodes, NOT cIDs
 
                             }
                             courseToTake = new ArrayList<>(courseToTakeSet);
