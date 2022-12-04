@@ -1,12 +1,13 @@
 Name: <JS Dandurand>
 
 What have you done since yesterday?
-   - performed bug fixes with student add course to academic history feature
-        -included ensuring the arraylist that stored the student's taken courses as well as SharedPreferences was properly updated
-   - worked on refactoring login module to conform to MVP standards
+   - refactored code pertaining to the student academic history feature to ensure the app UI and firebase database would work together seemlessly
+   	- includes refactoring how academic history was stored and retrieved in SharedPreferences
+	- refactored the way the student delete course from academic history feature updated the firebase database
+	- general bug fixes wherever needed
 
 What are you planning on doing today?
-  - work on testing Presenter class
+  - performing final bug fixes on the project
 
 Any impediments or stumbling blocks?
 	- None
