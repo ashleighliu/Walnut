@@ -71,4 +71,18 @@ public class ExampleUnitTest {
         lp.validate("ligma", "123456");
         verify(view).loginFailure("Login Unsuccessful");
     }
+
+    @Test
+    public void testSuccessfulLogin() {
+        LoginPresenter lp = new LoginPresenter(view, model);
+        lp.allowLogin("Login Successful", true);
+        verify(view).loginSuccess("Login Successful", true);
+    }
+
+    @Test
+    public void testFailedLogin() {
+        LoginPresenter lp = new LoginPresenter(view, model);
+        lp.rejectLogin("Login Unsuccessful");
+        verify(view).loginFailure("Login Unsuccessful");
+    }
 }
