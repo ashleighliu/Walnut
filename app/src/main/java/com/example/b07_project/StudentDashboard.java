@@ -1,5 +1,6 @@
 package com.example.b07_project;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,23 +48,20 @@ public class StudentDashboard extends Fragment {
         //Updates the redirection buttons
         Button currentCourses = (Button) view.findViewById(R.id.fullCourses);
         currentCourses.setOnClickListener(v -> {
-            Fragment timeline = new CourseTimeline();
-            transFragment(timeline);
+            Intent intent = new Intent(this.getActivity(), courseTimelineList.class);
+            startActivity(intent);
+            this.getActivity().finish();
         });
         Button currentHistory = (Button) view.findViewById(R.id.history);
         currentHistory.setOnClickListener(v -> {
             Fragment history = new AcademicHistory();
             transFragment(history);
         });
-        Button allCourses = (Button) view.findViewById(R.id.viewAllCourses);
-        allCourses.setOnClickListener(v -> {
-            Fragment timeline = new CourseTimeline();
-            transFragment(timeline);
-        });
         Button addCourses = (Button) view.findViewById(R.id.addCourses);
         addCourses.setOnClickListener(v -> {
-            Fragment add = new AddHistory();
-            transFragment(add);
+            Intent intent = new Intent(this.getActivity(), courseList.class);
+            startActivity(intent);
+            this.getActivity().finish();
         });
     }
 
