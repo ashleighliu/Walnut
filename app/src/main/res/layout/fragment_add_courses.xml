@@ -5,7 +5,9 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddCourses" >
+    tools:context=".AddCourses"
+    android:background="@drawable/pinkbg"
+    >
 
     <EditText
         android:id="@+id/inputCode"
