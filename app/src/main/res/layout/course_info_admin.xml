@@ -8,7 +8,7 @@
 
     <LinearLayout
         android:id="@+id/adminCourseDetails"
-        android:layout_width="wrap_content"
+        android:layout_width="275dp"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
@@ -23,7 +23,7 @@
 
         <TextView
             android:id="@+id/adminCourseName"
-            android:layout_width="192dp"
+            android:layout_width="256dp"
             android:layout_height="17dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="30dp"
