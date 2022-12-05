@@ -31,15 +31,7 @@ import java.util.Set;
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     Context myContext;
     private ArrayList<Course> history_list;
-    OnItemClickListener listener;
 
-    public interface OnItemClickListener{
-        void onItemClick(int position);
-    }
-
-    public void setOnItemClickListener(OnItemClickListener clickListener){
-        listener = clickListener;
-    }
 
     public MyAdapter(Context context, ArrayList<Course> history)
     {
