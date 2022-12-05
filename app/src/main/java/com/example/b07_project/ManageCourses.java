@@ -89,6 +89,7 @@ public class ManageCourses extends Fragment {
             recyclerView.setVisibility(View.VISIBLE);
             filtered_course_info.clear();
             filtered_course_info.addAll(filteredList);
+            adminAdapter.notifyDataSetChanged();
         }
     }
 
