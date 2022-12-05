@@ -38,7 +38,7 @@ public class EditCourse extends Fragment {
     private String courseID;
     final String[] OFFERINGSESSIONS = {"summer", "fall", "winter"};
     private EditText editTitle, editCode, editSessions, editPrereqs;
-    DatabaseReference dB;
+    private DatabaseReference dB;
 
     private void attachFields(){
         editCourseBtn = editCourseView.findViewById(R.id.editCourseBtn);
@@ -114,15 +114,14 @@ public class EditCourse extends Fragment {
                     {
                         Boolean prereqExists = false;
                         for(DataSnapshot x : snapshot.getChildren()){
-                            Log.i("asdas", prereqArr[i]);
-                            Log.i("bruh", x.child("courseCode").getValue(String.class));
+                            Log.i("courseID", courseID);
+                            if(x.getKey().equals(courseID))
+                                break;
                             if((x.child("courseCode").getValue(String.class)).equals(prereqArr[i])){
                                 Log.i("true", "true");
                                 prereqExists = true;
                                 prereqIDArr[i] = x.child("courseID").getValue(String.class);
                             }
-                            Log.i("man", String.valueOf(prereqExists));
-                            Log.i("brooo", String.valueOf(allPrereqsValid));
 
                         }
                         if(!prereqExists){
@@ -131,7 +130,6 @@ public class EditCourse extends Fragment {
                     }
 
                     for(DataSnapshot y: snapshot.getChildren()){
-                        Log.i("hello", courseID);
                         if(y.child("courseCode").getValue(String.class).equals(courseCode) && !(y.getKey().equals(courseID))){
                             courseExists = true;
                         }
@@ -140,7 +138,7 @@ public class EditCourse extends Fragment {
                         editCode.setError("This Course Already Exists");
                     }
                     else if (!allPrereqsValid && !prereqs.equals("")){
-                        editPrereqs.setError("Prerequisite Course(s) Does Not Exist");
+                        editPrereqs.setError("Prerequisite Course(s) Does Not Exist or refers to itself");
                     }
                     else if(duplicates(prereqArr)){
                         editPrereqs.setError("Cannot Have Duplicate Prerequisites");

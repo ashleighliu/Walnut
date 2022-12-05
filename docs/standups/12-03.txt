@@ -77,13 +77,12 @@ Any impediments or stumbling blocks?
 Name: Ashleigh Liu
 
 What have you done since yesterday?
-	- Looked into MVP design pattern
-	- Install required Mockito files
-	- Updated toasts for user logins
+	- Helping team members debug
+	- Writing test cases to increase coverage
 
 What are you planning on doing today?
-	- Completely refactor code according to design pattern
-	- Using Mockito for mock testing
+	- Helping team members debug
+	- Update UI
   
 Any impediments or stumbling blocks?
 	- None
