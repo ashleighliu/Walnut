@@ -22,10 +22,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Locale;
+import java.util.TreeMap;
 
 public class NewTimeline extends AppCompatActivity {
 
@@ -151,8 +154,9 @@ public class NewTimeline extends AppCompatActivity {
                     mapOfSessionPrereq.put("sessions", offeringSessionsForCourses);
                     allCoursesMap.put(courseCode.toLowerCase(), mapOfSessionPrereq);
                 }
-                schedule = buildSched(allCoursesMap, coursesToTimeline, historyCodes, sched, lastPre, followingCourse);
 
+
+                schedule = orderMap(buildSched(allCoursesMap, coursesToTimeline, historyCodes, sched, lastPre, followingCourse));
                 int numSessions = 0;
                 ArrayList<String> presentTimeline = new ArrayList<>();
 
@@ -382,7 +386,45 @@ public class NewTimeline extends AppCompatActivity {
         String[] temp = session.split(" ");
         return Integer.parseInt(temp[1]);
     }
-
+    // want to sort schedule
+    // how to sort: hashmap{season year: <>, season year: <>}
+    // new linkedhashmap
+    // write a method that compares 2 sessions
+//    HashMap<String, Integer> sessionsMap = new HashMap<String, Integer>();
+//    public void sortSessions(HashMap<String, Integer> sessionsMap) {
+//        sessionsMap.put("winter", 1);
+//        sessionsMap.put("summer", 2);
+//        sessionsMap.put("fall", 3);
+//    }
+//    public compareDates(ArrayList<String> sessions) {
+//        for (String sess: sessions) {
+//
+//
+//        }
+//    }
+    public HashMap orderMap(HashMap<String, ArrayList<String>> schedule) {
+        HashMap<Integer, String> intMap = new HashMap<>();
+        LinkedHashMap<String, ArrayList<String>> answer = new LinkedHashMap<>();
+        for (String key:schedule.keySet()) {
+            intMap.put(convertSessionToInt(key), key);
+        }
+        TreeMap<Integer, String> tMap = new TreeMap<>(intMap);
+        for (int key: tMap.keySet()) {
+            answer.put(tMap.get(key), schedule.get(tMap.get(key)));
+        }
+        return answer;
+    }
+    public int convertSessionToInt(String session) {
+        if (getSessionSeason(session).equals("winter")){
+            return 1 + 10 * getSessionYear(session);
+        }
+        else if (getSessionSeason(session).equals("summer")) {
+            return 2 + 10 * getSessionYear(session);
+        }
+        else {
+            return 3 + 10 * getSessionYear(session);
+        }
+    }
 
     //END OF NEW METHODS
 }
