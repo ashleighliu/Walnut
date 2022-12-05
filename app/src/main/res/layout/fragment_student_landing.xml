@@ -12,7 +12,8 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:translationZ="90dp">
+        android:translationZ="90dp"
+        >
 
         <ImageView
             android:layout_width="197dp"
@@ -20,7 +21,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentBottom="true"
             android:layout_marginLeft="214dp"
-            android:src="@drawable/animegril" />
+            android:src="@drawable/animegril"/>
     </RelativeLayout>
 
 
