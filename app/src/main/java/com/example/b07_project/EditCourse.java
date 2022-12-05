@@ -113,14 +113,14 @@ public class EditCourse extends Fragment {
                     for(int i = 0; i <prereqArr.length; i++)
                     {
                         Boolean prereqExists = false;
-                        for(DataSnapshot x : snapshot.getChildren()){
-                            Log.i("courseID", courseID);
-                            if(x.getKey().equals(courseID))
-                                break;
-                            if((x.child("courseCode").getValue(String.class)).equals(prereqArr[i])){
-                                Log.i("true", "true");
-                                prereqExists = true;
-                                prereqIDArr[i] = x.child("courseID").getValue(String.class);
+                        if(!(prereqArr[i].equals(courseCode))){
+                            for(DataSnapshot x : snapshot.getChildren()) {
+                                Log.i("courseID", courseID);
+                                if ((x.child("courseCode").getValue(String.class)).equals(prereqArr[i])) {
+                                    Log.i("true", "true");
+                                    prereqExists = true;
+                                    prereqIDArr[i] = x.child("courseID").getValue(String.class);
+                                }
                             }
 
                         }
