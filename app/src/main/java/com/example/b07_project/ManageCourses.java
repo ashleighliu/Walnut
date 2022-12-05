@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import androidx.appcompat.widget.SearchView;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -36,6 +37,7 @@ public class ManageCourses extends Fragment {
     DatabaseReference databaseReference;
     AdminCourseAdapter adminAdapter;
     ArrayList<Course> course_info;
+    ArrayList<Course> filtered_course_info;
     TextView noCourses;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -69,6 +71,27 @@ public class ManageCourses extends Fragment {
         return fragment;
     }
 
+    public void filter(String code) {
+        ArrayList<Course> filteredList = new ArrayList<Course>();
+
+        for (Course course: course_info) {
+            if (course.getCourseCode().toLowerCase().contains(code.toLowerCase())) {
+                filteredList.add(course);
+            }
+        }
+
+        if (filteredList.isEmpty()) {
+            noCourses.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.GONE);
+        }
+        else {
+            noCourses.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
+            filtered_course_info.clear();
+            filtered_course_info.addAll(filteredList);
+        }
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,8 +116,23 @@ public class ManageCourses extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
         course_info  = new ArrayList<>();
-        adminAdapter = new AdminCourseAdapter(getContext(), course_info);
+        filtered_course_info  = new ArrayList<>();
+        adminAdapter = new AdminCourseAdapter(getContext(), filtered_course_info);
         recyclerView.setAdapter(adminAdapter);
+
+        SearchView search = (SearchView) view.findViewById(R.id.searchBar);
+        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String code) {
+                filter(code);
+                return false;
+            }
+        });
 
         if (course_info != null) {
             Log.i("myTa", "Found all courses...");
@@ -121,9 +159,8 @@ public class ManageCourses extends Fragment {
                         Log.i("req", prereqsString);
                         Course course = new Course(courseName, courseCode, offeringSessionsString, prereqsString, x.getKey());
                         course_info.add(course);
-
                     }
-
+                    filtered_course_info.addAll(course_info);
 
                     databaseReference.removeEventListener(this);
                     if (course_info.isEmpty()) {
@@ -134,8 +171,7 @@ public class ManageCourses extends Fragment {
                         noCourses.setVisibility(View.GONE);
                         recyclerView.setVisibility(View.VISIBLE);
                     }
-
-
+                    adminAdapter.notifyDataSetChanged();
                 }
 
                 @Override
