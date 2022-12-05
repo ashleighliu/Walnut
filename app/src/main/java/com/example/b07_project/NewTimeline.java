@@ -279,7 +279,7 @@ public class NewTimeline extends AppCompatActivity {
                         else{
                             String nextSession;
                             for (String key : sched.keySet()){
-                                if (sched.get(key).equals(pre)) {
+                                if (sched.get(key).contains(pre)) {
                                     nextSession = key;
                                     lastPre.put(course, nextSession);
                                 }
