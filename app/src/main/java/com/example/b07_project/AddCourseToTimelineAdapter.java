@@ -24,6 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 public class AddCourseToTimelineAdapter extends RecyclerView.Adapter<AddCourseToTimelineAdapter.MyViewHolder> {
@@ -131,7 +132,7 @@ public class AddCourseToTimelineAdapter extends RecyclerView.Adapter<AddCourseTo
 //                                set.add(addCourseID);
 //                                SharedPreferences.Editor editor = p.edit();
 //                                editor.putStringSet("history", set);
-                                courseToTakeSet.add(history1.courseCode); //Now a ArrayList<String> of courseCodes, NOT cIDs
+                                courseToTakeSet.add(history1.courseCode.toLowerCase()); //Now a ArrayList<String> of courseCodes, NOT cIDs
 
                             }
                             courseToTake = new ArrayList<>(courseToTakeSet);

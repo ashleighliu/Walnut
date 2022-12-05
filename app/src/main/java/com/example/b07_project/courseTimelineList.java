@@ -59,7 +59,7 @@ public class courseTimelineList extends AppCompatActivity {
         generateTimelineButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(courseTimelineList.this,Timeline.class);
+                Intent i = new Intent(courseTimelineList.this,NewTimeline.class);
                 i.putStringArrayListExtra("key", coursesToTimeline);
                 startActivity(i);
             }

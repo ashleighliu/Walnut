@@ -2,40 +2,35 @@ package com.example.b07_project;
 
 import static com.example.b07_project.courseTimelineList.coursesToTimeline;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.renderscript.Sampler;
+import android.util.Log;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Locale;
 
-public class GenerateTimelineAdapter extends RecyclerView.Adapter<GenerateTimelineAdapter.MyViewHolder> {
+public class NewTimeline extends AppCompatActivity {
 
-    Context context;
-    // have arraylist of hashmaps
-    //HashMap<String, String> session_courses = new HashMap<String, String>();
-
-    String session;
-    ArrayList<String> courses = new ArrayList<String>();
+    // STARTING NEW STUFF HERE
+    Button goBackButton;
 
     String uID;
     ArrayList<String> history;  // user's academic history
@@ -56,14 +51,6 @@ public class GenerateTimelineAdapter extends RecyclerView.Adapter<GenerateTimeli
     String followingCourse = "";
     public static HashMap<String, ArrayList<String>> schedule = new HashMap<>();
 
-    //Courses = {courseCode: <{sessions:<courses>}, {prereqs:<courses>}>}
-
-    //e.g., Courses = {b07:{session:<fall,
-    //                               Winter>,
-    //                      prereqs:<a48,
-    //                               a22>}
-    //                 b09: ...}
-
     HashMap<String, HashMap<String, ArrayList<String>>> allCoursesMap = new HashMap<>();
 
     HashMap<String, ArrayList<String>> mapOfSessionPrereq = new HashMap<>();
@@ -82,21 +69,17 @@ public class GenerateTimelineAdapter extends RecyclerView.Adapter<GenerateTimeli
     String courseCode;
     String courseCode2;
 
-    //arraylist of history course ids
-    //
 
+    //END OF STARTING NEW STUFF
 
-    ////////// REMEMBER TO FIX THIS /////////////
-    public GenerateTimelineAdapter(Context context, ArrayList<GenerateTimeline> list) {
-        this.context = context;
-        this.list = list;
-    }
-
-    @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_new_timeline);
+        ListView myListView=findViewById(R.id.myList);
 
-        p = context.getSharedPreferences("myPreferences", Context.MODE_PRIVATE);
+        // STARTING NEW STUFF HERE
+        p = this.getSharedPreferences("myPreferences", Context.MODE_PRIVATE);
         uID = p.getString("uID", "N/A");
         historyString = p.getString("history", "N/A");
         history = new ArrayList<>();
@@ -110,15 +93,29 @@ public class GenerateTimelineAdapter extends RecyclerView.Adapter<GenerateTimeli
 
         fire = FirebaseDatabase.getInstance().getReference();
         user = fire.child("Accounts").child(uID);
+        goBackButton = findViewById(R.id.goBackButton);
+        goBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent k = new Intent(NewTimeline.this, StudentLanding.class);
+                startActivity(k);
+                finish();
+            }
+        });
         userCoursesTaken = user.child("Courses_taken");
         allCourses = fire.child("Courses");
 
         allCourses.addValueEventListener(new ValueEventListener() {
+
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                Log.d("Testing VEL: ", "FEBSREBE");
+
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     courseID = dataSnapshot.getValue(CourseID.class);
                     addCourseID = courseID.getCourseID(); //actual value of courseID to be added somewhere
+                    Log.d("Testing: ", addCourseID); //<-
                     historyCourseCode = dataSnapshot.getValue(History.class);
                     courseCode = historyCourseCode.getCourseCode();
 
@@ -152,9 +149,30 @@ public class GenerateTimelineAdapter extends RecyclerView.Adapter<GenerateTimeli
                     }
 
                     mapOfSessionPrereq.put("sessions", offeringSessionsForCourses);
-                    allCoursesMap.put(courseCode, mapOfSessionPrereq);
+                    allCoursesMap.put(courseCode.toLowerCase(), mapOfSessionPrereq);
+                }
+                schedule = buildSched(allCoursesMap, coursesToTimeline, historyCodes, sched, lastPre, followingCourse);
+
+                int numSessions = 0;
+                ArrayList<String> presentTimeline = new ArrayList<>();
+
+                for(String key: schedule.keySet()){
+                    String courses = schedule.get(key).toString();
+                    presentTimeline.add(key + ": " + courses);
+                    numSessions+=1;
                 }
 
+                Log.d("Tracking presentTimeline: ", presentTimeline.toString());
+
+                String sessionCourses[] = new String[numSessions];
+                for(int i = 0; i < numSessions; i++){
+                    sessionCourses[i] = presentTimeline.get(i);
+                }
+                Log.d("Testing sessionCourses: ", sessionCourses.toString());
+
+                ArrayAdapter<String> myAdapter=new ArrayAdapter<String>(NewTimeline.this,
+                        android.R.layout.simple_list_item_1, sessionCourses);
+                myListView.setAdapter(myAdapter);
             }
 
             @Override
@@ -163,53 +181,34 @@ public class GenerateTimelineAdapter extends RecyclerView.Adapter<GenerateTimeli
             }
         });
 
-        Log.d("Testing onview", "HI");
 
-        schedule = buildSched(coursesToTimeline, historyCodes, sched, lastPre, followingCourse);
 
-        for(String key:schedule.keySet()){
-            Log.d("HM Sessions: ", key);
-            Log.d("HM Courses: ", schedule.get(key).toString());
-        }
+        //END OF STARTING NEW STUFF
 
-        View v = LayoutInflater.from(context).inflate(R.layout.generate_timeline_item, parent, false);
-        return new MyViewHolder(v);
-    }
+        //String sessionCourses = new String[]{};
+        /*ArrayAdapter<String> myAdapter=new ArrayAdapter<>(String)(NewTimeline.this,
+                    android.R.layout.simple_list_item_1, sessionCourses);
+         myListView.setAdapter(myAdapter);
+         */
 
-    @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        GenerateTimeline generateTimeline = list.get(position);
-        holder.sessionCourse.setText(generateTimeline.getSession() + ": " + generateTimeline.getCourses());
 
+//        String items[]=new String[]{"1", "2", "3"};
+//        ArrayAdapter<String> myAdapter = new ArrayAdapter<>(NewTimeline.this,
+//                android.R.layout.simple_list_item_1,items);
+//        myListView.setAdapter(myAdapter);
 
     }
 
-    @Override
-    public int getItemCount() {
-        //return session_courses.size();
-        return 0;
-    }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView sessionCourse;
-
-//        TextView firstName, lastName, age;
-
-        public MyViewHolder(@NonNull View itemView) {
-            super(itemView);
-
-            sessionCourse = itemView.findViewById(R.id.tvsessionCourse);
-
-        }
-    }
-
-
-    //remember to convert history to lowercase
-    public HashMap buildSched(ArrayList<String> wantToTake, ArrayList<String> history,
+    //NEW METHODS HERE
+    public HashMap buildSched(HashMap<String, HashMap<String, ArrayList<String>>> allCoursesMap,
+                              ArrayList<String> wantToTake, ArrayList<String> history,
                               HashMap<String, ArrayList<String>> sched,
                               HashMap<String, String> lastPre, String followingCourse) {
 
-        Log.d("Top of buildSched: ", wantToTake.toString());
+
+        Log.i("Top of buildSched: ", wantToTake.toString());
+        //Log.d("Testing allCoursesMap: ",  String.valueOf(allCoursesMap.size()));
 
         String[] date;
         date = java.time.LocalDate.now().toString().split("-");
@@ -224,7 +223,14 @@ public class GenerateTimelineAdapter extends RecyclerView.Adapter<GenerateTimeli
             currentSession = "summer " + date[0];
         }
         //basecase
-        if (wantToTake.size() == 1 && allCoursesMap.get(wantToTake.get(0)).get("prereqs").contains("null")) {
+
+        //Log.d("Testing wTT: ", wantToTake.get(0));
+        for(String key:allCoursesMap.keySet()){
+            Log.d("Testing aCM: ", allCoursesMap.get(key).get("prereqs").toString());
+            Log.d("Testing aCM Keys: ", key);
+        }
+
+        if (allCoursesMap.get(wantToTake.get(0)).get("prereqs").size() == 1 && allCoursesMap.get(wantToTake.get(0)).get("prereqs").contains("null")) {
 
             String nextOfferedSession;
             nextOfferedSession = nextSession(wantToTake.get(0), currentSession);
@@ -263,11 +269,20 @@ public class GenerateTimelineAdapter extends RecyclerView.Adapter<GenerateTimeli
         for (String course : wantToTake) {
             if(!history.contains(course)) {
                 for (String pre: allCoursesMap.get(course).get("prereqs")){
+                    //Log.d("Testing prereqs: ", allCoursesMap.get(course).get("prereqs").toString());
                     if (!history.contains(pre)){
+
+                        Log.d("Testing if: ", "11111");
+
+                        Log.d("Testing pre: ", pre);
                         ArrayList<String> listOfSinglePre = new ArrayList<String>(Arrays.asList(pre));
-                        sched = buildSched(listOfSinglePre, history, sched, lastPre, course);
+                        Log.d("Testing listOfSinglePre: ", listOfSinglePre.toString());
+                        sched = buildSched(allCoursesMap, listOfSinglePre, history, sched, lastPre, course);
+                        Log.d("Testing after sched: ", "33333");
                     }
                     else{
+
+                        Log.d("Testing else: ", "22222");
                         String current;
                         if (lastPre.containsKey(course)){
                             current = lastPre.get(course);
@@ -286,11 +301,21 @@ public class GenerateTimelineAdapter extends RecyclerView.Adapter<GenerateTimeli
                         }
                     }
                 }
+
+                Log.i("Testing before: ", "fawawwgwgwagwg");
+
+
                 String nextOfferedSession = nextSession(course, lastPre.get(course));
                 if (!history.contains(course)){
                     ArrayList<String> singleCourseList = new ArrayList<>(Arrays.asList(course));
                     //remember to append if key exists
                     sched.put(nextOfferedSession, singleCourseList);
+
+                    for(String key:sched.keySet()){
+                        Log.i("Testing sched: ", key);
+                        Log.i("Testing sched VALUE: ", sched.get(key).toString());
+                    }
+
                 }
                 history.add(course);
                 if (!followingCourse.equals("")){
@@ -399,12 +424,7 @@ public class GenerateTimelineAdapter extends RecyclerView.Adapter<GenerateTimeli
             }
         }
     }
+
+
+    //END OF NEW METHODS
 }
-
-
-//want to take
-
-
-
-
-

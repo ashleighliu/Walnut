@@ -12,6 +12,10 @@ public class GenerateTimeline {
 
     HashMap<String, ArrayList<String>> sessionCourse;
 
+    public GenerateTimeline(HashMap<String, ArrayList<String>> sessionCourse){
+        this.sessionCourse = sessionCourse;
+    }
+
     public String getSession() {
         return sessionCourse.keySet().toArray()[0].toString();
     }
