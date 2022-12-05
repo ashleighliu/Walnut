@@ -1,5 +1,6 @@
 package com.example.b07_project;
 
+import android.content.ClipData;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -14,7 +15,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -22,8 +25,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -36,6 +41,7 @@ public class ManageCourses extends Fragment {
     DatabaseReference databaseReference;
     AdminCourseAdapter adminAdapter;
     ArrayList<Course> course_info;
+    private SearchView searchView;
     TextView noCourses;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -75,6 +81,24 @@ public class ManageCourses extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
+            searchView = searchView.findViewById(R.id.searchView);
+            searchView.clearFocus();
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                    filterList(query);
+                    return false;
+                }
+
+                @Override
+                public boolean onQueryTextChange(String newText) {
+                    System.out.println("shitter");
+                    filterList(newText);
+                    return true;
+                }
+            });
+
         }
     }
 
@@ -144,5 +168,25 @@ public class ManageCourses extends Fragment {
                 }
             });
         }
+    }
+    private void filterList (String text) {
+        List<Course> filteredList = new ArrayList<Course>();
+        for (Course item : course_info){
+            if (item.getCourseCode().toLowerCase().contains(text.toLowerCase())){
+                filteredList.add(item);
+            }
+        }
+
+        System.out.println("Working...");
+        for (Course item : filteredList) {
+            System.out.println(item.getCourseCode());
+        }
+        if (filteredList.isEmpty()) {
+        }
+        else{
+            adminAdapter.setFilteredList((ArrayList<Course>)filteredList);
+        }
+
+
     }
 }

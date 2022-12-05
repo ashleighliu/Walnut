@@ -1,7 +1,7 @@
 package com.example.b07_project;
 
+import android.content.ClipData;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,17 +23,23 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 public class AdminCourseAdapter extends RecyclerView.Adapter<AdminCourseAdapter.MyViewHolder> {
     Context myContext;
     ArrayList<Course> course_list;
     DatabaseReference fire;
+    private List<ClipData.Item> itemList;
 
     public AdminCourseAdapter(Context context, ArrayList<Course> course) {
         myContext = context;
         course_list = course;
+    }
+
+    public void setFilteredList(ArrayList<Course> filteredList){
+        this.course_list = filteredList;
+        notifyDataSetChanged();
     }
 
     @NonNull
