@@ -153,6 +153,7 @@ public class GenerateTimelineAdapter extends RecyclerView.Adapter<GenerateTimeli
 
                     mapOfSessionPrereq.put("sessions", offeringSessionsForCourses);
                     allCoursesMap.put(courseCode, mapOfSessionPrereq);
+                    schedule = buildSched(coursesToTimeline, historyCodes, sched, lastPre, followingCourse);
                 }
 
             }
@@ -163,14 +164,7 @@ public class GenerateTimelineAdapter extends RecyclerView.Adapter<GenerateTimeli
             }
         });
 
-        Log.d("Testing onview", "HI");
 
-        schedule = buildSched(coursesToTimeline, historyCodes, sched, lastPre, followingCourse);
-
-        for(String key:schedule.keySet()){
-            Log.d("HM Sessions: ", key);
-            Log.d("HM Courses: ", schedule.get(key).toString());
-        }
 
         View v = LayoutInflater.from(context).inflate(R.layout.generate_timeline_item, parent, false);
         return new MyViewHolder(v);
@@ -211,23 +205,26 @@ public class GenerateTimelineAdapter extends RecyclerView.Adapter<GenerateTimeli
 
         Log.d("Top of buildSched: ", wantToTake.toString());
 
-        String[] date;
-        date = java.time.LocalDate.now().toString().split("-");
-        String currentSession;
-        if (Integer.parseInt(date[1]) >= 9 && Integer.parseInt(date[1])<=12) {
-            currentSession = "fall " + date[0];
-        }
-        else if (Integer.parseInt(date[1]) >= 1 && Integer.parseInt(date[1])<=4){
-            currentSession = "winter " + date[0];
-        }
-        else{
-            currentSession = "summer " + date[0];
-        }
+//        String[] date;
+//        date = java.time.LocalDate.now().toString().split("-");
+//        String currentSession;
+//        if (Integer.parseInt(date[1]) >= 9 && Integer.parseInt(date[1])<=12) {
+//            currentSession = "fall " + date[0];
+//        }
+//        else if (Integer.parseInt(date[1]) >= 1 && Integer.parseInt(date[1])<=4){
+//            currentSession = "winter " + date[0];
+//        }
+//        else{
+//            currentSession = "summer " + date[0];
+//        }
+//        Log.d("IAHSFKSHAJFHHDSAJFHSJKDFHSDHFASCurrent Session: ", currentSession);
+        String currentSession = "fall 2022";
         //basecase
         if (wantToTake.size() == 1 && allCoursesMap.get(wantToTake.get(0)).get("prereqs").contains("null")) {
 
             String nextOfferedSession;
             nextOfferedSession = nextSession(wantToTake.get(0), currentSession);
+            System.out.println("NEXT OFFERED SESSION IN BASIS: " + nextOfferedSession);
             history.add(wantToTake.get(0));
             ArrayList<String> singleCourseList = new ArrayList<>(Arrays.asList(wantToTake.get(0)));
             if (!sched.containsKey(nextOfferedSession)){
