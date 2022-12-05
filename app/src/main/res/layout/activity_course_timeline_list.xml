@@ -6,39 +6,51 @@
     android:layout_height="match_parent"
     tools:context=".courseList">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/courseTimelineList"
-        android:layout_width="412dp"
-        android:layout_height="714dp"
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="411dp"
+        android:layout_height="557dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/backButton1"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/backButton1">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/courseTimelineList"
+            android:layout_width="412dp"
+            android:layout_height="714dp"
+            android:overScrollMode="never"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/backButton1"
+            app:layout_constraintVertical_bias="0.0" />
+
+    </androidx.core.widget.NestedScrollView>
 
     <Button
         android:id="@+id/backButton1"
         android:layout_width="96dp"
         android:layout_height="55dp"
         android:text="Back"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/nestedScrollView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.051"
+        app:layout_constraintHorizontal_bias="0.095"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.023" />
 
     <Button
         android:id="@+id/generateTimelineButton"
         android:layout_width="121dp"
         android:layout_height="55dp"
-        android:layout_marginBottom="8dp"
         android:text="Generate"
-        app:layout_constraintBottom_toTopOf="@+id/courseTimelineList"
+        app:layout_constraintBottom_toTopOf="@+id/nestedScrollView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.906"
+        app:layout_constraintHorizontal_bias="0.847"
         app:layout_constraintStart_toEndOf="@+id/backButton1"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.506" />
 </androidx.constraintlayout.widget.ConstraintLayout>
