@@ -162,13 +162,11 @@ public class NewTimeline extends AppCompatActivity {
                     numSessions+=1;
                 }
 
-                Log.d("Tracking presentTimeline: ", presentTimeline.toString());
 
                 String sessionCourses[] = new String[numSessions];
                 for(int i = 0; i < numSessions; i++){
                     sessionCourses[i] = presentTimeline.get(i);
                 }
-                Log.d("Testing sessionCourses: ", sessionCourses.toString());
 
                 ArrayAdapter<String> myAdapter=new ArrayAdapter<String>(NewTimeline.this,
                         android.R.layout.simple_list_item_1, sessionCourses);
@@ -207,21 +205,20 @@ public class NewTimeline extends AppCompatActivity {
                               HashMap<String, String> lastPre, String followingCourse) {
 
         Log.d("Top of buildSched: ", wantToTake.toString());
+        String currentSession;
+        String[] date;
+        date = java.time.LocalDate.now().toString().split("-");
+        if (Integer.parseInt(date[1]) >= 9 && Integer.parseInt(date[1])<=12) {
+            currentSession = "fall " + date[0];
+        }
+        else if (Integer.parseInt(date[1]) >= 1 && Integer.parseInt(date[1])<=4){
+            currentSession = "winter " + date[0];
+        }
+        else{
+            currentSession = "summer " + date[0];
+        }
 
-//        String[] date;
-//        date = java.time.LocalDate.now().toString().split("-");
-//        String currentSession;
-//        if (Integer.parseInt(date[1]) >= 9 && Integer.parseInt(date[1])<=12) {
-//            currentSession = "fall " + date[0];
-//        }
-//        else if (Integer.parseInt(date[1]) >= 1 && Integer.parseInt(date[1])<=4){
-//            currentSession = "winter " + date[0];
-//        }
-//        else{
-//            currentSession = "summer " + date[0];
-//        }
-//        Log.d("IAHSFKSHAJFHHDSAJFHSJKDFHSDHFASCurrent Session: ", currentSession);
-        String currentSession = "fall 2022";
+
         //basecase
         if (wantToTake.size() == 1 && allCoursesMap.get(wantToTake.get(0)).get("prereqs").contains("null")) {
 
@@ -280,7 +277,14 @@ public class NewTimeline extends AppCompatActivity {
                             }
                         }
                         else{
-                            lastPre.put(course, currentSession);
+                            String nextSession;
+                            for (String key : sched.keySet()){
+                                if (sched.get(key).equals(pre)) {
+                                    nextSession = key;
+                                    lastPre.put(course, nextSession);
+                                }
+                            }
+
                         }
                     }
                 }
