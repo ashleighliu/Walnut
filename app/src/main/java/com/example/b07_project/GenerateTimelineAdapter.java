@@ -246,14 +246,13 @@ public class GenerateTimelineAdapter extends RecyclerView.Adapter<GenerateTimeli
                 }
                 else{
                     String current;
-                    current = lastPre.get(followingCourse);
-                    if (Integer.parseInt(nextOfferedSession.substring(nextOfferedSession.length() - 4))
-                            > Integer.parseInt(current.substring(current.length() - 4))) {
+                    current = lastPre.get(followingCourse); //nextOfferedSession = "winter 2022"
+                    if (getSessionYear(nextOfferedSession)
+                            > getSessionYear(current)) {
                         lastPre.put(followingCourse, nextOfferedSession);
-                    } else if (Integer.parseInt(nextOfferedSession.substring(nextOfferedSession.length() - 4))
-                            == Integer.parseInt(current.substring(current.length() - 4))
-                            && (nextOfferedSession.substring(0, 4).equals("fall")) ||
-                            (nextOfferedSession.substring(0, 6).equals("summer") && (current.substring(0, 6).equals("winter")))) {
+                    } else if (getSessionYear(nextOfferedSession) == getSessionYear(current)
+                            && ((getSessionSeason(nextOfferedSession).equals("fall")) ||
+                            ((getSessionSeason(nextOfferedSession).equals("summer") && (getSessionSeason(current).equals("winter")))))) {
                         lastPre.put(followingCourse, nextOfferedSession);
                     }
                 }
@@ -271,13 +270,12 @@ public class GenerateTimelineAdapter extends RecyclerView.Adapter<GenerateTimeli
                         String current;
                         if (lastPre.containsKey(course)){
                             current = lastPre.get(course);
-                            if (Integer.parseInt(currentSession.substring(currentSession.length() - 4))
-                                    > Integer.parseInt(current.substring(current.length() - 4))) {
+                            if (getSessionYear(currentSession) > getSessionYear(current)) {
                                 lastPre.put(course, currentSession);
-                            } else if (Integer.parseInt(currentSession.substring(currentSession.length() - 4))
-                                    == Integer.parseInt(current.substring(current.length() - 4))
-                                    && (currentSession.substring(0, 4).equals("fall")) ||
-                                    (currentSession.substring(0, 6).equals("summer") && (current.substring(0, 6).equals("winter")))) {
+                            } else if (getSessionYear(currentSession)
+                                    == getSessionYear(current)
+                                    && ((getSessionSeason(currentSession).equals("fall")) ||
+                                    ((getSessionSeason(currentSession).equals("summer") && (getSessionSeason(current).equals("winter")))))) {
                                 lastPre.put(course, currentSession);
                             }
                         }
@@ -288,9 +286,16 @@ public class GenerateTimelineAdapter extends RecyclerView.Adapter<GenerateTimeli
                 }
                 String nextOfferedSession = nextSession(course, lastPre.get(course));
                 if (!history.contains(course)){
-                    ArrayList<String> singleCourseList = new ArrayList<>(Arrays.asList(course));
-                    //remember to append if key exists
-                    sched.put(nextOfferedSession, singleCourseList);
+                    if (!sched.containsKey(nextOfferedSession)){
+                        ArrayList<String> singleCourseList = new ArrayList<>(Arrays.asList(course));
+                        sched.put(nextOfferedSession, singleCourseList);
+                    }
+                    else{
+                        ArrayList<String> coursesToPutInSched;
+                        coursesToPutInSched = sched.get(nextOfferedSession);
+                        coursesToPutInSched.add(course);
+                        sched.put(nextOfferedSession, coursesToPutInSched);
+                    }
                 }
                 history.add(course);
                 if (!followingCourse.equals("")){
@@ -300,13 +305,11 @@ public class GenerateTimelineAdapter extends RecyclerView.Adapter<GenerateTimeli
                     else{
                         String currentSess;
                         currentSess = lastPre.get(followingCourse);
-                        if (Integer.parseInt(nextOfferedSession.substring(nextOfferedSession.length() - 4))
-                                > Integer.parseInt(currentSess.substring(currentSess.length() - 4))) {
+                        if (getSessionYear(nextOfferedSession) > getSessionYear(currentSess)) {
                             lastPre.put(followingCourse, nextOfferedSession);
-                        } else if (Integer.parseInt(nextOfferedSession.substring(nextOfferedSession.length() - 4))
-                                == Integer.parseInt(currentSess.substring(currentSess.length() - 4))
-                                && (nextOfferedSession.substring(0, 4).equals("fall")) ||
-                                (nextOfferedSession.substring(0, 6).equals("summer") && (currentSess.substring(0, 6).equals("winter")))) {
+                        } else if (getSessionYear(nextOfferedSession) == getSessionYear(currentSess)
+                                && ((getSessionSeason(nextOfferedSession).equals("fall")) ||
+                                ((getSessionSeason(nextOfferedSession).equals("summer") && (getSessionSeason(currentSess).equals("winter")))))) {
                             lastPre.put(followingCourse, nextOfferedSession);
                         }
                     }
@@ -319,53 +322,12 @@ public class GenerateTimelineAdapter extends RecyclerView.Adapter<GenerateTimeli
 
     //a -> b -> c -> d
 
-    public String earliestSession(String course) { // "session" + "year"
-        String[] date;
-        date = java.time.LocalDate.now().toString().split("-");
-        String year, month, day;
-        year = date[0];
-        month = date[1];
-        day = date[2];
 
-        if (Integer.parseInt(month) >= 9 && Integer.parseInt(month)<=12){ // if session = fall
-            if (allCoursesMap.get(course).get("sessions").contains("winter")){
-                return "winter " + Integer.toString(Integer.parseInt(year)+1);
-            }
-            else if(allCoursesMap.get(course).get("sessions").contains("summer")){
-                return "summer " + Integer.toString(Integer.parseInt(year)+1);
-            }
-            else{
-                return "fall " + Integer.toString(Integer.parseInt(year)+1);
-            }
-        }
-        else if (Integer.parseInt(month) >= 1 && Integer.parseInt(month)<= 4){ // if session == winter
-            if (allCoursesMap.get(course).get("sessions").contains("summer")){
-                return "summer " + year;
-            }
-            else if(allCoursesMap.get(course).get("sessions").contains("fall")){
-                return "fall " + year;
-            }
-            else{
-                return "winter " + Integer.toString(Integer.parseInt(year)+1);
-            }
-        }
-        else{ // if session is summer
-            if (allCoursesMap.get(course).get("sessions").contains("fall")){
-                return "fall " + year;
-            }
-            else if(allCoursesMap.get(course).get("sessions").contains("winter")){
-                return "winter " + Integer.toString(Integer.parseInt(year)+1);
-            }
-            else{
-                return "summer " + Integer.toString(Integer.parseInt(year)+1);
-            }
-        }
-    }
     public String nextSession(String course, String sessionOfPre) {
-        String session = sessionOfPre.substring(0,sessionOfPre.length() - 4);
-        int year = Integer.parseInt(sessionOfPre.substring((sessionOfPre.length()-4)));
+        String season = getSessionSeason(sessionOfPre);
+        int year = getSessionYear(sessionOfPre);
 
-        if (session.equals("fall")) {
+        if (season.equals("fall")) {
             if (allCoursesMap.get(course).get("sessions").contains("winter")){
                 return "winter " + Integer.toString(year+1);
             }
@@ -376,7 +338,7 @@ public class GenerateTimelineAdapter extends RecyclerView.Adapter<GenerateTimeli
                 return "fall " + Integer.toString(year+1);
             }
         }
-        else if(session.equals("winter")) {
+        else if(season.equals("winter")) {
             if (allCoursesMap.get(course).get("sessions").contains("summer")){
                 return "summer " + year;
             }
@@ -398,6 +360,14 @@ public class GenerateTimelineAdapter extends RecyclerView.Adapter<GenerateTimeli
                 return "summer " + Integer.toString(year+1);
             }
         }
+    }
+    public String getSessionSeason(String session) {
+        String[] temp = session.split(" ");
+        return temp[0];
+    }
+    public int getSessionYear(String session) {
+        String[] temp = session.split(" ");
+        return Integer.parseInt(temp[1]);
     }
 }
 
