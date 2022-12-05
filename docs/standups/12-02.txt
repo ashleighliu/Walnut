@@ -72,13 +72,13 @@ Any impediments or stumbling blocks?
 Name: Ashleigh Liu
 
 What have you done since yesterday?
-	- Looked into MVP design pattern
-	- Install required Mockito files
-	- Updated toasts for user logins
+	- Finished MVP refactoring and testing.
 
 What are you planning on doing today?
-	- Completely refactor code according to design pattern
-	- Using Mockito for mock testing
+	- Think about more test cases to write for full coverage
+	- Helping group members with debugging
+	- UI updates
   
 Any impediments or stumbling blocks?
-	- None
+	- Used mockito to test login but all calls to FirebaseAuth caused issues :(. Didn't know if I should've refactored my code again or just use 
+	espresso to test login instead
