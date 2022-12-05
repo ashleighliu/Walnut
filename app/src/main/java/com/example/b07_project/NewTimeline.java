@@ -277,13 +277,22 @@ public class NewTimeline extends AppCompatActivity {
                             }
                         }
                         else{
-                            String nextSession;
-                            for (String key : sched.keySet()){
+                            boolean preInSched = false;
+                            for (String key : sched.keySet()) {
                                 if (sched.get(key).contains(pre)) {
-                                    nextSession = key;
-                                    lastPre.put(course, nextSession);
+                                    preInSched = true;
                                 }
                             }
+                            if (preInSched) {
+                                String nextSession;
+                                for (String key : sched.keySet()) {
+                                    if (sched.get(key).contains(pre)) {
+                                        nextSession = key;
+                                        lastPre.put(course, nextSession);
+                                    }
+                                }
+                            }
+                            else { lastPre.put(course, currentSession); }
 
                         }
                     }
