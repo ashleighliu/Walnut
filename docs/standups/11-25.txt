@@ -15,12 +15,12 @@ Any impediments or stumbling blocks?
 Name: Miraj Ismail
 
 What have you done since yesterday?
-	- Created more tickets
-	- worked on bug fixes with the app so far
+	- started implementing recyclerview for add courses to academic history page
+	- worked on fixing bugs in the code
 
 What are you planning on doing today?
-	- testing templates and designs in android studio
-	- getting familiar with implementing buttons and text fields
+	- continue working on adding to academic history
+	- design an algorithm for generating a timeline
 
 Any impediments or stumbling blocks?
 	- None
