@@ -112,7 +112,6 @@ public class AddCourseToHistoryAdapter extends RecyclerView.Adapter<AddCourseToH
                                 if (temp.getCourseCode().equals(history1.courseCode)){
                                     courseID = dataSnapshot.getValue(CourseID.class);
                                     addCourseID = courseID.getCourseID();
-                                    Log.d("tag", "this is "+courseID.getCourseID());
                                     Prereq prereq = dataSnapshot.getValue(Prereq.class);
                                     for (String s: prereq.getPreReqs()){
                                         prereqForCourses.add(s);

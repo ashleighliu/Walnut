@@ -57,7 +57,6 @@ public class EditCourse extends Fragment {
         prereqs = bundle.getStringArrayList("prereqs");
         activity = this.getActivity();
         String displayPre = display(prereqs);
-        Log.i("weird", displayPre);
         if(displayPre.equals("null")){
             editPrereqs.setText("");
         }else {
@@ -85,7 +84,6 @@ public class EditCourse extends Fragment {
         String[] prereqArr = trimAll(prereqs.split(","));
         String[] offeringArr = lowerAll(trimAll(offeringSessions.split(",")));
         String[] prereqIDArr = new String[prereqArr.length];
-        Log.i("asdsa", String.valueOf(prereqArr.length));
         boolean allOfferingsValid = true;
         for(int i = 0; i<offeringArr.length; i++)
         {
@@ -118,9 +116,7 @@ public class EditCourse extends Fragment {
                         Boolean prereqExists = false;
                         if(!(prereqArr[i].equals(courseCode))){
                             for(DataSnapshot x : snapshot.getChildren()) {
-                                Log.i("courseID", courseID);
                                 if ((x.child("courseCode").getValue(String.class)).equals(prereqArr[i])) {
-                                    Log.i("true", "true");
                                     prereqExists = true;
                                     prereqIDArr[i] = x.child("courseID").getValue(String.class);
                                 }

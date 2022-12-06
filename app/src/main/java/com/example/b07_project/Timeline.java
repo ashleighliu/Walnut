@@ -57,11 +57,6 @@ public class Timeline extends AppCompatActivity {
         timelineBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("If this runs: ", "It's empty");
-                for(String key : schedule.keySet()){
-                    Log.d("HM Session: ", key);
-                    Log.d("HM Courses: ", schedule.get(key).toString());
-                }
 
                 startActivity(new Intent(Timeline.this,StudentLanding.class));
             }

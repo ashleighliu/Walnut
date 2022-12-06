@@ -136,7 +136,6 @@ public class ManageCourses extends Fragment {
         });
 
         if (course_info != null) {
-            Log.i("myTa", "Found all courses...");
             databaseReference = FirebaseDatabase.getInstance().getReference().child("Courses");
             databaseReference.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -156,8 +155,7 @@ public class ManageCourses extends Fragment {
                         }
                         prereqsString = prereqsString.trim();
                         offeringSessionsString = offeringSessionsString.trim();
-                        Log.i("myTag", offeringSessionsString);
-                        Log.i("req", prereqsString);
+
                         Course course = new Course(courseName, courseCode, offeringSessionsString, prereqsString, x.getKey());
                         course_info.add(course);
                     }
@@ -177,7 +175,6 @@ public class ManageCourses extends Fragment {
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-                    Log.i("ERROR:", "Data call unsuccessful");
                 }
             });
         }

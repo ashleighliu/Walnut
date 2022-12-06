@@ -65,7 +65,6 @@ public class AddCourseToTimelineAdapter extends RecyclerView.Adapter<AddCourseTo
             }
         }
 
-        Log.d("User Courses:", history.toString());
 
         fire = FirebaseDatabase.getInstance().getReference();
         user = fire.child("Accounts").child(uID);
@@ -119,7 +118,6 @@ public class AddCourseToTimelineAdapter extends RecyclerView.Adapter<AddCourseTo
                             }
                             boolean toAdd = true;
                             if (history.contains(addCourseID)) {
-                                Log.d("Doing it's job", history.toString());
                                 toAdd = false;
                             }
 //                            else{
@@ -138,7 +136,6 @@ public class AddCourseToTimelineAdapter extends RecyclerView.Adapter<AddCourseTo
                             courseToTake = new ArrayList<>(courseToTakeSet);
                             coursesToTimeline = courseToTake;
 
-                            Log.d("Courses to Add:", coursesToTimeline.toString());
                         }
 
                         @Override

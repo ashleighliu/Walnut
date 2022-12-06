@@ -203,7 +203,6 @@ public class GenerateTimelineAdapter extends RecyclerView.Adapter<GenerateTimeli
                               HashMap<String, ArrayList<String>> sched,
                               HashMap<String, String> lastPre, String followingCourse) {
 
-        Log.d("Top of buildSched: ", wantToTake.toString());
 
 //        String[] date;
 //        date = java.time.LocalDate.now().toString().split("-");
@@ -259,10 +258,8 @@ public class GenerateTimelineAdapter extends RecyclerView.Adapter<GenerateTimeli
         for (String course : wantToTake) {
             boolean prereqLess = true;
             if (!history.contains(course)) {
-                Log.d("jsd", "before if statement");
                 if (!allCoursesMap.get(course).get("prereqs").contains("null")){
                     prereqLess = false;
-                    Log.d("jsd", "if statement passed");
                     for (String pre: allCoursesMap.get(course).get("prereqs")) {
                         if (!history.contains(pre)) {
                             ArrayList<String> listOfSinglePre = new ArrayList<String>(Arrays.asList(pre));

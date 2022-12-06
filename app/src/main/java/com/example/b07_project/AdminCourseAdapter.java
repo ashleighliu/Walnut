@@ -96,7 +96,6 @@ public class AdminCourseAdapter extends RecyclerView.Adapter<AdminCourseAdapter.
                             ArrayList<String> codes = new ArrayList<>();
                             for(int i = 0; i < preReqs.size(); i++)
                             {
-                                Log.i("masda", preReqs.get(i));
                                 codes.add(snapshot.child(preReqs.get(i)).child("courseCode").getValue(String.class));
                             }
                             getPreCodes.removeEventListener(this);
@@ -104,7 +103,6 @@ public class AdminCourseAdapter extends RecyclerView.Adapter<AdminCourseAdapter.
                             Fragment course = new EditCourse();
                             Bundle information = new Bundle();
                             information.putStringArrayList("prereqs", codes);
-                            Log.i("myTag", preReqs.get(0));
                             information.putString("courseName", courseName);
                             information.putString("courseCode", courseCode);
                             information.putString("courseID", courseID);
@@ -159,7 +157,6 @@ public class AdminCourseAdapter extends RecyclerView.Adapter<AdminCourseAdapter.
 
     public void deleteFromCourses(String courseID)
     {
-        Log.i("myTag", courseID);
         DatabaseReference courses = fire.child("Courses");
         courses.addValueEventListener(new ValueEventListener() {
             @Override
@@ -174,7 +171,6 @@ public class AdminCourseAdapter extends RecyclerView.Adapter<AdminCourseAdapter.
                         for (DataSnapshot y : goPrereq.getChildren()) {
                             if (!(y.getValue(String.class).equals(courseID))) {
                                 temp_clone.add(y.getValue(String.class));
-                                Log.i("Size", String.valueOf(temp_clone.size()));
                             }
                         }
                         nullers(temp_clone);

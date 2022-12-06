@@ -87,24 +87,20 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             DataSnapshot gotoCourses = snapshot.child("Courses");
                             String courseID = courseTaken.get(getAdapterPosition());
-                            Log.i("courseID", courseID);
                             boolean deletable = true;
                             for (DataSnapshot x : gotoCourses.getChildren()) {
                                 if (!((x.getKey()).equals(courseID))) {
                                     DataSnapshot lookAtPrereqs = x.child("prereqs");
                                     for (DataSnapshot y : lookAtPrereqs.getChildren()) {
-                                        Log.i("myTag", y.getValue(String.class));
                                         if ((y.getValue(String.class)).equals(courseID) && courseTaken.contains(x.getKey())) {
                                             deletable = false;
                                             break;
                                         }
                                     }
-                                    Log.i("myTag", String.valueOf(deletable));
                                 }
 
                             }
                             if (deletable) {
-                                Log.i("myTag", String.valueOf(getAdapterPosition()));
                                 history_list.remove(getAdapterPosition());
                                 SharedPreferences.Editor editor = p.edit();
                                 courseTaken.remove(getAdapterPosition());

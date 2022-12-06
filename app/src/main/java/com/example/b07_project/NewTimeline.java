@@ -113,12 +113,11 @@ public class NewTimeline extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                Log.d("Testing VEL: ", "FEBSREBE");
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     courseID = dataSnapshot.getValue(CourseID.class);
                     addCourseID = courseID.getCourseID(); //actual value of courseID to be added somewhere
-                    Log.d("Testing: ", addCourseID); //<-
+
                     historyCourseCode = dataSnapshot.getValue(History.class);
                     courseCode = historyCourseCode.getCourseCode();
 
@@ -208,7 +207,7 @@ public class NewTimeline extends AppCompatActivity {
                               HashMap<String, ArrayList<String>> sched,
                               HashMap<String, String> lastPre, String followingCourse) {
 
-        Log.d("Top of buildSched: ", wantToTake.toString());
+
         String currentSession;
         String[] date;
         date = java.time.LocalDate.now().toString().split("-");
