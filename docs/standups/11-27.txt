@@ -59,18 +59,10 @@ Any impediments or stumbling blocks?
 Name: Junlin Qu
 
 What have you done since yesterday?
-	- Updated the template for android app
-	- Created firebase data storage design
-	- Updated and created new tickets for actual implementation of the app design
-	- Bugfixed firebase connection with app
-	- Changed from fragments to activities as the object type
-	- Created a data storage system from the class flow
+	- Nothing
 
 What are you planning on doing today?
-	- Finish writing all required tickets for this sprint
-	- Hopefully finish the login page and firebase data storage
-	- Get the others more familiar with the intricacies of android studios
-	- PR the testing branch to the main to replace old template
+	- Nothing
 
 Any impediments or stumbling blocks?
 	- None
