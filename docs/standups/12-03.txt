@@ -83,6 +83,7 @@ What have you done since yesterday?
 What are you planning on doing today?
 	- Helping team members debug
 	- Update UI
+	- More debugging with recycleview, updating navbar, etc.
   
 Any impediments or stumbling blocks?
 	- None
