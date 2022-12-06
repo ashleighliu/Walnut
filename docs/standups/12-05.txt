@@ -6,9 +6,6 @@ What have you done since yesterday?
 	- refactored the way the student delete course from academic history feature updated the firebase database
 	- general bug fixes wherever needed
 
-What are you planning on doing today?
-  - performing final bug fixes on the project
-
 Any impediments or stumbling blocks?
 	- None
 	
@@ -17,10 +14,6 @@ Name: Miraj Ismail
 What have you done since yesterday?
 	- Created more tickets
 	- worked on bug fixes with the app so far
-
-What are you planning on doing today?
-	- testing templates and designs in android studio
-	- getting familiar with implementing buttons and text fields
 
 Any impediments or stumbling blocks?
 	- None
@@ -37,9 +30,6 @@ What have you done since yesterday?
 	- Working on Course Timeline Display w/Miraj
 	-Add Courses Functionality & UI w/Miraj
 	
-What are you planning on doing today?
-	-Creating Course Timeline w/Miraj
-	
 
 Any impediments or stumbling blocks?
 	- Getting comfortable navigating with DatabaseReference/FirebaseReference
@@ -48,14 +38,6 @@ Name: Alfonso Acosta
 
 What have you done since yesterday?
 	- students can now delete from academic history
-  
-	
-
-
-What are you planning on doing today?
-	- Allow admins to delete course
-  - allow admins to edit course
-  - update manage courses recyclerview for admins
 
 Any impediments or stumbling blocks?
 	- None
@@ -66,10 +48,6 @@ What have you done since yesterday?
 	- Updated the recycler view to now update the course cards according to firebase database
 	- Rearranged the course cards for more readability
 
-What are you planning on doing today?
-	- Create the search functionality
-	- Fix unit testing errors
-
 Any impediments or stumbling blocks?
 	- None
 	
@@ -78,11 +56,6 @@ Name: Ashleigh Liu
 What have you done since yesterday?
 	- Helping team members debug
 	- Writing test cases to increase coverage
-
-What are you planning on doing today?
-	- Helping team members debug
-	- Update UI
-	- More debugging with recycleview, updating navbar, etc.
   
 Any impediments or stumbling blocks?
 	- None
