@@ -18,12 +18,11 @@ Any impediments or stumbling blocks?
 Name: Miraj Ismail
 
 What have you done since yesterday?
-	- Created more tickets
-	- worked on bug fixes with the app so far
+	- Created UI for "add courses to timeline" page
 
 What are you planning on doing today?
-	- testing templates and designs in android studio
-	- getting familiar with implementing buttons and text fields
+	- storing user input from "add courses to timeline"
+	- transfering info to a different activity (where actual timeline will be generated)
 
 Any impediments or stumbling blocks?
 	- None
