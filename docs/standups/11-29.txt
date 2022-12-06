@@ -62,11 +62,11 @@ Name: Junlin Qu
 
 What have you done since yesterday?
 	- Determine the data types to store academic history
-  - Merged the current markups to the main application
+  	- Merged the current markups to the main application
 
 What are you planning on doing today?
 	- Completed the design for the student landing page
-  - Implemented the design for the student landing page
+  	- Implemented the design for the student landing page
 
 Any impediments or stumbling blocks?
 	- None
