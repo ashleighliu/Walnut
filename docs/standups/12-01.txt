@@ -58,16 +58,19 @@ Any impediments or stumbling blocks?
 Name: Junlin Qu
 
 What have you done since yesterday?
-	- Determine the data types to store academic history
-  - Merged the current markups to the main application
-  
+	- Moved the landing page into a separate fragment, called dashboard
+	- Updated the UI for the admin edit/delete courses
+	- Updated the course card data read
+	- Added recycler view into course management
+	- Added a search bar for the course management
+	- Fixed minor UI issues
 
 What are you planning on doing today?
-	- Completed the design for the student landing page
-  - Implemented the design for the student landing page
-
+	- Implement the course search functionality
+	- Update the buttons to go to correct fragments in course cards
+	
 Any impediments or stumbling blocks?
-	- None
+	- Student Timeline
 	
 Name: Ashleigh Liu
 
