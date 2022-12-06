@@ -63,12 +63,10 @@ Any impediments or stumbling blocks?
 Name: Junlin Qu
 
 What have you done since yesterday?
-	- Updated the recycler view to now update the course cards according to firebase database
-	- Rearranged the course cards for more readability
+	- Nothing
 
 What are you planning on doing today?
-	- Create the search functionality
-	- Fix unit testing errors
+	- Nothing
 
 Any impediments or stumbling blocks?
 	- None
