@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/munch"
+    android:backgroundTint="#555555"
     tools:context=".courseList">
 
     <androidx.core.widget.NestedScrollView
