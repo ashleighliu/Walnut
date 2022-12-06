@@ -257,31 +257,37 @@ public class GenerateTimelineAdapter extends RecyclerView.Adapter<GenerateTimeli
             return sched;
         }
         for (String course : wantToTake) {
-            if(!history.contains(course)) {
-                for (String pre: allCoursesMap.get(course).get("prereqs")){
-                    if (!history.contains(pre)){
-                        ArrayList<String> listOfSinglePre = new ArrayList<String>(Arrays.asList(pre));
-                        sched = buildSched(listOfSinglePre, history, sched, lastPre, course);
-                    }
-                    else{
-                        String current;
-                        if (lastPre.containsKey(course)){
-                            current = lastPre.get(course);
-                            if (getSessionYear(currentSession) > getSessionYear(current)) {
-                                lastPre.put(course, currentSession);
-                            } else if (getSessionYear(currentSession)
-                                    == getSessionYear(current)
-                                    && ((getSessionSeason(currentSession).equals("fall")) ||
-                                    ((getSessionSeason(currentSession).equals("summer") && (getSessionSeason(current).equals("winter")))))) {
+            boolean prereqLess = true;
+            if (!history.contains(course)) {
+                Log.d("jsd", "before if statement");
+                if (!allCoursesMap.get(course).get("prereqs").contains("null")){
+                    prereqLess = false;
+                    Log.d("jsd", "if statement passed");
+                    for (String pre: allCoursesMap.get(course).get("prereqs")) {
+                        if (!history.contains(pre)) {
+                            ArrayList<String> listOfSinglePre = new ArrayList<String>(Arrays.asList(pre));
+                            sched = buildSched(listOfSinglePre, history, sched, lastPre, course);
+                        } else {
+                            String current;
+                            if (lastPre.containsKey(course)) {
+                                current = lastPre.get(course);
+                                if (getSessionYear(currentSession) > getSessionYear(current)) {
+                                    lastPre.put(course, currentSession);
+                                } else if (getSessionYear(currentSession)
+                                        == getSessionYear(current)
+                                        && ((getSessionSeason(currentSession).equals("fall")) ||
+                                        ((getSessionSeason(currentSession).equals("summer") && (getSessionSeason(current).equals("winter")))))) {
+                                    lastPre.put(course, currentSession);
+                                }
+                            } else {
                                 lastPre.put(course, currentSession);
                             }
                         }
-                        else{
-                            lastPre.put(course, currentSession);
-                        }
                     }
                 }
-                String nextOfferedSession = nextSession(course, lastPre.get(course));
+                //Adding the course to history and sched
+                String nextOfferedSession = nextSession(course, currentSession);
+                if(!prereqLess){nextOfferedSession = nextSession(course, lastPre.get(course));}
                 if (!history.contains(course)){
                     if (!sched.containsKey(nextOfferedSession)){
                         ArrayList<String> singleCourseList = new ArrayList<>(Arrays.asList(course));
