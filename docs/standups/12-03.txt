@@ -63,13 +63,12 @@ Any impediments or stumbling blocks?
 Name: Junlin Qu
 
 What have you done since yesterday?
-	- Determine the data types to store academic history
-  - Merged the current markups to the main application
-  
+	- Updated the recycler view to now update the course cards according to firebase database
+	- Rearranged the course cards for more readability
 
 What are you planning on doing today?
-	- Completed the design for the student landing page
-  - Implemented the design for the student landing page
+	- Create the search functionality
+	- Fix unit testing errors
 
 Any impediments or stumbling blocks?
 	- None
