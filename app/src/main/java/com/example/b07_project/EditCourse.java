@@ -1,11 +1,15 @@
 package com.example.b07_project;
 
+import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.provider.ContactsContract;
 import android.util.Log;
@@ -29,7 +33,6 @@ import java.util.Set;
 
 
 public class EditCourse extends Fragment {
-
     View editCourseView;
     private Button editCourseBtn;
     private Bundle bundle;
@@ -39,6 +42,7 @@ public class EditCourse extends Fragment {
     final String[] OFFERINGSESSIONS = {"summer", "fall", "winter"};
     private EditText editTitle, editCode, editSessions, editPrereqs;
     private DatabaseReference dB;
+    private Activity activity = this.getActivity();
 
     private void attachFields(){
         editCourseBtn = editCourseView.findViewById(R.id.editCourseBtn);
@@ -51,6 +55,7 @@ public class EditCourse extends Fragment {
         editTitle.setText(bundle.getString("courseName", "Course Name"));
         editCode.setText(bundle.getString("courseCode", "Course Code"));
         prereqs = bundle.getStringArrayList("prereqs");
+        activity = this.getActivity();
         String displayPre = display(prereqs);
         Log.i("weird", displayPre);
         if(displayPre.equals("null")){
@@ -70,8 +75,6 @@ public class EditCourse extends Fragment {
                 editCourse(editCourseView);
             }
         });
-
-
 
     }
     public void editCourse(View view){
@@ -154,7 +157,9 @@ public class EditCourse extends Fragment {
                         Course edittedCourse = new Course(courseName, courseCode, offeringSessions, prereqIDString, courseID);
                         dB.child(courseID).setValue(edittedCourse);
                         Toast.makeText(getActivity(), "Course Edit Successful", Toast.LENGTH_SHORT).show();
-
+                        Fragment management_ui = new ManageCourses();
+                        transFragment(management_ui);
+                        AdminLanding.hideKeyboard(activity);
                     }
                     dB.removeEventListener(this);
                 }
@@ -165,6 +170,12 @@ public class EditCourse extends Fragment {
                 }
             });
         }
+    }
+
+    private void transFragment(Fragment frag) {
+        AdminLanding.admin_drawer.closeDrawer(GravityCompat.START);
+        FragmentManager fragmentManager = this.getActivity().getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.admin_frame, frag).commit();
     }
 
     @Override

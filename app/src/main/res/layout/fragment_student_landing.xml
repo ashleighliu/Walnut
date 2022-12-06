@@ -93,7 +93,7 @@
                 android:background="@drawable/border"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
-                android:text="Generate Courses"
+                android:text="Generate Timeline"
                 android:textAlignment="center"
                 android:textColor="#601730"
                 android:textSize="12sp" />
