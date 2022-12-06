@@ -1,10 +1,8 @@
 Name: <JS Dandurand>
 
 What have you done since yesterday?
-   - refactored code pertaining to the student academic history feature to ensure the app UI and firebase database would work together seemlessly
-   	- includes refactoring how academic history was stored and retrieved in SharedPreferences
-	- refactored the way the student delete course from academic history feature updated the firebase database
-	- general bug fixes wherever needed
+   - refactored/fixed timeline generating algorithm to account for all edge cases
+   - performed final bug fixes
 
 Any impediments or stumbling blocks?
 	- None
