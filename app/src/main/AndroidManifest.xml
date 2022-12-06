@@ -58,6 +58,9 @@
         <activity
             android:name=".AdminLanding"
             android:exported="false">
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout
+                    |uiMode|ScreenSize|smallestScreenSize"
+            android:windowSoftInputMode="stateHidden|adjustPan"
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
