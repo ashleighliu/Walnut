@@ -58,7 +58,7 @@ Name: Ashleigh Liu
 
 What have you done since yesterday?
 	- Helping team members debug
-	- Writing test cases to increase coverage
+	- Try to fix search functionality
   
 Any impediments or stumbling blocks?
-	- None
+	- Tried to delete search bar but there were too many dependencies. We had to fix it instead.
