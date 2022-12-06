@@ -75,12 +75,12 @@ Name: Ashleigh Liu
 
 What have you done since yesterday?
 	- Helping team members debug
-	- Writing test cases to increase coverage
 
 What are you planning on doing today?
 	- Helping team members debug
 	- Update UI
 	- More debugging with recycleview, updating navbar, etc.
+	- Prepare documents to submit
   
 Any impediments or stumbling blocks?
-	- None
+	- Some UI changes would break buttons and other app functionality.
