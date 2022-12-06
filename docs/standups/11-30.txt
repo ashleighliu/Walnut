@@ -63,15 +63,15 @@ Any impediments or stumbling blocks?
 Name: Junlin Qu
 
 What have you done since yesterday?
-	- Determine the data types to store academic history
-  - Merged the current markups to the main application
+	- Merged student landing page with new implemented designs
+	- Updated the theme of the application to correct colour scheme
 
 What are you planning on doing today?
-	- Completed the design for the student landing page
-  - Implemented the design for the student landing page
+	- Bugfix edge cases for the landing screen
+	- Updated the buttons to target the correct fragments
 
 Any impediments or stumbling blocks?
-	- None
+	- Student Timeline needs to be completed to continue student landing page
 	
 Name: Ashleigh Liu
 
