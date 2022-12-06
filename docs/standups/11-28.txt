@@ -15,15 +15,15 @@ Any impediments or stumbling blocks?
 Name: Miraj Ismail
 
 What have you done since yesterday?
-	- Created more tickets
-	- worked on bug fixes with the app so far
+	- mostly finished adding courses to history
+	- have pseudo code for creating timeline
 
 What are you planning on doing today?
-	- testing templates and designs in android studio
-	- getting familiar with implementing buttons and text fields
+	- debug adding courses to history
+	- start implementing timeline generating
 
 Any impediments or stumbling blocks?
-	- None
+	- bugs in adding course to history
 	
 Name: Matthew Mao
 
