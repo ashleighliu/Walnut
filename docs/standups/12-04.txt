@@ -44,15 +44,16 @@ Any impediments or stumbling blocks?
 Name: Alfonso Acosta
 
 What have you done since yesterday?
-	- students can now delete from academic history
+	- Allowed admins to delete course
+  	- allowed admins to edit course
+  	- updated manage courses recyclerview for admins
   
 	
 
 
 What are you planning on doing today?
-	- Allow admins to delete course
-  - allow admins to edit course
-  - update manage courses recyclerview for admins
+	- perform some final testing for admin delete/edit, and academic history
+	
 
 Any impediments or stumbling blocks?
 	- None
