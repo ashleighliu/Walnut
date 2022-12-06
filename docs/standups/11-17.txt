@@ -1,0 +1,77 @@
+Name: JS Dandurand
+
+What have you done since yesterday?
+	- Worked a little bit on Sprint 1 tickets
+
+What are you planning on doing today?
+	- Nothing
+
+Any impediments or stumbling blocks?
+	- None
+_______________________________________
+
+Name: Miraj Ismail
+
+What have you done since yesterday?
+	- Worked on designing the layout of the app on figma
+
+What are you planning on doing today?
+	- create more tickets
+
+Any impediments or stumbling blocks?
+	- None
+_______________________________________
+
+Name: Matthew Mao
+
+What have you done since yesterday?
+	- Working on design layout for login page (w/ others)
+	- Creating tickets
+
+What are you planning on doing today?
+	- Nothing
+
+Any impediments or stumbling blocks?
+	- None
+_______________________________________
+
+Name: Junlin Qu
+
+What have you done since yesterday?
+	- Created the initial commit from Android Studios
+  - Created and started Sprint 1
+  - Created design tickets and assigned roles
+  - Had initial meeting and set up Figma, Jira and Firebase
+  - Created OKRs
+
+What are you planning on doing today?
+	- Nothing
+
+Any impediments or stumbling blocks?
+	- None
+_______________________________________
+
+Name: Ashleigh Liu
+
+What have you done since yesterday?
+	- Worked on design layout of app via Figma
+	- Worked on Sprint 1 tickets
+
+What are you planning on doing today?
+	- Planning out new tickets for the upcoming days
+
+Any impediments or stumbling blocks?
+	- Navigating Jira in general
+
+______________________________________	
+Name: Alfonso Acosta
+
+What have you done since yesterday?
+	- Had meeting with team members to discuss design
+	- Got situated on figma; started designing with team
+
+What are you planning on doing today?
+	- create tickets
+
+Any impediments or stumbling blocks?
+	- None
