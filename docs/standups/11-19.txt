@@ -1,0 +1,71 @@
+Name: JS Dandurand
+
+What have you done since yesterday?
+	- Nothing
+
+What are you planning on doing today?
+	- Nothing
+
+Any impediments or stumbling blocks?
+	- None
+_______________________________________
+
+Name: Miraj Ismail
+
+What have you done since yesterday?
+	- Working on creating tickets
+
+What are you planning on doing today?
+	- working on design layout
+
+Any impediments or stumbling blocks?
+	- None
+_______________________________________
+
+Name: Matthew Mao
+
+What have you done since yesterday?
+	- Working on design layout for login page (w/ others)
+	- Creating tickets
+
+What are you planning on doing today?
+	- Nothing
+
+Any impediments or stumbling blocks?
+	- None
+_______________________________________
+
+Name: Junlin Qu
+
+What have you done since yesterday?
+	- Nothing
+
+What are you planning on doing today?
+	- Nothing
+
+Any impediments or stumbling blocks?
+	- None
+_______________________________________
+
+Name: Ashleigh Liu
+
+What have you done since yesterday?
+	- Worked on Sprint 1 tickets
+
+What are you planning on doing today?
+	- Continue working on user stories on figma
+
+Any impediments or stumbling blocks?
+	- Managing lots of details about the project
+
+______________________________________	
+Name: Alfonso Acosta
+
+What have you done since yesterday?
+	- Nothing
+
+What are you planning on doing today?
+	- Nothing
+
+Any impediments or stumbling blocks?
+	- None
