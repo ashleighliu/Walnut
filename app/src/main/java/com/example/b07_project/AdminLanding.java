@@ -8,11 +8,14 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
@@ -21,7 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class AdminLanding extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    DrawerLayout admin_drawer;
+    public static DrawerLayout admin_drawer;
     ActionBarDrawerToggle admin_toggle;
     String uID;
     String email;
@@ -96,4 +99,8 @@ public class AdminLanding extends AppCompatActivity implements NavigationView.On
         fragmentManager.beginTransaction().replace(R.id.admin_frame, fragment).commit();
     }
 
+    public static void hideKeyboard(Activity activity) {
+        InputMethodManager inputManager = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+    }
 }

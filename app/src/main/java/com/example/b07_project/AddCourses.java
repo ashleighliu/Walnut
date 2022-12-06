@@ -1,9 +1,12 @@
 package com.example.b07_project;
 
+import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.renderscript.Sampler;
 import android.util.Log;
@@ -40,6 +43,7 @@ public class AddCourses extends Fragment {
     private FirebaseDatabase fbDatabase;
     private DatabaseReference dbReference;
     final String[] OFFERINGSESSIONS = {"summer", "fall", "winter"};
+    private Activity activity;
     /*
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -93,7 +97,7 @@ public class AddCourses extends Fragment {
         inputPrereqs = addCourseView.findViewById(R.id.inputPrereqs);
         fbDatabase = FirebaseDatabase.getInstance();
         dbReference = fbDatabase.getReference("Courses"); //have to reference to child still
-
+        activity = this.getActivity();
 
         addCourseBtn.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -174,8 +178,11 @@ public class AddCourses extends Fragment {
                         for (int i = 0;i<prereqIDArr.length;i++){
                             prereqIDString = prereqIDString  + prereqIDArr[i]+ ",";
                         }
-                        Course newCourse = new Course(courseName, courseCode, offeringSessions, prereqIDString, courseID);storeToFirebase(newCourse);
-
+                        Course newCourse = new Course(courseName, courseCode, offeringSessions, prereqIDString, courseID);
+                        storeToFirebase(newCourse);
+                        Fragment management_ui = new ManageCourses();
+                        transFragment(management_ui);
+                        AdminLanding.hideKeyboard(activity);
                     }
                     dbReference.removeEventListener(this);
                 }
@@ -186,6 +193,12 @@ public class AddCourses extends Fragment {
                 }
             });
         }
+    }
+
+    private void transFragment(Fragment frag) {
+        AdminLanding.admin_drawer.closeDrawer(GravityCompat.START);
+        FragmentManager fragmentManager = this.getActivity().getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.admin_frame, frag).commit();
     }
 
     @Override
@@ -229,7 +242,7 @@ public class AddCourses extends Fragment {
         }
         return false;
     }
-    private void storeToFirebase(Course course){
+    private void storeToFirebase(Course course) {
         dbReference.child(
                 course.getCourseID()).setValue(course).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
