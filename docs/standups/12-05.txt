@@ -10,8 +10,9 @@ Any impediments or stumbling blocks?
 Name: Miraj Ismail
 
 What have you done since yesterday?
-	- Created more tickets
-	- worked on bug fixes with the app so far
+	- finished UI for displaying timeline
+	- fixed bugs in generating timeline functionality
+	- completed final testing 
 
 Any impediments or stumbling blocks?
 	- None
