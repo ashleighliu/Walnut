@@ -45,8 +45,11 @@ Any impediments or stumbling blocks?
 Name: Junlin Qu
 
 What have you done since yesterday?
-	- Updated the recycler view to now update the course cards according to firebase database
-	- Rearranged the course cards for more readability
+	- Updated the search functionality
+	- Fixed UI not updating after searchs or changing fragments
+	- QOL updates for adding and editing courses as admin (closing keyboard, changing to main fragment)
+	- Updated the card sizes so UI does not get cut off
+	- Fixed edge cases and crashes with fragment transformations
 
 Any impediments or stumbling blocks?
 	- None
