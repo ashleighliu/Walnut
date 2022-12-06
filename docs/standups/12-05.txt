@@ -35,7 +35,7 @@ Any impediments or stumbling blocks?
 Name: Alfonso Acosta
 
 What have you done since yesterday?
-	- students can now delete from academic history
+	- performed final testing on admin edit/delete and academic history
 
 Any impediments or stumbling blocks?
 	- None
