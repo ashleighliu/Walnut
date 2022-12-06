@@ -29,7 +29,7 @@ What have you done since yesterday?
 	- Attempting to send course info data to Firebase
 	- Working on Course Timeline Display w/Miraj
 	-Add Courses Functionality & UI w/Miraj
-	
+	- Adding Scrolling functionality to Add Courses to Timeline and Add Courses to Academic History page
 
 Any impediments or stumbling blocks?
 	- Getting comfortable navigating with DatabaseReference/FirebaseReference
